@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+    <meta charset="UTF-8">
+    <title>Error-Filled Page</title>
+</head>    
+<body>
+    <h1>Welcome to My Error-Filled Page</h1>
+    
+    <p style="text-indent: 50px;">This is a paragraph with mismatched tags and missing closing tags.</p>
+    
+    <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+    </ol>
+
+    <p style="text-indent: 50px;">This is another paragraph without proper indentation.</p>
+    
+    <img src="image.jpg" alt="Error Image 2">
+
+    <a href="https://www.example.com" target="_blank">Click me!</a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>30</td>
+        </tr>
+    </table>
+
+    <img src="error.jpeg" alt="Error Image">
+
+    <!-- <center>This is centered text.</center> -->
+    <p style="text-align: center;">This is centered text.</p>
+
+    <!-- <p bgcolor="lightgray">Text</p> -->
+    <p style="background-color: lightgray;">Text</p>
+
+    <input type="button" value="Click me">
+
+    <!-- This is an unclosed comment --> 
+
+    <a href="#">Link without closing tag </a>
+
+    <p><em>Underlined text</em></p>
+
+    <dl>
+        <dt>Descriptive Item Title</dt>
+        <dd>Descriptive Item Text</dd>
+    </dl>
+</body>
+</html>
+
+<!--  
+ List of errors:
+ 1- Lack of <!DOCTYPE html> at the beginning, line 1
+ 2- duplicate html tag when setting language to english, I assimilated them both into one tag, line 2
+ 3- language tag should say lang="en" instead of 'language', line 2 again
+ 4- w3c validator listed "character encoding not declared" as erorr, added <meta charset="UTF-8"> to line 6 to fix this
+ 5- missing </head> closing tag, added at line 8
+ 6- missing </h1> closing tag, added at line 10
+ 7- missing <p> opening tag, added at line 12
+ 8- mismatched ordered list tag on line 25, added </ol>
+ 9- missing </p> closing tag, added on line 27
+ 10- missing alt="" needed in img tag, added line 29
+ 11- incorrect </img> closing tag used instead of </a> on line 31, added
+ 12- incorrect </td> closing tag used, added forward slch notation on line 40
+ 13- missing table closing tag </table>, added line 46
+ 14- incorrect notation for source of image tag, used source instead of src, fixed, line 48
+ 15- incorrect syntax and method for centering text on line 50, corrected line 51
+ 16- incorrect method for text backgroudn color on line 53, fixed on line 54
+ 17- unclosed comment, line 58, added closing
+ 18- mising </a> closing tag, added line 60
+ 19- em tag needs to be closed before p tag, fixed (switched around the tags) line 62
+ 20- incorrect dl syntax. replaced the incorrect li tags with dt and dd tags. line 65, 66 
+ 
+ others
+
+ 21- added indentation to paragraphs using ' style="text-indent: 50px;" '
+
+-->
