@@ -1,0 +1,40 @@
+* {
+    box-sizing: 0;
+    padding: 0;
+    border: 0;
+}
+.container {
+    position: relative;
+    height: 100%;
+  }
+  
+  .bottom-right {
+    position: absolute;
+    bottom: 1; /* Change from top to bottom */
+    right: 0;
+    width: 75px; /* Adjust the width as needed */
+    height: auto;
+    opacity: 0.7; /* Set the opacity to 50% */
+  }
+
+body {
+    background-image: url('../img/team.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center middle;
+  }
+
+  
+  @media (min-width: 1000px) {
+    body {
+      background-size: 100%;
+    }
+  }
+  @media (min-height: 667px) {
+    body {
+        background-size: 100%;
+    }
+  }
+
+  
+  
