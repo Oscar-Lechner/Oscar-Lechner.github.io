@@ -1,40 +1,154 @@
 * {
-    box-sizing: 0;
-    padding: 0;
-    border: 0;
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
 }
-.container {
-    position: relative;
-    height: 100%;
-  }
+
+.top-left, .top-left-lower {
   
-  .bottom-right {
-    position: absolute;
-    bottom: 1; /* Change from top to bottom */
-    right: 0;
-    width: 75px; /* Adjust the width as needed */
-    height: auto;
-    opacity: 0.7; /* Set the opacity to 50% */
-  }
+  z-index: 20; 
+}
+
+.white-box, .white-box2, .black-box, .red-box {
+  
+  z-index: 10; 
+}
+
+.number, .text{
+  z-index: 30;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+}
+
+.white-box {
+  position: fixed; 
+  top: 50px;
+  left: 50px;
+  width: 150px; 
+  height: 75px; 
+  background-color: white; 
+  z-index: 10; /
+}
+
+.white-box2 {
+  position: fixed; 
+  top: 50px;
+  left: 50px;
+  width: 7px; 
+  height: 38px;
+  background-color: white; 
+  z-index: 10; 
+}
+
+.black-box {
+  position: fixed; 
+  top: 50px;
+  left: 50px;
+  width: 112px; 
+  height: 75px; 
+  background-color: black; 
+  z-index: 10; 
+}
+
+.red-box {
+  position: fixed; 
+  top: 125px;
+  left: 50px;
+  width: 75px; 
+  height: 30px; 
+  background-color: darkred; 
+  z-index: 10; 
+}
+
+
+.bottom-right {
+  position: absolute;
+  bottom: 1px; 
+  right: 0;
+  width: 75px;
+  height: auto;
+  opacity: 0.6; 
+}
+
+.top-left {
+  position: fixed;
+  top: 50px;
+  left: 65px; 
+  width: 38px; 
+  height: auto; 
+  opacity: 1;
+}
+
+.top-left-lower {
+  position: fixed; 
+  top: 89px; 
+  left: 68px; 
+  width: 26px; 
+  height: auto; 
+  opacity: 1;
+}
 
 body {
-    background-image: url('../img/team.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center middle;
-  }
+  background-image: url('../img/team.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center middle;
+}
 
-  
-  @media (min-width: 1000px) {
-    body {
+@media (min-width: 1000px) {
+  body {
       background-size: 100%;
-    }
   }
-  @media (min-height: 667px) {
-    body {
-        background-size: 100%;
-    }
-  }
+}
 
-  
-  
+@media (min-height: 667px) {
+  body {
+      background-size: 100%;
+  }
+}
+
+.number {
+  position: fixed; 
+  font-size: 25px; 
+  color: darkred; 
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#number01 {
+  top: 90px; 
+  left: 167px;
+}
+
+#number02 {
+  top: 55px;
+  left: 173px;
+}
+
+.text{
+  position: fixed; 
+  font-size: 15px; 
+  color: white; 
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#text01{
+  top: 97px;
+  left: 105px;
+}
+
+#text02{
+  top: 62px;
+  left: 109px;
+}
+
+#text03{
+  top:130px;
+  left: 65px;
+  font-size: 20px;
+  font-weight: 200;
+}
