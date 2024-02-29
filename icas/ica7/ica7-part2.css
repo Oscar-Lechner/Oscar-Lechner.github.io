@@ -1,66 +1,43 @@
-body{
+body {
     background-color: olive;
 }
 
-
-#flex-parent{
+#flex-parent {
     background-color: orangered;
-}
-#flex-parent p{
-    padding:5vw;
+    display: flex; 
 }
 
-#flex-child1{
-     
-}
-#flex-child2{
- 
-}
-#flex-child3{
- 
-}
-#flex-child4{
- 
+#flex-parent p {
+    padding: 5vw;
 }
 
-
-#grid-parent{
-
+#flex-child1 {
+    order: 3; 
 }
 
-#grid-parent h1{
+#flex-child2 {
+    order: 4; 
+}
+
+#flex-child3 {
+    order: 2; 
+}
+
+#flex-child4 {
+    order: 1; 
+}
+
+#grid-parent {
+    display: grid; 
+    grid-template-columns: repeat(3, auto); 
+    justify-content: center; 
+    
+}
+
+#grid-parent h1 {
     background-color: grey;
-    padding:3vw 5vh;
-    margin:5vw;
-    
+    padding: 3vw 5vh;
+    margin: 5vw;
 }
-#no0{
-    
-}
-#no1{
 
-}
-#no2{
 
-}
-#no3{
-
-}
-#no4{
-
-}
-#no5{
-
-}
-#no6{
-
-}
-#no7{
-
-}
-#no8{
-
-}
-#no9{
-
-}
