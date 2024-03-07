@@ -168,8 +168,9 @@ p{
 }
 
 h2{
-    margin-top: 4pt;
-    text-align: center;
+    margin-top: 40pt;
+    text-align: left;
+    margin-left: 50px;
 }
 
 
@@ -202,6 +203,15 @@ h2{
         height: 300px; 
 }
 
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px; /* Adjust the space between the image and the text */
+}
+#solutions {
+    padding: 20px; /* Add padding around the text */
+    max-width: 600px; /* Adjust the width of the text container */
+}
 
 #grid-parent4{
     display: grid;
