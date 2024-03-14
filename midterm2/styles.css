@@ -1,0 +1,82 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.fullscreen-image {
+    background-image: url('concerthallnew.jpg');
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+}
+.container {
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+}
+header {
+    background: #2f2e38;
+    color: azure;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #3f076d 3px solid;
+}
+header h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+}
+.season-intro {
+    background: azure;
+    color: #333;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(15, 0, 15, 0.1);
+}
+.concerts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.concert {
+    background: azure;
+    color: #333;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 40px);
+    transition: transform 0.3s ease; 
+}
+.concert:hover {
+    transform: scale(1.05); 
+}
+.concert h2 {
+    color: #3f076d;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+.concert p {
+    margin: 10px 0;
+}
+@media (max-width: 768px) {
+    .concerts {
+        flex-direction: column;
+    }
+    .concert {
+        width: 90%;
+        margin: 20px auto;
+    }
+}
