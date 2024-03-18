@@ -185,9 +185,6 @@ nav ul li a:hover {
         z-index: 11; 
         background-color: #2f2e38;
     }
-    nav ul li{
-        
-    }
 
     .dropdown-content {
         overflow-y: auto; 
