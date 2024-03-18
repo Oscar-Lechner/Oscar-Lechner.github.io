@@ -139,7 +139,19 @@ nav ul li a:hover {
     height: auto;
     
 }
-@media (max-width: 400px) {
+
+@media (min-width: 1000px) and (max-width: 1750px) {
+    
+
+    .concert {
+        width: calc(40% - 0px); 
+       
+        
+    }
+    
+}
+
+@media (max-width: 600px) {
     .container {
         width: 90%;
     }
@@ -157,13 +169,25 @@ nav ul li a:hover {
         width: 90%;
         margin: 10px 0;
         padding: 15px;
-        transition: none; /* Disable the hover transition */
     }
 
-    /* Disable the hover effect */
-    .concert:hover {
-        transform: none;
+    header {
+        position: relative; /* Change position to relative */
+    }
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 11; /* Ensure nav is above other content */
+        background-color: #2f2e38; /* Match header background color */
+    }
+
+    .dropdown-content {
+        overflow-y: auto; /* Enable vertical scrolling */
+        max-height: 50vh; /* Set a maximum height */
     }
 }
+
+
 
 
