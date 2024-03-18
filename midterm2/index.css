@@ -169,22 +169,25 @@ nav ul li a:hover {
         width: 90%;
         margin: 10px 0;
         padding: 15px;
+        transition: none;
     }
+    .concert:hover {
+        transform: none;
 
     header {
-        position: relative; /* Change position to relative */
+        position: relative;
     }
 
     nav {
         position: sticky;
         top: 0;
-        z-index: 11; /* Ensure nav is above other content */
-        background-color: #2f2e38; /* Match header background color */
+        z-index: 11; 
+        background-color: #2f2e38;
     }
 
     .dropdown-content {
-        overflow-y: auto; /* Enable vertical scrolling */
-        max-height: 50vh; /* Set a maximum height */
+        overflow-y: auto; 
+        max-height: 50vh; 
     }
 }
 
