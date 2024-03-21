@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Interactive</title>
     <style>
-        img{
-            height: 200px;
+        #colorButton, #toggleButton {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 20px; 
+            padding: 15px 30px; 
+            margin: 10px; 
+            cursor: pointer;
         }
 
-
+        #toggleButton {
+            display: none; 
+        }
     </style>
+    
 </head>
 <body>
-    
-    <button type="button">move image down</button>
+    <button id="colorButton">Change Background Color</button>
+    <button id="toggleButton">Toggle Button Visibility</button>
 
-
-    <img src="../../wa/wa8/redBall.png" alt="red ball"> 
     <script>
-        const button = document.querySelector("button");
-        button.addEventListener('click', runFunction);
+        var colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+        var currentColorIndex = 0;
 
-        function runFunction(){
-            img
-        }
+        document.getElementById('colorButton').addEventListener('click', function() {
+            document.body.style.backgroundColor = colors[currentColorIndex];
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+        });
 
+        document.getElementById('toggleButton').style.display = 'block'; 
+
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var colorButton = document.getElementById('colorButton');
+            if (colorButton.style.display === 'none') {
+                colorButton.style.display = 'block';
+            } else {
+                colorButton.style.display = 'none';
+            }
+        });
     </script>
+    
+    
 </body>
 </html>
