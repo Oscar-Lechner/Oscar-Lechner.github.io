@@ -1,0 +1,45 @@
+body {
+    font-family: helvetica, sans-serif;
+    width: 350px;
+    margin: 0 auto;
+    padding-top: 50px;
+    background-color: #b5c2e3;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  div {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  button.randomize {
+    background-color: #4c4eaf; 
+    color: white; 
+    padding: 12px 30px; 
+    font-size: 17px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px; 
+  }
+  
+  button.randomize:hover {
+    background-color: #333475; /* Darker green background on hover */
+  } 
+  
+  input[type="text"] {
+    padding: 5px;
+    width: 150px;
+  }
+  
+  p {
+    background: #c7aad7;
+    color: #2b150c;
+    padding: 10px;
+    visibility: hidden;
+    text-align: center;
+    font-size: 13pt;
+    
+  }
+  
