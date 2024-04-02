@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wa11.css">
+    <title>Image Carousel</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="main-image">
+            <img src="wa11-img/image6.JPG" alt="Main Image" id="mainImage">
+        </div>
+        <div class="thumbnail-container">
+            <img src="wa11-img/image1.JPG" alt="Thumbnail 1" class="thumbnail" onclick="changeImage('image1.jpg')">
+            <img src="wa11-img/image2.JPG" alt="Thumbnail 2" class="thumbnail" onclick="changeImage('image2.jpg')">
+            <img src="wa11-img/image3.JPG" alt="Thumbnail 3" class="thumbnail" onclick="changeImage('image3.jpg')">
+            <img src="wa11-img/image4.JPG" alt="Thumbnail 4" class="thumbnail" onclick="changeImage('image4.jpg')">
+            <img src="wa11-img/image5.JPG" alt="Thumbnail 5" class="thumbnail" onclick="changeImage('image5.jpg')">
+        </div>
+        <div class="arrow-container">
+            <button class="arrow" onclick="previousImage()">&#9664;</button>
+            <button class="arrow" onclick="nextImage()">&#9654;</button>
+        </div>
+    </div>
+
+    <button onclick="toggleMode()">Toggle Light/Dark Mode</button>
+
+    <script src="wa11.js"></script>
+    
+</body>
+</html>
+
+
+
+
+
