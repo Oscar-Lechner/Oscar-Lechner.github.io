@@ -1,4 +1,4 @@
-let images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
+let images = ['wa11-img/image1.JPG', 'wa11-img/image2.JPG', 'wa11-img/image3.JPG', 'wa11-img/image4.JPG', 'wa11-img/image5.JPG', 'wa11-img/image6.JPG', 'wa11-img/image7.JPG'];
 let currentIndex = 0;
 
 function changeImage(src) {
