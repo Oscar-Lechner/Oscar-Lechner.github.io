@@ -7,7 +7,7 @@ body {
 }
 
 .main-image img {
-    width: 80%;
+    width: 50%;
     height: auto;
     margin-bottom: 20px;
 }
@@ -24,7 +24,10 @@ body {
     cursor: pointer;
     transition: transform 0.2s;
 }
-
+.thumbnail.active {
+    box-shadow: 0 0 10px #fff; /* White shadow for light mode */
+    /* Other styles to indicate active thumbnail */
+}
 .thumbnail:hover {
     transform: scale(1.1);
 }
@@ -52,4 +55,15 @@ body {
 .arrow:hover {
     background-color: #e0e0e0;
 }
+body.dark-mode {
+    background-color: #333; /* Dark background for dark mode */
+    color: #fff; /* Light text for dark mode */
+}
+
+.dark-mode .thumbnail.active {
+    box-shadow: 0 0 10px #000; /* Dark shadow for dark mode */
+}
+
+/* Add .dark-thumbnail styles if needed for more contrast */
+
 
