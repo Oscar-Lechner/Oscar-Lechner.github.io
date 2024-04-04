@@ -65,7 +65,7 @@ body{
         display: grid;
         grid-template-columns:1fr 1fr 1fr;
         padding: 10pt;
-        margin-left: 100pt;
+        margin-left: 80pt;
     }
     h3{
     font-size:30pt;
@@ -84,8 +84,9 @@ body{
         padding-top: 55pt;
     }
     #no3 h4 img{
-        width:300pt;
-        padding-top: 240pt;
+        width:400pt;
+        padding-top: 200pt;
+        padding-right: 200pt;
         
     }
     h5{
@@ -94,11 +95,15 @@ body{
         color:rgb(232,126,82);
         background-color: rgba(16, 101, 101, 0.306);
     }
-    article2{
+    article{
         display: grid;
-        grid-template-columns:2fr 2fr;
-        padding: 10pt;
-        margin-left: 100pt;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 50px; /* Adjust the gap between grid items */
+        padding:40px; /* Add more padding around the article */
+        margin-left: 80pt;
+    }
+    article img{
+        width: 500pt;
     }
     article2 #no1 img{
         width:400pt;
