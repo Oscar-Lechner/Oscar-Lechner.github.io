@@ -92,7 +92,7 @@ body {
   
   .dark-mode.dark-green-beige .main-image img {
     border: 2px solid #f4e8c1;
-    filter: brightness(0.8);
+    filter: brightness(0.7);
   }
   
   .dark-mode.dark-green-beige .thumbnail.active {
