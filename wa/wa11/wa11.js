@@ -1,51 +1,62 @@
-let images = ['wa11-img/image1.JPG', 'wa11-img/image2.JPG', 'wa11-img/image3.JPG', 'wa11-img/image4.JPG', 'wa11-img/image5.JPG', 'wa11-img/image6.JPG', 'wa11-img/image7.JPG'];
+const currentImage = document.querySelector('#mainImage');
+const thumbnails = document.querySelectorAll('.thumbnail');
+const modal = document.querySelector('.modal');
+const modalImage = document.querySelector('.modal-image');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const toggleButton = document.querySelector('.toggle-button');
+
 let currentIndex = 0;
+const images = ['wa11-img/image1.JPG', 'wa11-img/image2.JPG', 'wa11-img/image3.JPG', 'wa11-img/image4.JPG', 'wa11-img/image5.JPG', 'wa11-img/image6.JPG', 'wa11-img/image7.JPG'];
 
-function changeImage(index) {
-    document.getElementById("mainImage").src = images[index];
-    currentIndex = index;
-    updateThumbnails();
-}
+// Set the initial image
+currentImage.src = images[currentIndex];
 
-function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    changeImage(currentIndex);
-}
-
-function previousImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    changeImage(currentIndex);
-}
-
+// Update thumbnail styles
 function updateThumbnails() {
-    let thumbnailContainer = document.querySelector('.thumbnail-container');
-    let thumbnails = thumbnailContainer.querySelectorAll('.thumbnail');
-
-    // Reset active class for all thumbnails
-    thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
-
-    // Set active class for the current thumbnail
-    let currentThumbnail = thumbnails[currentIndex];
-    if (currentThumbnail) {
-        currentThumbnail.classList.add('active');
+  thumbnails.forEach((thumbnail, index) => {
+    if (index === currentIndex) {
+      thumbnail.classList.add('active');
+    } else {
+      thumbnail.classList.remove('active');
     }
-
-    // Update thumbnail positions
-    for (let i = 0; i < thumbnails.length; i++) {
-        let thumbnailIndex = (currentIndex + i) % images.length;
-        thumbnails[i].src = images[thumbnailIndex];
-    }
+  });
 }
 
+// Show the next image
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  currentImage.src = images[currentIndex];
+  updateThumbnails();
+}
+
+// Show the previous image
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  currentImage.src = images[currentIndex];
+  updateThumbnails();
+}
+
+// Handle thumbnail clicks
+thumbnails.forEach((thumbnail, index) => {
+  thumbnail.addEventListener('click', () => {
+    currentIndex = index;
+    currentImage.src = images[currentIndex];
+    updateThumbnails();
+  });
+});
+
+// Handle arrow button clicks
+prevButton.addEventListener('click', prevImage);
+nextButton.addEventListener('click', nextImage);
+
+// Toggle dark mode
 function toggleMode() {
-    let body = document.body;
-    body.classList.toggle('dark-mode');
-
-    let thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach(thumbnail => {
-        thumbnail.classList.toggle('dark-thumbnail');
-    });
+  const body = document.body;
+  body.classList.toggle('dark-mode');
+  body.classList.toggle('dark-green-beige');
+  thumbnails.forEach(thumbnail => thumbnail.classList.toggle('dark-thumbnail'));
 }
 
-// Initialize the carousel
-changeImage(currentIndex);
+// Initialize the gallery
+updateThumbnails();

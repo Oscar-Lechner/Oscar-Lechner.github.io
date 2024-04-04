@@ -1,69 +1,108 @@
 body {
     font-family: Arial, sans-serif;
-}
-
-.container {
+    background-color: #f4e8c1;
+  }
+  
+  .container {
     text-align: center;
-}
-
-.main-image img {
+    position: relative;
+  }
+  
+  .main-image img {
     width: 50%;
     height: auto;
     margin-bottom: 20px;
-}
-
-.thumbnail-container {
+  }
+  
+  .thumbnail-container {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.thumbnail {
+  }
+  
+  .thumbnail {
     width: 100px;
     height: auto;
     cursor: pointer;
     transition: transform 0.2s;
-}
-.thumbnail.active {
-    box-shadow: 0 0 10px #fff; /* White shadow for light mode */
-    /* Other styles to indicate active thumbnail */
-}
-.thumbnail:hover {
+  }
+  
+  .thumbnail.active {
+    box-shadow: 0 0 10px #fff;
+  }
+  
+  .thumbnail:hover {
     transform: scale(1.1);
-}
-
-.dark-mode {
-    background-color: #333;
-    color: #fff;
-}
-
-.dark-mode .main-image img {
-    border: 2px solid #fff;
-}
-.arrow-container {
+  }
+  
+  .arrow-container {
     margin: 20px 0;
-}
-
-.arrow {
-    background-color: #f0f0f0;
+  }
+  
+  .arrow {
+    background-color: #f3ece0;
     border: none;
     cursor: pointer;
     padding: 10px 20px;
     font-size: 24px;
-}
-
-.arrow:hover {
+  }
+  
+  .arrow:hover {
     background-color: #e0e0e0;
-}
-body.dark-mode {
-    background-color: #333; /* Dark background for dark mode */
-    color: #fff; /* Light text for dark mode */
-}
-
-.dark-mode .thumbnail.active {
-    box-shadow: 0 0 10px #000; /* Dark shadow for dark mode */
-}
-
-/* Add .dark-thumbnail styles if needed for more contrast */
-
-
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .dark-mode .main-image img {
+    border: 2px solid #fff;
+  }
+  
+  .dark-mode .thumbnail.active {
+    box-shadow: 0 0 10px #000;
+  }
+  
+  .dark-thumbnail {
+    filter: brightness(0.5);
+  }
+  
+  .toggle-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #20231c;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .toggle-button:hover {
+    background-color: #172801;
+  }
+  
+  .dark-mode.dark-green-beige {
+    background-color: #2c2f28;
+    color: #f4e8c1;
+  }
+  
+  .dark-mode.dark-green-beige .main-image img {
+    border: 2px solid #f4e8c1;
+    filter: brightness(0.8);
+  }
+  
+  .dark-mode.dark-green-beige .thumbnail.active {
+    box-shadow: 0 0 10px #f4e8c1;
+  }
+  .dark-mode .toggle-button {
+    background-color: #a8b39d;
+    color: #333;
+  }
+  
+  .dark-mode .toggle-button:hover {
+    background-color: #9ba78e;
+  }
