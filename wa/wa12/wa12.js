@@ -68,7 +68,7 @@ function setRandomModel() {
 const unsplashAccessKey = '1SSnzvnd-XybF_zpqsY7__oy52c7cmd_2hiogfZwcAo';
 
 async function displayCarImage(make, model) {
-    const query = `${make} ${model} car vehicle`;
+    const query = `${model} car`;
     const url = `https://api.unsplash.com/search/photos?page=1&query=${query}&collections=195369&client_id=${unsplashAccessKey}`;
     try {
         const response = await fetch(url);
