@@ -31,9 +31,9 @@ async function getCarData() {
 }
 
 function displayCarData(data) {
-    carDataSection.innerHTML = ''; // Clear existing data
+    carDataSection.innerHTML = ''; 
     if (data && data.length > 0) {
-        const car = data[0]; // Assuming the first result is the desired one
+        const car = data[0]; 
         carDataSection.innerHTML = `
             <div>Make: ${car.make}</div>
             <div>Model: ${car.model}</div>
@@ -48,7 +48,7 @@ function displayCarData(data) {
             <div>Drive: ${car.drive}</div>
             <div>Transmission: ${car.transmission}</div>
         `;
-        displayCarImage(car.make, car.model); // Display the car image based on the make and model
+        displayCarImage(car.make, car.model); 
     } else {
         carDataSection.innerHTML = '<div>No data found for the entered model</div>';
     }
@@ -77,13 +77,13 @@ async function displayCarImage(make, model) {
         }
 
         const json = await response.json();
-        const imageUrl = json.results[0]?.urls?.regular; // Get the URL of the first image result
+        const imageUrl = json.results[0]?.urls?.regular; 
         if (imageUrl) {
             const imageElement = document.createElement('img');
             imageElement.src = imageUrl;
             imageElement.alt = `${make} ${model}`;
             imageElement.classList.add('car-image');
-            carDataSection.appendChild(imageElement); // Append the image to the car data section
+            carDataSection.appendChild(imageElement); 
         }
     } catch (err) {
         console.log(err);
