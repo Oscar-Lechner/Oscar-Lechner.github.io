@@ -14,6 +14,7 @@ class Ball {
     this.velX = velX;
     this.velY = velY;
     this.size = size;
+    this.startTime = Date.now();
   }
 
   draw() {
@@ -40,6 +41,7 @@ class Ball {
       this.velY = -(this.velY);
     }
 
+    // Update ball positions based on velocity
     this.x += this.velX;
     this.y += this.velY;
   }
@@ -76,7 +78,7 @@ class Ball {
           pos1.x += vel1.x / absV * overlap;
 
           // Apply a small separation force
-          const separationForce = 0.05;
+          const separationForce = 0.01;
           pos0.x += (pos0.x - pos1.x) * separationForce;
           pos1.x -= (pos0.x - pos1.x) * separationForce;
 
@@ -84,16 +86,23 @@ class Ball {
           const pos0F = this.rotate(pos0.x, pos0.y, sine, cosine, false);
           const pos1F = this.rotate(pos1.x, pos1.y, sine, cosine, false);
 
-          // Adjust positions to actual screen positions
-          this.x = ball.x + pos1F.x;
-          this.y = ball.y + pos1F.y;
-          ball.x = ball.x + pos0F.x;
-          ball.y = ball.y + pos0F.y;
+          // Calculate new positions based on collision response
+          const thisNewX = this.x + pos1F.x;
+          const thisNewY = this.y + pos1F.y;
+          const ballNewX = ball.x + pos0F.x;
+          const ballNewY = ball.y + pos0F.y;
+
+          // Update ball positions separately
+          this.x = thisNewX;
+          this.y = thisNewY;
+          ball.x = ballNewX;
+          ball.y = ballNewY;
 
           // Rotate velocities back
           const vel0F = this.rotate(vel0.x, vel0.y, sine, cosine, false);
           const vel1F = this.rotate(vel1.x, vel1.y, sine, cosine, false);
 
+          // Update velocities based on collision response
           this.velX = vel0F.x;
           this.velY = vel0F.y;
           ball.velX = vel1F.x;
@@ -111,22 +120,22 @@ class Ball {
   }
 
   getColor() {
-    const red = Math.round(this.x / width * 255);
-    const green = Math.round((height - this.y) / height * 255);
-    const blue = Math.round(this.y / height * 255);
-    const orange = Math.round((width - this.x) / width * 255);
-    return `rgb(${red}, ${green}, ${blue}, ${orange})`;
+    const elapsedTime = (Date.now() - this.startTime) * 0.001;
+    const hue = ((this.x / width) + (this.y / height) + elapsedTime) % 1 * 360;
+    const saturation = Math.round(Math.abs(this.velX + this.velY) / 4 * 100);
+    const lightness = Math.round(Math.abs(this.velX + this.velY) / 4 * 50) + 25;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 }
 
 const balls = [];
-while (balls.length < 30) {
-  const size = random(40, 50);
+while (balls.length < 50) {
+  const size = random(10, 30);
   const ball = new Ball(
     random(size, width - size),
     random(size, height - size),
-    random(-1, 1),
-    random(-1, 1),
+    random(-2, 2),
+    random(-2, 2),
     size
   );
   balls.push(ball);

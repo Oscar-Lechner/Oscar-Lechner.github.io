@@ -14,6 +14,7 @@ class Ball {
     this.velX = velX;
     this.velY = velY;
     this.size = size;
+    
   }
 
   draw() {
@@ -42,6 +43,12 @@ class Ball {
 
     this.x += this.velX;
     this.y += this.velY;
+
+    // Update the hue value for a continuous color change
+    this.hue += 0.5;
+    if (this.hue >= 360) {
+      this.hue = 0;
+    }
   }
 
   collisionDetect() {
@@ -111,22 +118,22 @@ class Ball {
   }
 
   getColor() {
-    const red = Math.round(this.x / width * 255);
-    const green = Math.round((height - this.y) / height * 255);
-    const blue = Math.round(this.y / height * 255);
-    const orange = Math.round((width - this.x) / width * 255);
-    return `rgb(${red}, ${green}, ${blue}, ${orange})`;
+    const time = Date.now() * 0.001; // Get the current time in seconds
+    const hue = ((this.x / width) + (this.y / height) + time) % 1 * 360; // Calculate the hue based on position and time
+    const saturation = Math.round(Math.abs(this.velX + this.velY) / 4 * 100);
+    const lightness = Math.round(Math.abs(this.velX + this.velY) / 4 * 50) + 25;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 }
 
 const balls = [];
-while (balls.length < 30) {
-  const size = random(40, 50);
+while (balls.length < 150) {
+  const size = random(10, 30);
   const ball = new Ball(
     random(size, width - size),
     random(size, height - size),
-    random(-1, 1),
-    random(-1, 1),
+    random(-2, 2),
+    random(-2, 2),
     size
   );
   balls.push(ball);
