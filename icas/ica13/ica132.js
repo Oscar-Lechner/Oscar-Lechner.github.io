@@ -56,41 +56,41 @@ class Ball {
           const sine = Math.sin(angle);
           const cosine = Math.cos(angle);
 
-          // Rotate ball positions
+          
           const pos0 = { x: 0, y: 0 };
           const pos1 = this.rotate(dx, dy, sine, cosine, true);
 
-          // Rotate velocities
+          
           const vel0 = this.rotate(this.velX, this.velY, sine, cosine, true);
           const vel1 = this.rotate(ball.velX, ball.velY, sine, cosine, true);
 
-          // Swap velocities
+          
           const vxTotal = vel0.x - vel1.x;
           vel0.x = ((this.size - ball.size) * vel0.x + 2 * ball.size * vel1.x) / (this.size + ball.size);
           vel1.x = vxTotal + vel0.x;
 
-          // Update ball positions
+          
           const absV = Math.abs(vel0.x) + Math.abs(vel1.x);
           const overlap = this.size + ball.size - Math.abs(pos0.x - pos1.x);
           pos0.x += vel0.x / absV * overlap;
           pos1.x += vel1.x / absV * overlap;
 
-          // Apply a small separation force
-          const separationForce = 0.05;
+          
+          const separationForce = 0.02;
           pos0.x += (pos0.x - pos1.x) * separationForce;
           pos1.x -= (pos0.x - pos1.x) * separationForce;
 
-          // Rotate positions back
+          
           const pos0F = this.rotate(pos0.x, pos0.y, sine, cosine, false);
           const pos1F = this.rotate(pos1.x, pos1.y, sine, cosine, false);
 
-          // Adjust positions to actual screen positions
+          
           this.x = ball.x + pos1F.x;
           this.y = ball.y + pos1F.y;
           ball.x = ball.x + pos0F.x;
           ball.y = ball.y + pos0F.y;
 
-          // Rotate velocities back
+          
           const vel0F = this.rotate(vel0.x, vel0.y, sine, cosine, false);
           const vel1F = this.rotate(vel1.x, vel1.y, sine, cosine, false);
 
@@ -120,13 +120,13 @@ class Ball {
 }
 
 const balls = [];
-while (balls.length < 30) {
-  const size = random(40, 50);
+while (balls.length < 50) {
+  const size = random(30, 50);
   const ball = new Ball(
     random(size, width - size),
     random(size, height - size),
-    random(-1, 1),
-    random(-1, 1),
+    random(-2, 2),
+    random(-2, 2),
     size
   );
   balls.push(ball);
