@@ -3,9 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life of Joe</title>
+  <title>Life of Joe</title>
+  <style>
+    /* CSS styles for the game */
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .hidden {
+      display: none;
+    }
+    .character {
+      cursor: pointer;
+    }
+    .stats {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18pt;
+    }
+  </style>
 </head>
 <body>
-    
+  <div id="titleScreen">
+    <h1>Life of Joe</h1>
+    <h3>A Story Game About Evolutionary Mismatch</h3>
+    <button id="startButton">Start Game</button>
+  </div>
+
+  <div id="characterSelect" class="hidden">
+    <p>Choose your character:</p>
+    <div>
+      <img src="girl.png" alt="Girl" class="character" data-character="Jo">
+      <p>Jo</p>
+    </div>
+    <div>
+      <img src="boy.png" alt="Boy" class="character" data-character="Joe">
+      <p>Joe</p>
+    </div>
+  </div>
+
+  <div id="gameScreen" class="hidden">
+    <p id="question"></p>
+    <p id="optionA"></p>
+    <button id="optionAButton">A</button>
+    <p id="optionB"></p>
+    <button id="optionBButton">B</button>
+    <p id="optionC"></p>
+    <button id="optionCButton" class="hidden">C</button>
+  </div>
+
+  <div id="resultScreen" class="hidden">
+    <p id="result"></p>
+    <button id="nextButton">Next</button>
+  </div>
+
+  <div id="gameOver" class="hidden">
+    <h2>Game Over</h2>
+    <p>You died.</p>
+    <button id="restartButton">Restart Game</button>
+  </div>
+
+  <div id="gameWon" class="hidden">
+    <h2>Congratulations!</h2>
+    <p>You lived.</p>
+    <button id="restartButton">Restart Game</button>
+  </div>
+
+  <div class="stats hidden">
+    <p>Character: <span id="characterName"></span></p>
+    <p>Health: <span id="health">100</span></p>
+    <p>Happiness: <span id="happiness">100</span></p>
+    <p>Age: <span id="age">0</span></p>
+    <p>Score: <span id="score">0</span></p>
+  </div>
+
+  <script>
+    // JavaScript code for the game
+    const titleScreen = document.getElementById('titleScreen');
+    const startButton = document.getElementById('startButton');
+    const characterSelect = document.getElementById('characterSelect');
+    const gameScreen = document.getElementById('gameScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const gameOver = document.getElementById('gameOver');
+    const gameWon = document.getElementById('gameWon');
+    const questionElement = document.getElementById('question');
+    const optionAElement = document.getElementById('optionA');
+    const optionBElement = document.getElementById('optionB');
+    const optionCElement = document.getElementById('optionC');
+    const optionAButton = document.getElementById('optionAButton');
+    const optionBButton = document.getElementById('optionBButton');
+    const optionCButton = document.getElementById('optionCButton');
+    const resultElement = document.getElementById('result');
+    const nextButton = document.getElementById('nextButton');
+    const healthElement = document.getElementById('health');
+    const happinessElement = document.getElementById('happiness');
+    const ageElement = document.getElementById('age');
+    const characterNameElement = document.getElementById('characterName');
+    const statsElement = document.querySelector('.stats');
+    const restartButtons = document.querySelectorAll('#restartButton');
+
+    let character = '';
+    let currentQuestionIndex = 0;
+    let health = 100;
+    let happiness = 100;
+    let age = 0;
+    let ipadKid = false;
+    let workCommitted = false;
+    let trackStar = false;
+
+    const questions = [
+      { // question 1 iPad
+        text: "Question 1: You are a child living in Colorado. All of your kindergarten friends have iPads. You want an iPad but your parents know that having an iPad might negatively affect your ability to learn social cues and interact appropriately with your peers.",
+        optionA: "Con your parents into buying you an iPad because you really really want one",
+        optionB: "Accept their decision and understand that its to help you not hurt you",
+        resultA: {
+          text: "You crafty little fox! You've conned your parents into giving you an iPad. This will have some effects on your social development. Exposure to an online environment at an early age might cause an increased risk of anxiety, depression, and even sleep problems. It also might lead to physical inactivity and an increased risk of obesity. Online interactions specifically cause the same release of dopamine in your pleasure sensors, without the long-term benefits of physical activity and social development.",
+          health: -10,
+          happiness: 10,
+          ipadKid: true
+        },
+        resultB: {
+          text: "Good choice! This will be beneficial to your life in the long run, even though it sucks that they said no to your iPad dreams. It has been studied how physical activity and social interactivity help with childhood development. This includes decreased risk of obesity and better social-emotional development. Physical activity and play with peers is important in developing social skills like teamwork, leadership, and improvement in your self-esteem.",
+          health: 10,
+          happiness: -5,
+          ipadKid: false
+        }
+      },
+      { // question 2 obesity
+        text: "Question 2: You are now in middle school. You have the opportunity to join the track team but don't have friends on the team yet.",
+        optionA: "Decide not to join and keep playing online games with you friends in your free time",
+        optionB: "You take the leap and join the team! You are ready to meet new friends and also exercise daily",
+        resultA: {
+          text: "Be careful! You need at least 60 min of exercise a day. If you don't eat well and exercise your body will store more fat than it needs and could ultimately lead to major health problems including obesity and osteoporosis. Humans store fat in preparation for famines that do not exist in most places in the world, which is good! It means, however, that you have to stay active and engaged to stay healthy.",
+          health: -10,
+          happiness: 10
+        },
+        resultB: {
+          text: "You're at the peak of health, as evidenced by studies on human activity and motivation, and have lots of friends too! It has been shown that physical activity leads to increased self esteem and motivation, and a decrease in anxiety. Physical activity can be both an extrinsic and intrinsic motivator. For example, your school could cheer you on during your games! You could also find motivation in bettering your overall health. Either way, you are getting a tangible reward from physical activity, and helping on your overall development through our social world.",
+          health: 10,
+          happiness: -5,
+          trackStar: true
+        }
+      },
+      { // question 3 work stress
+        text: "Question 3: You are now a highschool student. You want to go out with your friends but you don't have any money so you decide to get a job at the local grocery store. They ask you to work 20 hours a week. You become stressed out trying to balance school, work, and friends. How will you manage?",
+        optionA: "You decide to fully commit to work and school. You want money. Friends can wait",
+        optionB: "You decide to quit your job to prioritize friends and school at the cost of your (albeit slim) paycheck",
+        resultA: {
+          text: "You become more anxious and depressed. You have money but no friends to spend it with. We humans as hunter gatherers did not evolve the ability to separate work from normal life, which is stressful for you! We evolved to focus on immediate survival and gratification, and long term goals like saving up some money may seem futile. We also evolved to react to threats harshly. Our evolutionary instincts might cause you some trouble with your boss!",
+          health: -10,
+          happiness: 10,
+          workCommitted: true
+        },
+        resultB: {
+          text: "You lousy freeloader! Who is gonna pay for those movie tickets for you and your sweetheart?? Your parents?? Society pressures us into getting a job due to our instincts around survival, that we must work in order to improve our lives. We cannot separate our work life and home life from each other very effectively. Social pressure can be hard! What will you do??",
+          health: 10,
+          happiness: -5,
+          workCommitted: false
+        }
+      },
+      { // question 4 graduate high school
+        text: "Question 4: You graduate highschool. Will you go to college? Travel the world? Join the workforce? So many options!!",
+        optionA: trackStar ? "Turns out you're super fast. Go D1 as a sprinter." : "You go to college",
+        optionB: workCommitted ? "You decide to travel." : "Play so many video games it's not even funny.",
+        optionC: "You join the workforce as a construction worker.",
+        resultA: {
+          text: trackStar ? "You're a track star! You get a full ride to your dream school." : "You take out loans to afford school.",
+          health: -10,
+          happiness: 10
+        },
+        resultB: {
+          text: workCommitted ? "You use all of your savings to go to Australia and party with the kangaroos." : "You become a master at every video game imaginable. Your reflexes are insane!",
+          health: 10,
+          happiness: -5
+        },
+        resultC: {
+          text: "You are living your best life with some cool people, outside and getting a workout everyday. Your metal health and physical health are in great condition!",
+          health: 10,
+          happiness: -5
+        }
+      },
+      { // question 5 6 years later
+        text: "Question 6: Its 6 years later. You are now in your mid 20s and are questioning your life's purpose. You become depressed with the unattained goals that society has set for you like having a family and kids and a house in the hills.",
+        optionA: ipadKid && workCommitted ? null : "You decide to make a tinder profile to meet your perfect partner.",
+        optionB: "You wallow in your sorrow and lack of love. You start eating ice cream for breakfast, lunch and dinner.",
+        optionC: "You decide to say 'fuck em' my life is mine and I can do what I want when I want. I will not let societal pressure dictate my life",
+        resultA: {
+          text: "You meet a beautiful soul and decide to have a child. Will they be an iPad kid?",
+          health: -10,
+          happiness: 10
+        },
+        resultB: {
+          text: "You are depressed. You become addicted to cocaine. Our dopamine rewards systems and the evolution of plants have evolved to be incredibly addicting. At least it's not Heroin.",
+          health: 10,
+          happiness: -5
+        },
+        resultC: {
+          text: "You have a wonderful ability to separate yourself from what others expect of you. You don't care what anyone else thinks, you're living your best life!",
+          health: 10,
+          happiness: -5
+        }
+      },
+      { // question 6
+        text: "Question 6: Happy birthday!!! You just turned 65. You have some savings in the bank but with the increasing cost of living, it might not be enough.",
+        optionA: "You decide to retire. You have enough to get by. And hey, who knows? Maybe you'll get hit by a slow moving bus. Minor bumps and bruises. Major settlement.",
+        optionB: "You keep working, save a little money. And hey, your job is not all bad. Gives you something to wake up for in the morning.",
+        resultA: {
+          text: "You retire. Your life is chill but boring since you don't have the money to do cool things like travel the world.",
+          health: -10,
+          happiness: 10
+        },
+        resultB: {
+          text: "Surprise! Your boss gives you a much deserved raise, you're really raking it in now!",
+          health: 10,
+          happiness: -5
+        }
+      },
+      { // question 7
+        text: "Question 7: You are 92. You are sick with cancer and you know your time has come. You put your savings in a will and give it to your (child/grandchild/nephew).",
+        optionA: "You pass away peacefully knowing that you were an iPad kid and you survived as a slightly antisocial person.",
+        optionB: "You pass away peacefully knowing that your success in life is all due to the fact that your parents told you no when you asked for an iPad as a child.",
+        resultA: {
+          text: "",
+          health: -10,
+          happiness: 10
+        },
+        resultB: {
+          text: "",
+          health: 10,
+          happiness: -5
+        }
+      },
+    ];
+
+    startButton.addEventListener('click', startGame);
+    optionAButton.addEventListener('click', () => answerQuestion('A'));
+    optionBButton.addEventListener('click', () => answerQuestion('B'));
+    optionCButton.addEventListener('click', () => answerQuestion('C'));
+    nextButton.addEventListener('click', nextQuestion);
+    restartButtons.forEach(button => button.addEventListener('click', restartGame));
+
+    function startGame() {
+      titleScreen.classList.add('hidden');
+      characterSelect.classList.remove('hidden');
+    }
+
+    function selectCharacter(event) {
+      character = event.target.dataset.character;
+      characterNameElement.textContent = character;
+      characterSelect.classList.add('hidden');
+      gameScreen.classList.remove('hidden');
+      statsElement.classList.remove('hidden');
+      showQuestion();
+    }
+
+    function showQuestion() {
+  const question = questions[currentQuestionIndex];
+  questionElement.textContent = question.text;
+  optionAElement.textContent = question.optionA;
+  optionBElement.textContent = question.optionB;
+  
+  if (question.optionC !== undefined) {
+    optionCElement.textContent = question.optionC;
+    optionCButton.classList.remove('hidden');
+  } else {
+    optionCElement.textContent = ''; // Clear the text content if optionC is undefined
+    optionCButton.classList.add('hidden');
+  }
+
+  if (question.optionA === null) {
+    optionAButton.classList.add('hidden');
+  } else {
+    optionAButton.classList.remove('hidden');
+  }
+}
+
+    function updateStats() {
+  healthElement.textContent = health;
+  happinessElement.textContent = happiness;
+  ageElement.textContent = age;
+  if (health <= 0 || happiness <= 0) {
+    gameOver.classList.remove('hidden');
+    gameScreen.classList.add('hidden');
+    resultScreen.classList.add('hidden');
+  }
+}
+
+    function answerQuestion(selectedOption) {
+  const question = questions[currentQuestionIndex];
+  const result = question[`result${selectedOption}`];
+  resultElement.textContent = result.text;
+  health += result.health;
+  happiness += result.happiness;
+  age += 5;
+
+  if (result.ipadKid !== undefined) {
+    ipadKid = result.ipadKid;
+  }
+
+  if (result.workCommitted !== undefined) {
+    workCommitted = result.workCommitted;
+  }
+
+  if (result.trackStar !== undefined) {
+    trackStar = result.trackStar;
+  }
+
+  updateStats();
+  gameScreen.classList.add('hidden');
+  resultScreen.classList.remove('hidden');
+}
+
+function nextQuestion() {
+  resultScreen.classList.add('hidden');
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    gameScreen.classList.remove('hidden');
+    showQuestion();
+  } else {
+    endGame();
+  }
+}
+
+    function endGame() {
+      gameWon.classList.remove('hidden');
+      gameScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+    }
+
+    function restartGame() {
+      location.reload();
+    }
+
+    document.querySelectorAll('.character').forEach(character => {
+      character.addEventListener('click', selectCharacter);
+    });
+  </script>
 </body>
 </html>
