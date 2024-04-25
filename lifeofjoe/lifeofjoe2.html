@@ -8,7 +8,7 @@
     /* CSS styles for the game */
     body {
       text-align: center;
-      font-family: Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
     }
     .hidden {
       display: none;
@@ -20,11 +20,8 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      font-family: Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 18pt;
-    }
-    p {
-      font-family: Helvetica, sans-serif;
     }
   </style>
 </head>
@@ -59,14 +56,12 @@
 
   <div id="resultScreen" class="hidden">
     <p id="result"></p>
-    <img id="questionImage" src="q1/optionA_b.jpg" alt="Question Image" style="width:100%; max-width:500px;">
     <button id="nextButton">Next</button>
   </div>
 
   <div id="gameOver" class="hidden">
     <h2>Game Over</h2>
     <p>You died.</p>
-    <img src="q7/rip.jpg" alt="rip" style="width:100%; max-width:500px;">
     <button id="restartButton">Restart Game</button>
   </div>
 
@@ -338,10 +333,6 @@
       if (result.trackStar !== undefined) {
         trackStar = result.trackStar;
       }
-
-      // Load the image based on the naming convention
-      const imageName = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_${selectedOption.toLowerCase()}.jpg`;
-      document.getElementById('questionImage').src = imageName;
 
       updateStats();
       gameScreen.classList.add('hidden');
