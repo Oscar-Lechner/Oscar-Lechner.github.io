@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#volumeControl {
+    position: relative;
+}
+
+.slider {
+    width: 300px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+}
+
+.handle {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.maze {
+    width: 300px;
+    height: 400px;
+    display: none; /* Hidden initially */
+    position: absolute;
+    top: 25px;
+    background-image: url('maze.png'); /* You'll need to create this image */
+    background-size: cover;
+}
+
+#volumeLabel {
+    position: absolute;
+    top: -30px;
+    left: 140px;
+    font-size: 18px;
+    font-weight: bold;
+}
