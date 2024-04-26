@@ -29,16 +29,31 @@
       margin: 0 20px;
     }
     .stats {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-family: Helvetica, sans-serif;
-      font-size: 18pt;
-    }
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-family: Helvetica, sans-serif;
+  font-size: 18pt;
+  padding: 10px; /* Add padding to create space between the content and the border */
+  border: 2px solid #000; /* Add a border around the stats */
+  border-radius: 10px; /* Add rounded corners to the border */
+  background-color: #e0f2f1; /* Set the background color to light blue */
+}
     .texteverywhere {
       font-family: Helvetica, sans-serif;
       font-size: 20pt;
     }
+    #gameScreen {
+  width: 60%; /* Set the width to 60% of the screen */
+  margin: 0 auto; /* Center the box horizontally */
+}
+
+#question {
+  background-color: #e0f2f1; /* Set the background color to light blue */
+  border: 2px solid #000; /* Add a border around the question */
+  border-radius: 10px; /* Add rounded corners to the border */
+  padding: 20px; /* Add padding to create space between the content and the border */
+}
     
   </style>
 </head>
@@ -144,8 +159,8 @@
         ageIncrement: 7,
         resultA: {
           text: "You crafty little fox! You've conned your parents into giving you an iPad. This will have some effects on your social development. Exposure to an online environment at an early age might cause an increased risk of anxiety, depression, and even sleep problems. It also might lead to physical inactivity and an increased risk of obesity. Online interactions specifically cause the same release of dopamine in your pleasure sensors, without the long-term benefits of physical activity and social development.",
-          health: -20,
-          happiness: -20,
+          health: -40,
+          happiness: -40,
           score: 200,
           ipadKid: true,
           
@@ -153,7 +168,7 @@
         resultB: {
           text: "Good choice! This will be beneficial to your life in the long run, even though it sucks that they said no to your iPad dreams. It has been studied how physical activity and social interactivity help with childhood development. This includes decreased risk of obesity and better social-emotional development. Physical activity and play with peers is important in developing social skills like teamwork, leadership, and improvement in your self-esteem.",
           health: 10,
-          happiness: -5,
+          happiness: -10,
           score: 400,
           ipadKid: false
         }
@@ -165,16 +180,16 @@
         ageIncrement: 3,
         resultA: {
           text: "Be careful! You need at least 60 min of exercise a day. If you don't eat well and exercise your body will store more fat than it needs and could ultimately lead to major health problems including obesity and osteoporosis. Humans store fat in preparation for famines that do not exist in most places in the world, which is good! It means, however, that you have to stay active and engaged to stay healthy.",
-          health: -15,
+          health: -25,
           happiness: 5,
-          score: 200,
+          score: 100,
           trackStar: false
         },
         resultB: {
           text: "You're at the peak of health, as evidenced by studies on human activity and motivation, and have lots of friends too! It has been shown that physical activity leads to increased self esteem and motivation, and a decrease in anxiety. Physical activity can be both an extrinsic and intrinsic motivator. For example, your school could cheer you on during your games! You could also find motivation in bettering your overall health. Either way, you are getting a tangible reward from physical activity, and helping on your overall development through our social world.",
           health: 25,
-          happiness: -5,
-          score: 200,
+          happiness: -10,
+          score: 350,
           trackStar: true
         }
       },
@@ -185,7 +200,7 @@
         ageIncrement: 3,
         resultA: {
           text: "You become more anxious and depressed. You have money but no friends to spend it with. We humans as hunter gatherers did not evolve the ability to separate work from normal life, which is stressful for you! We evolved to focus on immediate survival and gratification, and long term goals like saving up some money may seem futile. We also evolved to react to threats harshly. Our evolutionary instincts might cause you some trouble with your boss!",
-          health: -10,
+          health: -20,
           happiness: -27,
           score: 200,
           workCommitted: true
