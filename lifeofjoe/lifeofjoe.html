@@ -1,116 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life of Joe</title>
-  <style>
-    /* CSS styles for the game */
-    body {
-      text-align: center;
-      font-family: Helvetica, sans-serif;
-    }
-    .texteverywhere {
-      font-family: Helvetica, sans-serif;
-      font-size: 20pt;
-    }
-    .hidden {
-      display: none;
-    }
-    .character-container {
-      display: flex;
-      justify-content: center; /* Centers the characters horizontally */
-    }
-    .character-container > div {
-      margin: 0 10px; /* Adds some space between the characters */
-    }
-    .character {
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 20px;
-    }
-    .stats {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-family: Helvetica, sans-serif;
-      font-size: 18pt;
-      padding: 10px; /* Add padding to create space between the content and the border */
-      border: 2px solid #000; /* Add a border around the stats */
-      border-radius: 10px; /* Add rounded corners to the border */
-      background-color: #e0f2f1; /* Set the background color to light blue */
-    }
-    #gameScreen {
-      width: 60%; /* Set the width to 60% of the screen */
-      margin: 0 auto; /* Center the box horizontally */
-    }
-    #question {
-      background-color: #e0f2f1; /* Set the background color to light blue */
-      border: 2px solid #000; /* Add a border around the question */
-      border-radius: 10px; /* Add rounded corners to the border */
-      padding: 20px; /* Add padding to create space between the content and the border */
-    }
-    
-  </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Life of Joe</title>
+ <link rel="stylesheet" href="lifeofjoe.css">
+
+
 </head>
 <body>
-  <div id="titleScreen">
-    <h1 style="font-size: 60pt;">Life of Joe</h1>
-    <h3 style="font-size: 25pt; padding-bottom: 100px;">A Story Game About Evolutionary Mismatch</h3>
-    <button id="startButton" class="texteverywhere">Start Game</button>
-  </div>
+ <div id="titleScreen">
+   <h1 style="font-size: 60pt;">Life of Joe</h1>
+   <h3 style="font-size: 25pt; padding-bottom: 50px;">A Story Game About Evolutionary Mismatch</h3>
+   <img src="cover.jpg" alt="evolution" class="character" data-character="Joe" style="width: 500px; height: auto;">
+   <br><br>
+   <button id="startButton">START GAME</button>
+ </div>
 
-  <div id="characterSelect" class="hidden">
-    <p class="texteverywhere">Choose your character:</p>
-    <div class="character-container">
-      <div>
-        <img src="girl.png" alt="Girl" class="character" data-character="Jo" style="width: 200px; height: auto;">
-        <p class="texteverywhere">Jo</p>
-      </div>
-      <div>
-        <img src="boy.png" alt="Boy" class="character" data-character="Joe" style="width: 300px; height: auto;">
-        <p class="texteverywhere">Joe</p>
-      </div>
-    </div>
+
+ <div id="characterSelect" class="hidden">
+   <p class="texteverywhere">Choose your character:</p>
+   <div class="character-container">
+     <div>
+       <br>
+       <img src="girl.jpg" alt="Girl" class="character" data-character="Jo" style="width: 300px; height: auto;">
+       <p class="texteverywhere">Jo</p>
+     </div>
+     <div>
+       <br>
+       <img src="boy.jpg" alt="Boy" class="character" data-character="Joe" style="width: 300px; height: auto;">
+       <p class="texteverywhere">Joe</p>
+     </div>
+   </div>
 </div>
 
-  <div id="gameScreen" class="hidden">
-    <p id="question" class="texteverywhere"></p>
-    <p id="optionA" class="texteverywhere"></p>
-    <button id="optionAButton" class="texteverywhere">A</button>
-    <p id="optionB" class="texteverywhere"></p>
-    <button id="optionBButton" class="texteverywhere">B</button>
-    <p id="optionC" class="texteverywhere"></p>
-    <button id="optionCButton" class="hidden" style=" font-family:Helvetica, sans-serif; font-size: 15pt;">C</button> <!-- add the styles for text everywhere so the button isn't bunk-->
-  </div>
 
-  <div id="resultScreen" class="hidden">
-    <p id="result" class="texteverywhere"></p>
-    <img id="questionImage" src="q1/optionA_b.jpg" alt="Question Image" style="width:100%; max-width:500px;">
+ <div id="gameScreen" class="hidden">
+   <p id="question" class="texteverywhere"></p>
+
+
+   <!--question-->
+   <div id="bigImg">
+     <img src="cover.jpg" alt="ask for ipad" height="270pt">
+   </div>
+
+
+   <!--choice-->
+   <p id="optionA" class="textQuestion"></p>
+   <button id="optionAButton" class="texteverywhere">A</button>
+   <p id="optionB" class="textQuestion"></p>
+   <button id="optionBButton" class="texteverywhere">B</button>
+   <p id="optionC" class="textQuestion"></p>
+   <button id="optionCButton" class="hidden" style=" font-family:Helvetica, sans-serif; font-size: 15pt;">C</button> <!-- add the styles for text everywhere so the button isn't bunk-->
+ </div>
+
+
+
+
+ <!--outcome-->
+ <div id="resultScreen" class="hidden">
+   <p id="result" class="textQuestion"></p>
+  
+   <img id="questionImage" src="angry.jpg" alt="Question Image" style="width:100%; max-width:500px;">
     <button id="nextButton" class="texteverywhere">Next</button>
-  </div>
+ </div>
 
-  <div id="gameOver" class="hidden">
-    <h2>Game Over</h2>
-    <p class="texteverywhere">You died.</p>
-    <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;">
-    <button id="restartButton">Restart Game</button>
-  </div>
 
-  <div id="gameWon" class="hidden">
-    <h2>Congratulations!</h2>
-    <p class="texteverywhere">You Made it Through the Game!</p>
-    <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;" >
-    <button id="restartButton" class="texteverywhere">Restart Game</button>
-  </div>
+ <div id="gameOver" class="hidden">
+   <h2>GAME OVER</h2>
+   <p class="texteverywhere">You died.</p>
+   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;">
+   <button id="restartButton">Restart Game</button>
+ </div>
 
-  <div class="stats hidden">
-    <p>Character: <span id="characterName"></span></p>
-    <p>Health: <span id="health">100</span></p>
-    <p>Happiness: <span id="happiness">100</span></p>
-    <p>Age: <span id="age">5</span></p>
-    <p>Score: <span id="score">0</span></p>
-  </div>
+
+ <div id="gameWon" class="hidden">
+   <h2>Congratulations!</h2>
+   <p class="texteverywhere">You Made it Through the Game!</p>
+   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;" >
+   <br>
+   <button id="restartButton" class="textQuestion">Restart Game</button>
+ </div>
+
+
+ <div class="stats hidden">
+   <p>Character: <span id="characterName"></span></p>
+   <p>Health: <span id="health">100</span></p>
+   <p>Happiness: <span id="happiness">100</span></p>
+   <p>Age: <span id="age">5</span></p>
+   <p>Score: <span id="score">0</span></p>
+ </div>
 
   <script>
     // JavaScript code for the game
