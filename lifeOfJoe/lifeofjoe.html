@@ -10,11 +10,12 @@
       text-align: center;
       font-family: Helvetica, sans-serif;
     }
+    .texteverywhere {
+      font-family: Helvetica, sans-serif;
+      font-size: 20pt;
+    }
     .hidden {
       display: none;
-    }
-    button:hover {
-      fill: red;
     }
     .character-container {
       display: flex;
@@ -29,31 +30,26 @@
       margin: 0 20px;
     }
     .stats {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  font-family: Helvetica, sans-serif;
-  font-size: 18pt;
-  padding: 10px; /* Add padding to create space between the content and the border */
-  border: 2px solid #000; /* Add a border around the stats */
-  border-radius: 10px; /* Add rounded corners to the border */
-  background-color: #e0f2f1; /* Set the background color to light blue */
-}
-    .texteverywhere {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
       font-family: Helvetica, sans-serif;
-      font-size: 20pt;
+      font-size: 18pt;
+      padding: 10px; /* Add padding to create space between the content and the border */
+      border: 2px solid #000; /* Add a border around the stats */
+      border-radius: 10px; /* Add rounded corners to the border */
+      background-color: #e0f2f1; /* Set the background color to light blue */
     }
     #gameScreen {
-  width: 60%; /* Set the width to 60% of the screen */
-  margin: 0 auto; /* Center the box horizontally */
-}
-
-#question {
-  background-color: #e0f2f1; /* Set the background color to light blue */
-  border: 2px solid #000; /* Add a border around the question */
-  border-radius: 10px; /* Add rounded corners to the border */
-  padding: 20px; /* Add padding to create space between the content and the border */
-}
+      width: 60%; /* Set the width to 60% of the screen */
+      margin: 0 auto; /* Center the box horizontally */
+    }
+    #question {
+      background-color: #e0f2f1; /* Set the background color to light blue */
+      border: 2px solid #000; /* Add a border around the question */
+      border-radius: 10px; /* Add rounded corners to the border */
+      padding: 20px; /* Add padding to create space between the content and the border */
+    }
     
   </style>
 </head>
@@ -96,14 +92,15 @@
 
   <div id="gameOver" class="hidden">
     <h2>Game Over</h2>
-    <p>You died.</p>
-    <img src="q7/rip.jpg" alt="rip" style="width:100%; max-width:500px;">
+    <p class="texteverywhere">You died.</p>
+    <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;">
     <button id="restartButton">Restart Game</button>
   </div>
 
   <div id="gameWon" class="hidden">
     <h2>Congratulations!</h2>
-    <p class="texteverywhere">You lived.</p>
+    <p class="texteverywhere">You Made it Through the Game!</p>
+    <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;" >
     <button id="restartButton" class="texteverywhere">Restart Game</button>
   </div>
 
@@ -150,6 +147,7 @@
     let ipadKid = false;
     let workCommitted = false;
     let trackStar = false;
+    let gameRunning = true;
 
     const questions = [
       { // question 1 iPad
@@ -200,9 +198,9 @@
         ageIncrement: 3,
         resultA: {
           text: "You become more anxious and depressed. You have money but no friends to spend it with. We humans as hunter gatherers did not evolve the ability to separate work from normal life, which is stressful for you! We evolved to focus on immediate survival and gratification, and long term goals like saving up some money may seem futile. We also evolved to react to threats harshly. Our evolutionary instincts might cause you some trouble with your boss!",
-          health: -20,
+          health: -40,
           happiness: -27,
-          score: 200,
+          score: 500,
           workCommitted: true
         },
         resultB: {
@@ -221,21 +219,21 @@
         ageIncrement: 6,
         resultA: {
           text: trackStar ? "You're a track star! You get a full ride to your dream school." : "You take out loans to afford school.",
-          health: -10,
-          happiness: 10,
-          score: 200
+          health: 10,
+          happiness: -25,
+          score: 600
         },
         resultB: {
           text: workCommitted ? "You use all of your savings to go to Australia and party with the kangaroos." : "You become a master at every video game imaginable. Your reflexes are insane!",
-          health: 10,
-          happiness: -5,
-          score: 200
+          health: -10,
+          happiness: 10,
+          score: 100
         },
         resultC: {
-          text: "You are living your best life with some cool people, outside and getting a workout everyday. Your metal health and physical health are in great condition!",
+          text: "You are living your best life with some cool people, outside and getting a workout everyday. Your mental health and physical health are in great condition!",
           health: 10,
-          happiness: -5,
-          score: 200
+          happiness: 5,
+          score: 350
         }
       },
       { // question 5 6 years later
@@ -246,21 +244,21 @@
         ageIncrement: 41,
         resultA: {
           text: "You meet a beautiful soul and decide to have a child. Will they be an iPad kid?",
-          health: -10,
-          happiness: 10,
-          score: 200
+          health: 10,
+          happiness: 30,
+          score: 800
         },
         resultB: {
-          text: "You are depressed. You become addicted to cocaine. Our dopamine rewards systems and the evolution of plants have evolved to be incredibly addicting. At least it's not Heroin.",
-          health: 10,
-          happiness: -5,
-          score: 200
+          text: "You are depressed. You become addicted to cocaine.  . At least it's not Heroin!",
+          health: -80,
+          happiness: -50,
+          score: 150
         },
         resultC: {
           text: "You have a wonderful ability to separate yourself from what others expect of you. You don't care what anyone else thinks, you're living your best life!",
           health: 10,
-          happiness: -5,
-          score: 200
+          happiness: 50,
+          score: 2000
         }
       },
       { // question 6
@@ -270,15 +268,15 @@
         ageIncrement: 27,
         resultA: {
           text: "You retire. Your life is chill but boring since you don't have the money to do cool things like travel the world.",
-          health: -10,
+          health: 10,
           happiness: 10,
-          score: 200
+          score: 250
         },
         resultB: {
           text: "Surprise! Your boss gives you a much deserved raise, you're really raking it in now!",
-          health: 10,
-          happiness: -5,
-          score: 200
+          health: -17,
+          happiness: 15,
+          score: 360
         }
       },
       { // question 7
@@ -287,41 +285,41 @@
         optionB: "You pass away peacefully knowing that your success in life is all due to the fact that your parents told you no when you asked for an iPad as a child.",
         resultA: {
           text: "",
-          health: -10,
-          happiness: 10,
+          health: 0,
+          happiness: 0,
           score: 200
         },
         resultB: {
           text: "",
-          health: 10,
-          happiness: -5,
+          health: 0,
+          happiness: 0,
           score: 200
         }
       },
     ];
 
-    startButton.addEventListener('click', startGame);
-    optionAButton.addEventListener('click', () => answerQuestion('A'));
-    optionBButton.addEventListener('click', () => answerQuestion('B'));
-    optionCButton.addEventListener('click', () => answerQuestion('C'));
-    nextButton.addEventListener('click', nextQuestion);
-    restartButtons.forEach(button => button.addEventListener('click', restartGame));
+startButton.addEventListener('click', startGame);
+optionAButton.addEventListener('click', () => answerQuestion('A'));
+optionBButton.addEventListener('click', () => answerQuestion('B'));
+optionCButton.addEventListener('click', () => answerQuestion('C'));
+nextButton.addEventListener('click', nextQuestion);
+restartButtons.forEach(button => button.addEventListener('click', restartGame));
 
-    function startGame() {
-      titleScreen.classList.add('hidden');
-      characterSelect.classList.remove('hidden');
-    }
+function startGame() {
+  titleScreen.classList.add('hidden');
+  characterSelect.classList.remove('hidden');
+}
 
-    function selectCharacter(event) {
-      character = event.target.dataset.character;
-      characterNameElement.textContent = character;
-      characterSelect.classList.add('hidden');
-      gameScreen.classList.remove('hidden');
-      statsElement.classList.remove('hidden');
-      showQuestion();
-    }
+function selectCharacter(event) {
+  character = event.target.dataset.character;
+  characterNameElement.textContent = character;
+  characterSelect.classList.add('hidden');
+  gameScreen.classList.remove('hidden');
+  statsElement.classList.remove('hidden');
+  showQuestion();
+}
 
-    function showQuestion() {
+function showQuestion() {
   console.log(`Showing question for currentQuestionIndex: ${currentQuestionIndex}, ipadKid: ${ipadKid}, workCommitted: ${workCommitted}, trackStar: ${trackStar}`);
   const question = questions[currentQuestionIndex];
   questionElement.textContent = question.text;
@@ -362,74 +360,118 @@
   }
 }
 
-    function updateStats() {
-      healthElement.textContent = health;
-      happinessElement.textContent = happiness;
-      ageElement.textContent = age;
-      scoreElement.textContent = score;
-      if (health <= 0 || happiness <= 0) {
-        gameOver.classList.remove('hidden');
-        gameScreen.classList.add('hidden');
-        resultScreen.classList.add('hidden');
-      }
+function updateStats() {
+  healthElement.textContent = health;
+  happinessElement.textContent = happiness;
+  ageElement.textContent = age;
+  scoreElement.textContent = score;
+  if (health <= 0 || happiness <= 0) {
+    endGame(false); // Player dies
+  } else if (currentQuestionIndex === questions.length) {
+    endGame(true); // Player wins
+  }
+}
+
+function showGameOverScreen() {
+  gameOver.classList.remove('hidden');
+  hideGameContent();
+}
+
+function showGameWonScreen() {
+  gameWon.classList.remove('hidden');
+  hideGameContent();
+}
+
+function hideGameContent() {
+  gameScreen.classList.add('hidden');
+  resultScreen.classList.add('hidden');
+  titleScreen.classList.add('hidden');
+  characterSelect.classList.add('hidden');
+  statsElement.classList.add('hidden');
+}
+      
+function answerQuestion(selectedOption) {
+  if (!gameRunning) return; // Exit the function if the game is not running
+
+  console.log(`Answering question ${currentQuestionIndex}, selectedOption: ${selectedOption}`);
+  const question = questions[currentQuestionIndex];
+  const result = question[`result${selectedOption}`];
+  resultElement.textContent = result.text;
+  health += result.health;
+  happiness += result.happiness;
+  age += question.ageIncrement;
+  score += result.score;
+  console.log("Score: ", score);
+
+  if (result.ipadKid !== undefined) {
+    ipadKid = result.ipadKid;
+  }
+
+  if (result.workCommitted !== undefined) {
+    workCommitted = result.workCommitted;
+  }
+
+  if (result.trackStar !== undefined) {
+    trackStar = result.trackStar;
+  }
+
+  // Load the image based on the naming convention
+  const imageName = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_${selectedOption.toLowerCase()}.jpg`;
+  document.getElementById('questionImage').src = imageName;
+
+  updateStats();
+
+  // Add a delay of 1000 milliseconds (1 second) before hiding the game screen and showing the result screen
+  setTimeout(() => {
+    gameScreen.classList.add('hidden');
+    resultScreen.classList.remove('hidden');
+
+    // Check if the player has died after the delay
+    if (health <= 0 || happiness <= 0) {
+      endGame(false); // Player dies
+    } else if (currentQuestionIndex === questions.length) {
+      endGame(true); // Player wins
     }
+  }, 50);
+}
 
-    function answerQuestion(selectedOption) {
-      console.log(`Answering question ${currentQuestionIndex}, selectedOption: ${selectedOption}`);
-      const question = questions[currentQuestionIndex];
-      const result = question[`result${selectedOption}`];
-      resultElement.textContent = result.text;
-      health += result.health;
-      happiness += result.happiness;
-      age += question.ageIncrement;
-      score += result.score;
-      console.log("Score: ", score);
+function nextQuestion() {
+  if (!gameRunning) return; // Exit the function if the game is not running
 
-      if (result.ipadKid !== undefined) {
-        ipadKid = result.ipadKid;
-      }
+  resultScreen.classList.add('hidden');
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    gameScreen.classList.remove('hidden');
+    showQuestion();
+  } else {
+    endGame(true); // Player wins
+  }
+}
 
-      if (result.workCommitted !== undefined) {
-        workCommitted = result.workCommitted;
-      }
+function endGame(won) {
+  gameRunning = false;
+  gameScreen.classList.add('hidden');
+  resultScreen.classList.add('hidden');
+  statsElement.classList.add('hidden');
+  
+  if (won) {
+    titleScreen.classList.add('hidden');
+    characterSelect.classList.add('hidden');
+    gameWon.classList.remove('hidden');
+  } else {
+    titleScreen.classList.add('hidden');
+    characterSelect.classList.add('hidden');
+    gameOver.classList.remove('hidden');
+  }
+}
 
-      if (result.trackStar !== undefined) {
-        trackStar = result.trackStar;
-      }
+function restartGame() {
+  location.reload();
+}
 
-      // Load the image based on the naming convention
-      const imageName = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_${selectedOption.toLowerCase()}.jpg`;
-      document.getElementById('questionImage').src = imageName;
-
-      updateStats();
-      gameScreen.classList.add('hidden');
-      resultScreen.classList.remove('hidden');
-    }
-
-    function nextQuestion() {
-      resultScreen.classList.add('hidden');
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        gameScreen.classList.remove('hidden');
-        showQuestion();
-      } else {
-        endGame();
-      }
-    }
-
-    function endGame() {
-      gameWon.classList.remove('hidden');
-      gameScreen.classList.add('hidden');
-      resultScreen.classList.add('hidden');
-    }
-
-    function restartGame() {
-      location.reload();
-    }
-
-    document.querySelectorAll('.character').forEach(character => {
-      character.addEventListener('click', selectCharacter);
-    });
+document.querySelectorAll('.character').forEach(character => {
+character.addEventListener('click', selectCharacter);
+});
   </script>
 </body>
 </html>
