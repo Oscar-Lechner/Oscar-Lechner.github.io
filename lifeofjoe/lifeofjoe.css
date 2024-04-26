@@ -68,6 +68,24 @@ body {
    padding:15pt;
    font-size: 20pt;
 }
+#restartButton{
+   color:rgb(0, 0, 0);
+   background-color: rgb(207, 207, 207);
+   border:none;
+   padding:15pt;
+   font-size: 20pt;
+   align-items: center;
+   left: 50%;
+   position: absolute;
+   left: 50%; /* Position the button at 50% from the left edge of its container */
+   transform: translateX(-50%); /* Move the button back by half of its own width to center it horizontally */
+   bottom: 400px; /* Adjust as needed */
+}
+#restartButton:hover{
+   color: rgb(207, 207, 207);
+   background-color: black
+}
+
 
 
 button{
