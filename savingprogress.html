@@ -70,14 +70,17 @@
    <h2>GAME OVER</h2>
    <p class="texteverywhere">You died.</p>
    <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;">
-   <button id="restartButton">Restart Game</button>
+   <P></P>
+   <button id="restartButton" >Restart Game</button>
  </div>
 
 
  <div id="gameWon" class="hidden">
    <h2>Congratulations!</h2>
    <p class="texteverywhere">You Made it Through the Game!</p>
-   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;" >
+   <p>Score: <span id="scoreGameWon">0</span></p>
+   <br>
+   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px; display: block; margin: auto;">
    <br>
    <button id="restartButton" class="textQuestion">Restart Game</button>
  </div>
@@ -304,41 +307,50 @@ function showQuestion() {
   const question = questions[currentQuestionIndex];
   questionElement.textContent = question.text;
 
-  // Dynamically set option texts based on current game state
-  if (currentQuestionIndex === 3) {  // Index of the high school graduation question
-    optionAElement.textContent = trackStar ? "Turns out you're super fast. Go D1 as a sprinter." : "You go to college";
-    optionBElement.textContent = workCommitted ? "You decide to travel." : "Play so many video games it's not even funny.";
-  }
-
-  if (currentQuestionIndex === 4) {  // Index of the mid-20s life questioning
-    optionAElement.textContent = (ipadKid && workCommitted) ? null : "You decide to make a tinder profile to meet your perfect partner.";
-  }
-
-  // Show all options initially
+  // Dynamically set option texts and image paths based on current game state
   optionAElement.textContent = question.optionA;
-  optionAButton.classList.remove('hidden');
   optionBElement.textContent = question.optionB;
-  optionBButton.classList.remove('hidden');
   optionCElement.textContent = question.optionC || '';
-  optionCButton.classList.remove('hidden');
 
-  // Hide nullified options based on story elements
+  // Set images for each option, considering the character chosen
+  const optionAImage = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_a.jpg`;
+  const optionBImage = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_b.jpg`;
+  const optionCImage = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_c.jpg`;
+
+  // Update the image placeholders for each option (Assuming you have separate img elements for each)
+  document.getElementById('optionAImg').src = optionAImage;
+  document.getElementById('optionBImg').src = optionBImage;
+  if(question.optionC) {
+    document.getElementById('optionCImg').src = optionCImage;
+    optionCButton.classList.remove('hidden');
+    document.getElementById('optionCImg').classList.remove('hidden');
+  } else {
+    optionCButton.classList.add('hidden');
+    document.getElementById('optionCImg').classList.add('hidden');
+  }
+
+  // Handling the visibility of options and buttons
   if (question.optionA === null) {
     optionAElement.classList.add('hidden');
     optionAButton.classList.add('hidden');
+    document.getElementById('optionAImg').classList.add('hidden');
   } else {
     optionAElement.classList.remove('hidden');
     optionAButton.classList.remove('hidden');
+    document.getElementById('optionAImg').classList.remove('hidden');
   }
 
-  if (question.optionC === undefined) {
-    optionCElement.classList.add('hidden');
-    optionCButton.classList.add('hidden');
+  if (question.optionB === undefined) {
+    optionBElement.classList.add('hidden');
+    optionBButton.classList.add('hidden');
+    document.getElementById('optionBImg').classList.add('hidden');
   } else {
-    optionCElement.classList.remove('hidden');
-    optionCButton.classList.remove('hidden');
+    optionBElement.classList.remove('hidden');
+    optionBButton.classList.remove('hidden');
+    document.getElementById('optionBImg').classList.remove('hidden');
   }
 }
+
 
 function updateStats() {
   healthElement.textContent = health;
@@ -433,10 +445,11 @@ function endGame(won) {
   gameScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   statsElement.classList.add('hidden');
-  
+
   if (won) {
     titleScreen.classList.add('hidden');
     characterSelect.classList.add('hidden');
+    document.getElementById('scoreGameWon').textContent = score; // Update the score on the game won screen
     gameWon.classList.remove('hidden');
   } else {
     titleScreen.classList.add('hidden');

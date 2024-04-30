@@ -59,17 +59,18 @@
 
  <!--outcome-->
  <div id="resultScreen" class="hidden">
-   <p id="result" class="textQuestion"></p>
-  
-   <img id="questionImage" src="angry.jpg" alt="Question Image" style="width:100%; max-width:500px;">
-    <button id="nextButton" class="texteverywhere">Next</button>
- </div>
+  <p id="result" class="textQuestion"></p>
+  <br>
+  <img id="questionImage" src="angry.jpg" alt="Question Image" style="width:100%; max-width:500px;">
+  <br>
+  <button id="nextButton" class="texteverywhere">Next</button>
+</div>
 
 
  <div id="gameOver" class="hidden">
    <h2>GAME OVER</h2>
    <p class="texteverywhere">You died.</p>
-   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px; padding-left: 415px;">
+   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;">
    <P></P>
    <button id="restartButton" >Restart Game</button>
  </div>
@@ -78,7 +79,9 @@
  <div id="gameWon" class="hidden">
    <h2>Congratulations!</h2>
    <p class="texteverywhere">You Made it Through the Game!</p>
-   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px;" >
+   <p>Score: <span id="scoreGameWon">0</span></p>
+   <br>
+   <img src="rip.jpg" alt="rip" style="width:100%; max-width:500px; display: block; margin: auto;">
    <br>
    <button id="restartButton" class="textQuestion">Restart Game</button>
  </div>
@@ -135,6 +138,10 @@
         text: "Question 1: You are a child living in Colorado. All of your kindergarten friends have iPads. You want an iPad but your parents know that having an iPad might negatively affect your ability to learn social cues and interact appropriately with your peers.",
         optionA: "Con your parents into buying you an iPad because you really really want one",
         optionB: "Accept their decision and understand that its to help you not hurt you",
+        images: {
+          Joe: "a1_joe_a.jpg",
+          Jo: "a1_jo_a.jpg"
+        },
         ageIncrement: 7,
         resultA: {
           text: "You crafty little fox! You've conned your parents into giving you an iPad. This will have some effects on your social development. Exposure to an online environment at an early age might cause an increased risk of anxiety, depression, and even sleep problems. It also might lead to physical inactivity and an increased risk of obesity. Online interactions specifically cause the same release of dopamine in your pleasure sensors, without the long-term benefits of physical activity and social development.",
@@ -142,6 +149,10 @@
           happiness: -40,
           score: 200,
           ipadKid: true,
+          images: {
+          Joe: "q1_joe_a.jpg",
+          Jo: "q1_jo_a.jpg"
+        },
           
         },
         resultB: {
@@ -149,47 +160,75 @@
           health: 10,
           happiness: -10,
           score: 400,
-          ipadKid: false
+          ipadKid: false,
+          images: {
+          Joe: "q1_joe_b.jpg",
+          Jo: "q1_jo_b.jpg"
+        },
         }
       },
       { // question 2 obesity
         text: "Question 2: You are now in middle school. You have the opportunity to join the track team but don't have friends on the team yet.",
         optionA: "Decide not to join and keep playing online games with you friends in your free time",
         optionB: "You take the leap and join the team! You are ready to meet new friends and also exercise daily",
+        images: {
+          Joe: "choice_b.jpg",
+          Jo: "choice_A.jpg"
+        },
         ageIncrement: 3,
         resultA: {
           text: "Be careful! You need at least 60 min of exercise a day. If you don't eat well and exercise your body will store more fat than it needs and could ultimately lead to major health problems including obesity and osteoporosis. Humans store fat in preparation for famines that do not exist in most places in the world, which is good! It means, however, that you have to stay active and engaged to stay healthy.",
           health: -25,
           happiness: 5,
           score: 100,
-          trackStar: false
+          trackStar: false,
+          images: {
+          Joe: "q2_joe_a.jpg",
+          Jo: "q2_jo_a.jpg"
+        },
         },
         resultB: {
           text: "You're at the peak of health, as evidenced by studies on human activity and motivation, and have lots of friends too! It has been shown that physical activity leads to increased self esteem and motivation, and a decrease in anxiety. Physical activity can be both an extrinsic and intrinsic motivator. For example, your school could cheer you on during your games! You could also find motivation in bettering your overall health. Either way, you are getting a tangible reward from physical activity, and helping on your overall development through our social world.",
           health: 25,
           happiness: -10,
           score: 350,
-          trackStar: true
+          trackStar: true,
+          images: {
+          Joe: "q2_joe_b.jpg",
+          Jo: "q2_jo_b.jpg"
+        },
         }
       },
       { // question 3 work stress
         text: "Question 3: You are now a highschool student. You want to go out with your friends but you don't have any money so you decide to get a job at the local grocery store. They ask you to work 20 hours a week. You become stressed out trying to balance school, work, and friends. How will you manage?",
         optionA: "You decide to fully commit to work and school. You want money. Friends can wait",
         optionB: "You decide to quit your job to prioritize friends and school at the cost of your (albeit slim) paycheck",
+        images: {
+          Joe: "q3_joe_a.jpg",
+          Jo: "q3_jo_a.jpg"
+        },
         ageIncrement: 3,
         resultA: {
-          text: "You become more anxious and depressed. You have money but no friends to spend it with. We humans as hunter gatherers did not evolve the ability to separate work from normal life, which is stressful for you! We evolved to focus on immediate survival and gratification, and long term goals like saving up some money may seem futile. We also evolved to react to threats harshly. Our evolutionary instincts might cause you some trouble with your boss!",
+          text: "You become more anxious and depressed. You have money but no friends to spend it with. We humans, as hunter gatherers did not evolve with the ability to separate work from normal life, which is stressful for you! We evolved to focus on immediate survival and gratification, and as a result long term goals like saving up some money may seem futile. We also evolved to react to threats harshly. Our evolutionary instincts might cause you some trouble with your boss!",
           health: -40,
           happiness: -27,
           score: 500,
-          workCommitted: true
+          workCommitted: true,
+          images: {
+            Joe: "q3_joe_a.jpg",
+            Jo: "q3_jo_a.jpg"
+        },
         },
         resultB: {
           text: "You lousy freeloader! Who is gonna pay for those movie tickets for you and your sweetheart?? Your parents?? Society pressures us into getting a job due to our instincts around survival, that we must work in order to improve our lives. We cannot separate our work life and home life from each other very effectively. Social pressure can be hard! What will you do??",
           health: 10,
           happiness: 6,
           score: 200,
-          workCommitted: false
+          workCommitted: false,
+          images: {
+          Joe: "q3_joe_b.jpg",
+          Jo: "q3_jo_b.jpg"
+        },
         }
       },
       { // question 4 graduate high school
@@ -197,24 +236,40 @@
         optionA: trackStar ? "Turns out you're super fast. Go D1 as a sprinter." : "You go to college",
         optionB: workCommitted ? "You decide to travel." : "Play so many video games it's not even funny.",
         optionC: "You join the workforce as a construction worker.",
+        images: {
+          Joe: "q4_joe_a.jpg",
+          Jo: "q4_jo_a.jpg"
+        },
         ageIncrement: 6,
         resultA: {
           text: trackStar ? "You're a track star! You get a full ride to your dream school." : "You take out loans to afford school.",
           health: 10,
           happiness: -25,
-          score: 600
+          score: 600,
+          images: {
+          Joe: "govBuilding.jpg",
+          Jo: "govBuilding.jpg"
+        },
         },
         resultB: {
           text: workCommitted ? "You use all of your savings to go to Australia and party with the kangaroos." : "You become a master at every video game imaginable. Your reflexes are insane!",
           health: -10,
           happiness: 10,
-          score: 100
+          score: 100,
+          images: {
+          Joe: "kangaroo.jpg",
+          Jo: "kangaroo.jpg"
+        },
         },
         resultC: {
           text: "You are living your best life with some cool people, outside and getting a workout everyday. Your mental health and physical health are in great condition!",
           health: 10,
           happiness: 5,
-          score: 350
+          score: 350,
+          images: {
+          Joe: "q4_joe_c.jpg",
+          Jo: "q4_jo_c.jpg"
+        },
         }
       },
       { // question 5 6 years later
@@ -222,59 +277,93 @@
         optionA: ipadKid && workCommitted ? null : "You decide to make a tinder profile to meet your perfect partner.",
         optionB: "You wallow in your sorrow and lack of love. You start eating ice cream for breakfast, lunch and dinner.",
         optionC: "You decide to say 'fuck em' my life is mine and I can do what I want when I want. I will not let societal pressure dictate my life",
+        images: {
+          Joe: "q5_joe_b.jpg",
+          Jo: "q5_jo_b.jpg"
+        },
         ageIncrement: 41,
         resultA: {
           text: "You meet a beautiful soul and decide to have a child. Will they be an iPad kid?",
           health: 10,
           happiness: 30,
-          score: 800
+          score: 800,
+          images: {
+          Joe: "tinder.jpg",
+          Jo: "tinder.jpg"
+        },
         },
         resultB: {
-          text: "You are depressed. You become addicted to cocaine.  . At least it's not Heroin!",
+          text: "You are depressed. You become addicted to cocaine. At least it's not Heroin!",
           health: -80,
           happiness: -50,
-          score: 150
+          score: 150,
+          images: {
+          Joe: "q5_joe_b.jpg",
+          Jo: "q5_jo_b.jpg"
+        },
         },
         resultC: {
           text: "You have a wonderful ability to separate yourself from what others expect of you. You don't care what anyone else thinks, you're living your best life!",
           health: 10,
           happiness: 50,
-          score: 2000
+          score: 2000,
+          images: {
+          Joe: "q5_joe_c.jpg",
+          Jo: "q5_jo_c.jpg"
+        },
         }
       },
       { // question 6
         text: "Question 6: Happy birthday!!! You just turned 65. You have some savings in the bank but with the increasing cost of living, it might not be enough.",
         optionA: "You decide to retire. You have enough to get by. And hey, who knows? Maybe you'll get hit by a slow moving bus. Minor bumps and bruises. Major settlement.",
         optionB: "You keep working, save a little money. And hey, your job is not all bad. Gives you something to wake up for in the morning.",
+        images: {
+          Joe: "cake.jpg",
+          Jo: "cake.jpg"
+        },
         ageIncrement: 27,
         resultA: {
           text: "You retire. Your life is chill but boring since you don't have the money to do cool things like travel the world.",
           health: 10,
           happiness: 10,
-          score: 250
+          score: 250,
+          images: {
+          Joe: "choice_b.jpg",
+          Jo: "choice_A.jpg"
+        },
         },
         resultB: {
           text: "Surprise! Your boss gives you a much deserved raise, you're really raking it in now!",
           health: -17,
           happiness: 15,
-          score: 360
+          score: 360,
+          images: {
+          Joe: "q6_b.jpg",
+          Jo: "q6_b.jpg"
+        },
         }
       },
       { // question 7
         text: "Question 7: You are 92. You are sick with cancer and you know your time has come. You put your savings in a will and give it to your (child/grandchild/nephew).",
         optionA: "You pass away peacefully knowing that you were an iPad kid and you survived as a slightly antisocial person.",
         optionB: "You pass away peacefully knowing that your success in life is all due to the fact that your parents told you no when you asked for an iPad as a child.",
+        images: {
+          Joe: "rip.jpg",
+          Jo: "rip.jpg"
+        },
         resultA: {
-          text: "",
+          text: "#iPadSupremacy",
           health: 0,
           happiness: 0,
-          score: 200
+          score: 200,
+          
         },
         resultB: {
-          text: "",
+          text: "Don't cry because it's over, smile because it happened. ~ Ludwig Jacobowski",
           health: 0,
           happiness: 0,
-          score: 200
+          score: 200,
+          
         }
       },
     ];
@@ -305,10 +394,33 @@ function showQuestion() {
   const question = questions[currentQuestionIndex];
   questionElement.textContent = question.text;
 
-  // Dynamically set option texts and image paths based on current game state
+  // Update the question image based on selected character
+  const imgElement = document.getElementById('bigImg').querySelector('img');
+  imgElement.src = question.images[character];
+  imgElement.alt = "Image for " + character;
+
+  // Update option texts
   optionAElement.textContent = question.optionA;
   optionBElement.textContent = question.optionB;
   optionCElement.textContent = question.optionC || '';
+  optionCButton.classList.toggle('hidden', !question.optionC);
+
+  // Visibility handling for A and B options
+  optionAButton.classList.toggle('hidden', !question.optionA);
+  optionBButton.classList.toggle('hidden', !question.optionB);
+
+  // Dynamically set option texts and image paths based on current game state
+  optionAElement.textContent = question.optionA;
+  optionBElement.textContent = question.optionB;
+  if (question.optionC) {
+    optionCElement.textContent = question.optionC;
+    optionCButton.style.display = ''; // Show the C button
+    optionCButton.classList.remove('hidden');
+  } else {
+    optionCElement.textContent = '';
+    optionCButton.style.display = 'none'; // Hide the C button
+    optionCButton.classList.add('hidden');
+  }
 
   // Set images for each option, considering the character chosen
   const optionAImage = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_a.jpg`;
@@ -386,6 +498,8 @@ function answerQuestion(selectedOption) {
   console.log(`Answering question ${currentQuestionIndex}, selectedOption: ${selectedOption}`);
   const question = questions[currentQuestionIndex];
   const result = question[`result${selectedOption}`];
+  if (!result) return; // Exit if the result is not defined for the selected option
+
   resultElement.textContent = result.text;
   health += result.health;
   happiness += result.happiness;
@@ -393,30 +507,23 @@ function answerQuestion(selectedOption) {
   score += result.score;
   console.log("Score: ", score);
 
-  if (result.ipadKid !== undefined) {
-    ipadKid = result.ipadKid;
-  }
+  // Update specific flags if applicable
+  if (result.ipadKid !== undefined) ipadKid = result.ipadKid;
+  if (result.workCommitted !== undefined) workCommitted = result.workCommitted;
+  if (result.trackStar !== undefined) trackStar = result.trackStar;
 
-  if (result.workCommitted !== undefined) {
-    workCommitted = result.workCommitted;
-  }
-
-  if (result.trackStar !== undefined) {
-    trackStar = result.trackStar;
-  }
-
-  // Load the image based on the naming convention
-  const imageName = `q${currentQuestionIndex + 1}_${character.toLowerCase()}_${selectedOption.toLowerCase()}.jpg`;
-  document.getElementById('questionImage').src = imageName;
+  // Update the image on the results screen
+const resultImageElement = document.getElementById('questionImage');
+if (result.images && result.images[character]) {
+    resultImageElement.src = result.images[character];
+    resultImageElement.alt = "Result image for " + character;
+}
 
   updateStats();
 
-  // Add a delay of 1000 milliseconds (1 second) before hiding the game screen and showing the result screen
   setTimeout(() => {
     gameScreen.classList.add('hidden');
     resultScreen.classList.remove('hidden');
-
-    // Check if the player has died after the delay
     if (health <= 0 || happiness <= 0) {
       endGame(false); // Player dies
     } else if (currentQuestionIndex === questions.length) {
@@ -443,10 +550,11 @@ function endGame(won) {
   gameScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   statsElement.classList.add('hidden');
-  
+
   if (won) {
     titleScreen.classList.add('hidden');
     characterSelect.classList.add('hidden');
+    document.getElementById('scoreGameWon').textContent = score; // Update the score on the game won screen
     gameWon.classList.remove('hidden');
   } else {
     titleScreen.classList.add('hidden');

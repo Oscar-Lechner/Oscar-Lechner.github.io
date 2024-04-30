@@ -113,9 +113,7 @@ button{
    text-align: center;
    margin:20pt 10pt;
 }
-#questionImage{
-   margin-left: 460pt;
-}
+
 
 
 h2{
@@ -125,11 +123,43 @@ h2{
 }
 
 
-#gameOver img{
-   margin-left: 400pt;
+#gameOver img, #gameWon img {
+   width: 100%;
+   max-width: 500px;
+   display: block;
+   margin: auto;
 }
 
 
-#gameWon img{
-   margin-left: 400pt;
+
+#gameWon p {
+   font-size: 18pt;
+   color: #333;
+   text-align: center;
+   justify-content: center;
+}
+#gameOver, #gameWon {
+   text-align: center;
+}
+
+#gameOver h2, #gameWon h2,
+#gameOver p, #gameWon p,
+#gameOver button, #gameWon button {
+   margin: 20px auto;
+}
+
+#gameOver img, #gameWon img {
+   width: 100%;
+   max-width: 500px;
+   display: block;
+   margin: 20px auto;
+}
+
+#resultScreen {
+   text-align: center; /* Centralizes the content in the results screen */
+}
+#result {
+   display: inline-block;
+   text-align: center;
+   margin: 20pt 10pt;
 }
