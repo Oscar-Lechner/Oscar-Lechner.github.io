@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     world = engine.world;
     
     // Configure gravity (slower gravity)
-    engine.world.gravity.y = 0.2;  // Slower gravity for more control
+    engine.world.gravity.y = 0.5;  // Slower gravity for more control
 
     // Setup renderer
     let render = Matter.Render.create({
@@ -78,19 +78,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Function to create pegs in the classic alternating rows pattern
-    function createPegs(rows, startX, startY, gapX, gapY) {
-        let pegs = [];
-        for (let i = 0; i < rows; i++) {
-            let rowOffset = (i % 2 === 0) ? gapX / 2 : 0;
-            let pegsInRow = (i % 2 === 0) ? Math.floor(render.options.width / gapX) : Math.floor((render.options.width - gapX / 2) / gapX);
-            for (let j = 0; j < pegsInRow; j++) {
-                let x = startX - render.options.width / 2 + rowOffset + j * gapX;
-                let y = startY + i * gapY;
-                let peg = Matter.Bodies.circle(x, y, 5, { isStatic: true, render: { fillStyle: '#444' } });
-                pegs.push(peg);
-            }
+    
+// Function to create pegs in the classic alternating rows pattern
+function createPegs(rows, startX, startY, gapX, gapY) {
+    let pegs = [];
+    for (let i = 0; i < rows; i++) {
+        let rowOffset = (i % 2 === 0) ? gapX / 2 : 0;
+        let pegsInRow = (i % 2 === 0) ? Math.floor((render.options.width - gapX) / gapX) : Math.floor((render.options.width - gapX / 2) / gapX);
+        for (let j = 0; j < pegsInRow; j++) {
+            let x = rowOffset + j * gapX + gapX / 2;
+            let y = startY + i * gapY;
+            let peg = Matter.Bodies.circle(x, y, 5, { isStatic: true, render: { fillStyle: '#444' } });
+            pegs.push(peg);
         }
-        return pegs;
     }
+    return pegs;
+}
 });
