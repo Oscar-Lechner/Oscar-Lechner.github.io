@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
     volumeCircle.style.top = '0px'; // Vertical position fixed
     volumeCircle.style.left = '140px'; // Start centered
 
+    let currentVolume = 0;
+
     // Enable dragging for the volume handle
     volumeCircle.addEventListener('mousedown', function(event) {
         let startX = event.clientX; // Starting X position of the mouse
@@ -135,11 +137,28 @@ function randomizeBucketLabels() {
                 } else if (plinkoBall.position.x > bucketWall5.position.x && plinkoBall.position.x < rightWall.position.x) {
                     volume = bucketLabel6;
                 }
+                currentVolume = volume;
                 document.getElementById('volumeLabel').textContent = "Volume: " + volume;
+                console.log('volume updated to' + volume)
+                Matter.World.remove(world, plinkoBall);
+
+                // Remove the plinko ball when it has reached a velocity of zero
+                if (plinkoBall.velocity.x === 0 && plinkoBall.velocity.y === 0) {
+                    Matter.World.remove(world, plinkoBall);
+                }
             }
         });
     }
     
+    document.getElementById('submitVolume').addEventListener('click', function() {
+        // Set the actual volume of the tab
+        if (typeof chrome !== 'undefined' && chrome.tabs) {
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, { action: 'setVolume', volume: currentVolume / 100 });
+            });
+        }
+    });
+
     // Function to create pegs in the classic alternating rows pattern with triangles
     function createPegs(rows, startX, startY, gapX, gapY) {
         let pegs = [];
@@ -181,4 +200,21 @@ function randomizeBucketLabels() {
         }
         return pegs;
     }
+    // Get the audio player and play/pause button elements
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+
+    // Add event listener to the play/pause button
+    playPauseBtn.addEventListener('click', function() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+        } else {
+            audioPlayer.pause();
+        }
+    });
+
+    // Add event listener to the submit volume button
+    document.getElementById('submitVolume').addEventListener('click', function() {
+        audioPlayer.volume = currentVolume / 100;
+    });
 });

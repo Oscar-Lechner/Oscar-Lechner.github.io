@@ -7,6 +7,7 @@
     <title>Hostile Volume</title>
 </head>
 <body>
+    
     <div id="volumeControl">
         <div id="slider" class="slider">
             <div id="handle" class="handle"></div>
@@ -14,7 +15,12 @@
         <span id="volumeLabel">Volume: 0</span>
     </div>
     <button id="submitVolume">Submit Volume</button>
+    <div id="songPlayer">
+        <audio id="audioPlayer" src="bailando.mp3"></audio>
+        <button id="playPauseBtn">Play/Pause Song</button>
+    </div>
     <button id="resetBalls">Reset</button>
+    
     <script>
         document.getElementById("resetBalls").addEventListener("click", function() {
             location.reload();
