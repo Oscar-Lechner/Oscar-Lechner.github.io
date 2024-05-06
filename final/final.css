@@ -42,7 +42,7 @@ body {
 }
 
 #submitVolume {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px 20px;
     font-size: 25px;
     background-color: #4CAF50;
@@ -57,7 +57,7 @@ body {
 }
 
 #resetBalls {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px 20px;
     font-size: 20px;
     background-color: #ca4343;
@@ -71,13 +71,13 @@ body {
     background-color: #e45c5c;
 }
 #songPlayer{
-    padding-bottom: 30px;
+    padding-bottom: 0px;
     padding-top: 20px;
     
 }
 
 #playPauseBtn{
-    margin-top: 5px;
+    margin-top: 0px;
     padding: 10px 20px;
     font-size: 25px;
     background-color: #3f0c34;
