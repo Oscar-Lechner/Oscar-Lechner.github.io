@@ -13,9 +13,14 @@
         </div>
         <span id="volumeLabel">Volume: 0</span>
     </div>
+    <button id="submitVolume">Submit Volume</button>
+    <button id="resetBalls">Reset</button>
+    <script>
+        document.getElementById("resetBalls").addEventListener("click", function() {
+            location.reload();
+        });
+        </script>
     <script src="matter.js"></script>
     <script src="script.js"></script>
-    <button>Submit Volume</button>
-    
 </body>
 </html>

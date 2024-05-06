@@ -1,5 +1,10 @@
+* {
+    font-family: helvetica;
+}
+
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -8,7 +13,6 @@ body {
 
 #volumeControl {
     position: relative;
-    
 }
 
 .slider {
@@ -29,20 +33,40 @@ body {
     cursor: pointer;
 }
 
-.maze {
-    width: 300px;
-    height: 400px;
-    display: none; /* Hidden initially */
-    position: absolute;
-    top: 25px;
-    background-image: url('maze.png'); /* You'll need to create this image */
-    background-size: cover;
-}
-
 #volumeLabel {
     position: absolute;
     top: -50px;
-    left: 85px;
+    left: 70px;
     font-size: 32px;
     font-weight: bold;
+}
+
+#submitVolume {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submitVolume:hover {
+    background-color: #50b855;
+}
+
+#resetBalls {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ca4343;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#resetBalls:hover {
+    background-color: #e45c5c;
 }
