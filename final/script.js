@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     world = engine.world;
     
     // Configure gravity (slower gravity)
-    engine.world.gravity.y = 0.5;  // Slower gravity for more control
+    engine.world.gravity.y = 0.4;  // Slower gravity for more control
 
     // Setup renderer
     let render = Matter.Render.create({
@@ -19,11 +19,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Create ground, walls, and Plinko pegs
-    let ground = Matter.Bodies.rectangle(150, 590, 300, 20, { isStatic: true, render: { fillStyle: '#999' } });
-    let leftWall = Matter.Bodies.rectangle(0, 300, 20, 600, { isStatic: true, render: { fillStyle: '#666' } });
-    let rightWall = Matter.Bodies.rectangle(300, 300, 20, 600, { isStatic: true, render: { fillStyle: '#666' } });
+    let ground = Matter.Bodies.rectangle(150, 590, 300, 20, { isStatic: true, render: { fillStyle: '#444' } });
+    let leftWall = Matter.Bodies.rectangle(0, 300, 20, 600, { isStatic: true, render: { fillStyle: '#444' } });
+    let rightWall = Matter.Bodies.rectangle(300, 300, 20, 600, { isStatic: true, render: { fillStyle: '#444' } });
+
+    // Create buckets
+    let bucketWall1 = Matter.Bodies.rectangle(50, 560, 5, 40, { isStatic: true, render: { fillStyle: '#444' } });
+    let bucketWall2 = Matter.Bodies.rectangle(100, 560, 5, 40, { isStatic: true, render: { fillStyle: '#444' } });
+    let bucketWall3 = Matter.Bodies.rectangle(150, 560, 5, 40, { isStatic: true, render: { fillStyle: '#444' } });
+    let bucketWall4 = Matter.Bodies.rectangle(200, 560, 5, 40, { isStatic: true, render: { fillStyle: '#444' } });
+    let bucketWall5 = Matter.Bodies.rectangle(250, 560, 5, 40, { isStatic: true, render: { fillStyle: '#444' } });
+    //let bucketWall6 = Matter.Bodies.rectangle(300, 560, 5, 50, { isStatic: true, render: { fillStyle: '#444' } });
+    //let bucketWall7 = Matter.Bodies.rectangle(200, 560, 5, 50, { isStatic: true, render: { fillStyle: '#444' } });
+    //let bucketWall8 = Matter.Bodies.rectangle(200, 560, 5, 50, { isStatic: true, render: { fillStyle: '#444' } });
+    //let bucketWall9 = Matter.Bodies.rectangle(200, 560, 5, 50, { isStatic: true, render: { fillStyle: '#444' } });
+
     let pegs = createPegs(10, 150, 100, 30, 40);
-    Matter.World.add(world, [ground, leftWall, rightWall, ...pegs]);
+    Matter.World.add(world, [ground, leftWall, rightWall, bucketWall1,bucketWall2, bucketWall3, bucketWall4, bucketWall5, ...pegs]);
 
     // Create draggable volume control handle
     let volumeCircle = document.getElementById('handle');
@@ -61,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Spawn Plinko ball at a specific X coordinate
     function spawnPlinkoBall(x) {
         let plinkoBall = Matter.Bodies.circle(x, 50, 5, {
-            restitution: 0.1,  // Less bouncing
+            restitution: 0.5,  // Less bouncing
             friction: 0.005,
             density: 0.002,
             render: { fillStyle: '#f00' }
@@ -80,8 +92,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
 // Function to create pegs in the classic alternating rows pattern
+// Function to create pegs in the classic alternating rows pattern with triangles
+// Function to create pegs in the classic alternating rows pattern with triangles
 function createPegs(rows, startX, startY, gapX, gapY) {
     let pegs = [];
+    let triangleShiftX = 5; // Adjust this value to control the amount of shift for triangles
+    let secondColumnShiftX = 275; // Adjust this value to control the distance between the two columns of triangles
     for (let i = 0; i < rows; i++) {
         let rowOffset = (i % 2 === 0) ? gapX / 2 : 0;
         let pegsInRow = (i % 2 === 0) ? Math.floor((render.options.width - gapX) / gapX) : Math.floor((render.options.width - gapX / 2) / gapX);
@@ -90,8 +106,33 @@ function createPegs(rows, startX, startY, gapX, gapY) {
             let y = startY + i * gapY;
             let peg = Matter.Bodies.circle(x, y, 5, { isStatic: true, render: { fillStyle: '#444' } });
             pegs.push(peg);
+
+            // Add the first column of triangles on the leftmost peg of every other row, starting from the second to highest row
+            if ((i + 1) % 2 === 0 && j === 0) {
+                let triangleWidth = 15;
+                let triangleHeight = 15;
+                let triangle = Matter.Bodies.polygon(x - triangleWidth / 2 + triangleShiftX, y, 3, triangleHeight, {
+                    isStatic: true,
+                    angle: -Math.PI / 2.9, // Rotate 90 degrees clockwise
+                    render: { fillStyle: '#444' }
+                });
+                pegs.push(triangle);
+            }
+
+            // Add the second column of triangles 100 pixels to the right of the first column
+            if ((i + 1) % 2 === 0 && j === 0) {
+                let triangleWidth = 15;
+                let triangleHeight = 15;
+                let triangle = Matter.Bodies.polygon(x - triangleWidth / 2 + triangleShiftX + secondColumnShiftX, y, 3, triangleHeight, {
+                    isStatic: true,
+                    angle: -Math.PI / 1.5, // Rotate 90 degrees clockwise
+                    render: { fillStyle: '#444' }
+                });
+                pegs.push(triangle);
+            }
         }
     }
     return pegs;
 }
 });
+

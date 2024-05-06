@@ -8,6 +8,7 @@ body {
 
 #volumeControl {
     position: relative;
+    
 }
 
 .slider {
@@ -40,8 +41,8 @@ body {
 
 #volumeLabel {
     position: absolute;
-    top: -30px;
-    left: 140px;
-    font-size: 18px;
+    top: -50px;
+    left: 85px;
+    font-size: 32px;
     font-weight: bold;
 }
