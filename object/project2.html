@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project 2 - Process Journal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">Progress Documentation</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="https://oscarlechner.me/object/processjournal.html">Home</a></li>
+            <li><a href="https://oscarlechner.me/object/project1.html">Project 1</a></li>
+            <li><a href="https://oscarlechner.me/object/project2.html">Project 2</a></li>
+            <li><a href="https://oscarlechner.me/object/project3.html">Project 3</a></li>
+        </ul>
+    </nav>
+
+    <main class="project-page">
+        <div class="container">
+            <h1 >Motor Buffet</h1>
+            <section class="summary">
+                <h2>Summary</h2>
+                <p >This project was all about learning how to wire the main motor types (servo, dc, stepper), and control them using arduino and code. Very Fun!</p>
+            </section>
+            <!-- <section class="steps">
+                <h2>Step-by-Step Process</h2>
+                <div class="step" >
+                    <p>Describe the first step.</p>
+                </div>
+                <div class="step" >
+                    <p>Describe the second step.</p>
+                </div>
+                 -->
+            </section>
+            <section class="images">
+                <h2>Images</h2>
+                <div class="image-gallery">
+                    <div class="image">
+                        <img src="proj2IMGS/IMG_1552.JPG" alt="Closeup Motors">
+                        <p>Closeup Motors</p>
+                    </div>
+                    <div class="image">
+                        <img src="proj2IMGS/IMG_1553.JPG" alt="Breadboard, Arduino, and wiring">
+                        <p>Breadboard, Arduino, and wiring</p>
+                    </div>
+                    <div class="image">
+                        <video controls>
+                            <source src="proj2IMGS/IMG_1555.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p>Video of all the motors swordfighting</p>
+                    </div>
+                    <div class="image">
+                        <img src="proj2IMGS/IMG_1556.JPG" alt="Beatrix Kiddo">
+                        <p>Beatrix Kiddo</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Process Journal</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation Toggle -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
