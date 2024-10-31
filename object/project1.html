@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project 1 - Process Journal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">My Process Journal</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="project1.html">Project 1</a></li>
+            <li><a href="project2.html">Project 2</a></li>
+            <li><a href="project3.html">Project 3</a></li>
+        </ul>
+    </nav>
+
+    <main class="project-page">
+        <div class="container">
+            <h1 contenteditable="true">Project Title</h1>
+            <section class="summary">
+                <h2>Summary</h2>
+                <p contenteditable="true">Write a brief summary of the project here.</p>
+            </section>
+            <section class="steps">
+                <h2>Step-by-Step Process</h2>
+                <div class="step" contenteditable="true">
+                    <p>Describe the first step.</p>
+                </div>
+                <div class="step" contenteditable="true">
+                    <p>Describe the second step.</p>
+                </div>
+                <!-- Add more steps as needed -->
+            </section>
+            <section class="images">
+                <h2>Images</h2>
+                <div class="image-gallery">
+                    <div class="image">
+                        <img src="image1.jpg" alt="Description of image 1">
+                        <p contenteditable="true">Caption for image 1.</p>
+                    </div>
+                    <div class="image">
+                        <img src="image2.jpg" alt="Description of image 2">
+                        <p contenteditable="true">Caption for image 2.</p>
+                    </div>
+                    <!-- Add more images as needed -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Process Journal</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation Toggle -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

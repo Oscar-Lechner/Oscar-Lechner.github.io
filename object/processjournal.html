@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Journal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">My Process Journal</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="project1.html">Enclosures</a></li>
+            <li><a href="project2.html">Motor Buffet</a></li>
+            <li><a href="project3.html">IDC1</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-section">
+        <h1>Object Process Journal</h1>
+        <p>Oscar Lechner</p>
+        <a href="#projects" class="btn">View Projects</a>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="image">
+            <img src="glasses.jpg" alt="if this isn't loading image me wearign glasses and i'm swagged out"width="300" 
+            height="auto" align-items="center">
+        <p>I'm Oscar. This is my epic website journal where all the relevant stuff is listed.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Past Projects</h2>
+        <div class="project-cards">
+            <div class="card">
+                <h3>Enclosures</h3>
+                <p>One lies and the other tells only the truth</p>
+                <a href="project1.html" class="btn">Read More</a>
+            </div>
+            <div class="card">
+                <h3>Motor Buffet</h3>
+                <p>HIYYAAAA!</p>
+                <a href="project2.html" class="btn">Read More</a>
+            </div>
+            <div class="card">
+                <h3>IDC1</h3>
+                <p>F.L.O.W. - Fan Layout with Omni-directional Wind</p>
+                <a href="project3.html" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ATLS 3300</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation Toggle -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
