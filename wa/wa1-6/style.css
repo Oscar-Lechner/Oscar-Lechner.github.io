@@ -227,6 +227,15 @@ body {
   .card3 article p strong {
     font-weight: bold;
   }
+
+  .center-link {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 15pt;
+    font-family: Helvetica, sans-serif;
+    color: rgb(6, 48, 12);
+  }
   
 
   
