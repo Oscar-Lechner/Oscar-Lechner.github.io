@@ -37,7 +37,7 @@
                 <p >For IDC2 I chose to evolve my IDC1 idea into a new and improved form instead of creating something completely new, as I knew I could push the boundaries
                     of my capabilities more. The initial problem I set out to solve still remained, my room's temperature is terribly regulated; the heating is inefficient, there's no AC for the summers, and
                     I prefer to sleep in a very cold room so i tend to open my window at night. I realized that If I could find a way to properly automate the opening and closing of my window using arduino, I 
-                    would be able to optimize the space automatically. <br><br>My first idea was to use a system of cables and pulleys atached to spools and DC motors. This idea would be 
+                    would be able to optimize the space automatically. <br><br>My first idea was to use a system of cables and pulleys attached to spools and DC motors. This idea would be 
                     minimalist, and has the potential to make opening the window trivial with mechanical advantage. The main issue with this idea is mounting stuff to my window, 
                     which would require drilling, and attaching, and kissing my security deposit goodbye.<br><br> Eventually I settled on the lead screw idea. These rotational-to-linear
                     steppers are powerful and inexpensive, with a high degree of control. I secured one via amazon along with an A4988 stepper motor driver, a waterproof temperature sensor and 12v DC power supply.
@@ -46,9 +46,9 @@
             <section class="steps">
                 <h2>Process</h2>
                 <div class="step" >
-                    <p>I started by mentally solving the spacial logistics by sketching in Paint. I measured my window's dimensions to vizualize the width, 
+                    <p>I started by mentally solving the spatial logistics by sketching in Paint. I measured my window's dimensions to visualize the width, 
                         and the relative locations of the part of the window that slides (where the attachment point lies when opened and closed). I also took the time to clean and lubricate
-                    the tracks to ensure the stepper would not struggle to operate</p>
+                    the window's tracks to ensure the stepper would not struggle to operate</p>
                 </div>
                 <div class="step" >
                     <p>Next up was to construct the bulk of the machine. I chose wood as my material of choice because it provides the necessary weight and rigidity to handle high
@@ -62,7 +62,7 @@
                     </p>
                 </div>
                 <div class="step" >
-                    <p>Finally, the code. Starting from some example code I found on the internet, I built up my program. Establishing my pins, calling my libraries, and fine tuning my delays, I acheived my first 
+                    <p>Finally, the code. Starting from some example code I found on the internet, I built up my program. Establishing my pins, calling my libraries, and fine tuning my delays, I achieved my first 
                         successful test. The most challenging part of this was a simple bug that would haunt me later. When the arduino first establishes a connection with the temperature sensor, 
                         the first number that appears in the serial monitor is always 185°F. I belive this is a bug within the library that controls the sensor, but essentially, any reset in the arduino
                         immediately blows through the temperature threshold and the machine reacts by opening the window (as it was designed to do). Unfortunately, if the adapter that attaches to the 
@@ -73,9 +73,9 @@
                             Midway through my demonstration, once the machine had "opened" the window, I noticed the fans were not turning on. I reached down and flipped the fans into high. Unfortunately,
                             this sudden pull of voltage, likely due to the strained arduino which was powering three things despite having two power output pins, reset the arduino. 
                             Like a farmer watching my favorite sheep get devoured by a combine, the sudden spike in perceived temperature caused the machine to open the window again. The subsequent
-                            disaster was described verbally by the very dissapointed professor Weaver as akin to "mechanical performance art where the machine breaks itself". I did not 
-                            stay around to watch the second round of presentations. <br><br> In order to get around this bug, I hard coded in a method avoid double openings/closings, as 
-                            well as a system that requires three consecutive temperature readouts above or below the threshold in order to begin the opning/closing process.
+                            disaster was described verbally by the very disappointed professor Weaver as akin to "mechanical performance art where the machine breaks itself". I did not 
+                            stay around to watch the second round of presentations. <br><br> In order to get around this bug, I hard coded in a method to avoid double openings/closings, as 
+                            well as a system that requires three consecutive temperature readouts above or below the threshold in order to begin the opening/closing process.
 
                         </p>
                 </div>
