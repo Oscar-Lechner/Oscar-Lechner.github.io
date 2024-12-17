@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <title>Project 3-IDC1</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Prism.js CSS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+
+    <!-- Prism.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 </head>
 <body>
     <nav>
-        <div class="logo">Progress Documentation</div>
+        <div class="logo">Progress Documentation - IDC1</div>
         <div class="hamburger">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
         <ul class="nav-links">
-            <li><a href="https://oscarlechner.me/object/progdoc.html">Home</a></li>
-            <li><a href="https://oscarlechner.me/object/project1.html">Enclosures</a></li>
-            <li><a href="https://oscarlechner.me/object/project2.html">Motor Buffet</a></li>
-            <li><a href="https://oscarlechner.me/object/project3.html">F.L.O.W.</a></li>
+            <li><a href="progdoc.html">Home</a></li>
+            <li><a href="project1.html">Enclosures</a></li>
+            <li><a href="project2.html">Motor Buffet</a></li>
+            <li><a href="project3.html">IDC1</a></li>
+            <li><a href="project4.html">IDC2</a></li>
         </ul>
     </nav>
 
@@ -26,15 +33,29 @@
             <h1 >IDC1 - F.L.O.W.</h1>
             <section class="summary">
                 <h2>Summary</h2>
-                <p >Write a brief summary of the project here.</p>
+                <p >The pet peeve I chose to focus on for IDC1 was born from the hot summer ngiths I endure here in Boulder with no AC. Opening my window helps, 
+                    but the cool fresh air flows in at random without direction. My IDC1 F.L.O.W. project aimed to create a functional and efficient system to improve bedroom temperature 
+                    regulation by using 
+                    Arduino and basic mechanical components. <br><br>
+
+                    My solution was a system of two fans mounted on two servos that spin in opposite directions. The resulting effect is a fan array that can be controlled to send air in two 
+                opposite directions, bringing fresh air into the room and also sending it over to my bed.</p>
             </section>
             <section class="steps">
                 <h2>Step-by-Step Process</h2>
                 <div class="step" >
-                    <p>Describe the first step.</p>
+                    <p>First step was to browse Amazon and get a nice pair of servos and fans. I also bought some 9v batteries, some wires, and a switch to turn on and off the fans.</p>
                 </div>
                 <div class="step" >
-                    <p>Describe the second step.</p>
+                    <p>Next I got to wiring and spent some time familiarizing myself with the way all of my electronic components work. Using a breadboard to prototype and refine my circuits 
+                        I landed on my final setup.
+                    </p>
+                </div>
+                <div class="step" >
+                    <p>Finally, I 3D printed the bracket that holds the two fans, laser cut the box I designed on makercase, and assembled. This involved soldering the final iteration of my circuits 
+                    and stuffing it all into the box. The final product turns on perfectly everytime, has perfect zero tolerance holes for the switch and potentiometer control 
+                    and spins fluidly and artistically. It does run on three 9v batteries though.
+                    </p>
                 </div>
                 <!-- Add more steps as needed -->
             </section>
@@ -42,15 +63,69 @@
                 <h2>Images</h2>
                 <div class="image-gallery">
                     <div class="image">
-                        <img src="image1.jpg" alt="Description of image 1">
-                        <p >Caption for image 1.</p>
+                        <img src="proj3IMGS/IMG_1569.JPG" alt="Description of image 1">
+                        <p >Wiring up/ testing servos</p>
                     </div>
                     <div class="image">
-                        <img src="image2.jpg" alt="Description of image 2">
-                        <p >Caption for image 2.</p>
+                        <img src="proj3IMGS/IMG_1571.JPG" alt="Description of image 2">
+                        <p >Arduino setup</p>
+                    </div>
+                    <div class="image">
+                        <img src="proj3IMGS/IMG_1572.JPG" alt="Description of image 2">
+                        <p >Integrating potentiometer control</p>
+                    </div>
+                    <div class="image">
+                        <img src="proj3IMGS/IMG_1573.JPG" alt="Description of image 2">
+                        <p >Learning how to solder and heat shrink</p>
+                    </div>
+                    <div class="image">
+                        <video controls>
+                            <source src="proj3IMGS/IMG_1574.MOV" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p>Laser cutting (is awesome) the box</p>
+                    </div>
+                    <div class="image">
+                        <img src="proj3IMGS/IMG_1770.JPG" alt="Description of image 2">
+                        <p >Final box with switch, control, and bracket</p>
                     </div>
                     <!-- Add more images as needed -->
                 </div>
+            </section>
+            <section class="images">
+                <h2>Code</h2>
+                <section class="code">
+                    
+                    <pre><code class="language-c">
+#include <Servo.h>
+
+Servo servo1;  
+Servo servo2;  
+
+int potpin = A0;  
+int val;          
+
+void setup() {
+    servo1.attach(9);  // attaches the first servo on pin 9
+    servo2.attach(10); // attaches the second servo on pin 10
+}
+
+void loop() {
+    val = analogRead(potpin);            // reads the potentiometer value (0 to 1023)
+    int angle1 = map(val, 0, 1023, 0, 180);  // map value for the first servo (0 to 180)
+    int angle2 = 180 - angle1;               // inverse mapping for the second servo (180 to 0)
+
+    servo1.write(angle1);  // set position of the first servo
+    servo2.write(angle2);  // set position of the second servo
+
+    delay(15);  // small delay 
+}
+                            
+                                            
+
+                    </code></pre>
+                </section>
+                
             </section>
         </div>
     </main>
