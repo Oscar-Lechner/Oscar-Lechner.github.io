@@ -4,15 +4,15 @@
     --secondary-color: #2c503c;
     --accent-color: #e74c3c;       /* Hover color */
     --light-color: #e74c3c;
-    --dark-color: #34495e;
+    --dark-color: #22303e;
     --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     :root {
-        --light-color: #2c3e50;
-        --dark-color: #c5dad2;
+        --light-color: #1d2a36;
+        --dark-color: #c5dad2f3;
         --secondary-color: #ffffff;
         --primary-color: #ffffff;
         --accent-color: #e28c83;
