@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oscar Lechner - Computation Fabrication Documentation Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+
+
+</head>
+<body>
+    <nav>
+        <div class="logo">Computational Fabrication Documentation Blog - Oscar Lechner</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="documentationblog.html">Home</a></li>
+            <li><a href="mini-1.html">Mini-1</a></li>
+            <li><a href="mini-2.html">Mini-2</a></li>
+            <li><a href="mini-3.html">Mini-3</a></li>
+            <li><a href="large-1.html">Large-1</a></li>
+            <li><a href="large-2.html">Large-2</a></li>
+            <li><a href="large-3.html">Large-3</a></li>
+            <li><a href="final-project.html">Final</a></li>
+        </ul>
+    </nav>
+
+    <!-- <header class="hero-section">
+        <h1>Computational Fabrication Documentation Blog</h1>
+        <p>Oscar Lechner</p>
+    </header> -->
+    <div id="p5-sketch">
+    </div>
+
+
+    <!-- <section id="about">
+        <h2>About Me</h2>
+        <div class="image">
+            <img src="glasses.jpg" alt="if this isn't loading imagine me wearing glasses and i'm swagged out">
+        <p>I'm Oscar. This is my epic website blog  where all the relevant documentation is recorded.</p>
+    </section> -->
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-cards">
+            <div class="card">
+                <h3>Mini-1</h3>
+                <p>Title</p>
+                <a href="mini-1.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Mini-2</h3>
+                <p>Title</p>
+                <a href="mini-2.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Mini-3</h3>
+                <p>Title</p>
+                <a href="mini-3.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Large-1</h3>
+                <p>Title</p>
+                <a href="large-1.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Large-2</h3>
+                <p>Title</p>
+                <a href="large-2.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Large-3</h3>
+                <p>Title</p>
+                <a href="large-3.html" class="btn">Go</a>
+            </div>
+            <div class="card">
+                <h3>Final</h3>
+                <p>Final Project Title</p>
+                <a href="final-project.html" class="btn">Go</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ATLS 5529</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation Toggle -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+    <script> new p5((sketch) => {
+        let yoff = 0.0;
+    
+        sketch.setup = () => {
+            let canvas = sketch.createCanvas(sketch.windowWidth, 200);
+            canvas.parent('p5-sketch');
+            sketch.noFill();
+        };
+    
+        sketch.draw = () => {
+            sketch.background(32, 110, 54); 
+            sketch.beginShape();
+            let xoff = 0;
+    
+            for (let x = 0; x <= sketch.width; x += 10) {
+                let y = sketch.map(sketch.noise(xoff, yoff), 0, 1, 50, 150);
+                sketch.vertex(x, y);
+                xoff += 0.05;
+            }
+            yoff += 0.01;
+            sketch.vertex(sketch.width, sketch.height);
+            sketch.vertex(0, sketch.height);
+            sketch.endShape(sketch.CLOSE);
+        };
+    
+        sketch.windowResized = () => {
+            sketch.resizeCanvas(sketch.windowWidth, 200);
+        };
+    }, 'p5-sketch');
+    </script>
+</body>
+</html>
