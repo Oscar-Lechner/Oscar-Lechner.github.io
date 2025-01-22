@@ -3,7 +3,7 @@
     --primary-color: #2bb363;      /* Original button color */
     --secondary-color: #2c503c;
     --accent-color: #e74c3c;       /* Hover color */
-    --light-color: #ecf0f1;
+    --light-color: #e74c3c;
     --dark-color: #34495e;
     --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -12,10 +12,11 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --light-color: #2c3e50;
-        --dark-color: #ecf0f1;
-        --secondary-color: #ecf0f1;
-        --primary-color: #d3d3ca;
-        --accent-color: #504f58;
+        --dark-color: #c5dad2;
+        --secondary-color: #ffffff;
+        --primary-color: #ffffff;
+        --accent-color: #e28c83;
+        --special-color: #c5dad2;
     }
 }
 
@@ -40,7 +41,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--secondary-color);
+    background: var(--special-color);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
@@ -81,87 +82,7 @@ nav .nav-links a:hover {
     margin: 4px 0;
 }
 
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(270deg, #3498db, #8e44ad, #e74c3c, #0ff122);
-    background-size: 800% 800%;
-    animation: gradientAnimation 15s ease infinite;
-    color: var(--light-color);
-    text-align: center;
-    padding: 5rem 2rem;
-}
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    animation: fadeInDown 2s;
-}
-.hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 2s;
-}
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    } to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    } to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Updated Button Styles */
-
-/* Hero Section Button */
-.hero-section .btn {
-    background: var(--primary-color);
-    color: var(--light-color);
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add color transition */
-}
-
-.hero-section .btn:hover {
-    background-color: var(--accent-color);
-    color: white; /* Change font color to white on hover */
-}
-
-/* About Section */
-#about {
-    padding: 4rem 2rem;
-    background-color: var(--light-color);
-}
-#about h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-#about p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    text-align: center;
-}
-#about img {
-    display: block;
-    margin: 0 auto;
-    height: 600px; /* Ensure the image retains its intended height */
-    padding-bottom: 50px;
-}
 
 /* Projects Section */
 #projects {
@@ -182,7 +103,7 @@ nav .nav-links a:hover {
 }
 
 .card {
-    background: var(--secondary-color);
+    background: var(--special-color);
     padding: 2rem;
     margin: 1rem;
     border-radius: 10px;
