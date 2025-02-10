@@ -1,114 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Project Title</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Prism.js CSS for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
-
-    <!-- Prism.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
-    <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <title>Mini-2 Laser Cutters</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Prism.js CSS for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+  <!-- Prism.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+  <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div class="logo">'Project Title' Documentation</div>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+  <nav>
+    <div class="logo">Mini-2 Documentation</div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="blog.html">Home</a></li>
+      <li><a href="mini-1.html">Mini-1</a></li>
+      <li><a href="mini-2.html">Mini-2</a></li>
+      <li><a href="mini-3.html">Mini-3</a></li>
+      <li><a href="large-1.html">Large-1</a></li>
+      <li><a href="large-2.html">Large-2</a></li>
+      <li><a href="large-3.html">Large-3</a></li>
+      <li><a href="final-project.html">Final</a></li>
+    </ul>
+  </nav>
+
+  <main class="project-page">
+    <div class="container">
+      <h1>Laser Cutters</h1>
+
+      <!-- Summary Section -->
+      <section class="summary">
+        <h2>Summary</h2>
+        <p>
+          For this assignment, I used Processing (Java) to generate three different designs. Two of these designs were then fabricated physically using a laser cutter. 
+          
+        </p>
+      </section>
+
+      <!-- Process Section -->
+      <section class="process">
+        <h2>Process</h2>
+        <div class="step">
+          <h3>Step 1: Coding</h3>
+          <p>Using the exercises from the lectures, specifially the spider-web, honeycomb, and orthographic stack, I implemented my own parameters and ideas. <br><br></p>
         </div>
-        <ul class="nav-links">
-            <li><a href="blog.html">Home</a></li>
-            <li><a href="mini-1.html">Mini-1</a></li>
-            <li><a href="mini-2.html">Mini-2</a></li>
-            <li><a href="mini-3.html">Mini-3</a></li>
-            <li><a href="large-1.html">Large-1</a></li>
-            <li><a href="large-2.html">Large-2</a></li>
-            <li><a href="large-3.html">Large-3</a></li>
-            <li><a href="final-project.html">Final</a></li>
-        </ul>
-    </nav>
+        <div class="step">
+          <h3>Step 2: File Type</h3>
+          <p>Using screenshots, I brought my designs into Adobe Illustrator to be refined and converted to the ideal file type.<br><br></p>
+        </div>
+        <div class="step">
+          <h3>Step 3: Physical Cutting</h3>
+          <p>I used the ITLL lasers to bring my generations to life.<br><br></p>
+        </div>
+        
+      </section>
 
-    <main class="project-page">
-        <div class="container">
-            <h1 >Project Title</h1>
-            <section class="summary">
-                <h2>Summary</h2>
-                <p > </p>
-            </section>
-            <section class="steps">
-                <h2>Process</h2>
-                <div class="step" >
-                    <p></p>
-                </div>
-                <div class="step" >
-                    <p></p>
-                </div>
-                <div class="step" >
-                    <p>  </p>
-                </div>
-                <div class="step" >
-                    <p></p></div>
-                    <div class="step" >
-                        <p>  </p>
-                </div>
-                <!-- Add more steps as needed -->
-            </section>
-            <section class="images">
-                <h2>Images</h2>
-                <div class="image-gallery">
-                    <div class="image">
-                        <img src="proj4IMGS/idc2 drawing.png" alt="Description of image 1">
-                        <p >Initial sketch in Paint</p>
-                    </div>
-                    
-                    
-                    <!-- Add more images as needed -->
-                </div>
-            </section>
-            <section class="images">
-                <h2>Videos</h2>
-                <div class="image-gallery">
-                    <div class="image">
-                        <video controls>
-                            <source src="proj4IMGS/IMG_1742.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p>First successful test</p>
-                    </div>
-                    
-                    <!-- Add more images as needed -->
-                </div>
-            </section>
-            <section class="images">
-                <h2>Code</h2>
-                <section class="code">
-                    
-                    <pre><code class="language-c">
-Hello World                               
+      <!-- Designs Section -->
+      <section class="designs">
+        <h2>Designs</h2>
 
-                    </code></pre>
-                </section>
+        <!-- Design 1 -->
+        <article class="design" id="design1">
+          <h3>Design 1: Honeycomb</h3>
+          <p></p>
+          <div class="code">
+            <h4>Processing Code</h4>
+            <pre><code class="language-java">
+import Turtle.*;
+
+Turtle t;
+
+void setup() {
+    size(700, 700);
+    background(255);
+
+    t = new Turtle(this);
+    t.setHeading(30);
+    
+    float l = 25; //side length
+
+    // Calculate columns and rows needed to fill the canvas
+    int cols = (int) ceil(width / (3 * l));
+    int rows = (int) ceil(height / (sqrt(3) * l * 0.5));
+
+    for (int row = 0; row < rows; row++) {
+    for (int col = 0; col < cols; col++) {
+        t.penUp();
+        
+        //positioning logic
+        float x = col * (3 * l) + (row % 2) * (1.5 * l); // stagger every other row
+        float y = row * (sqrt(3) * l * 0.5);             //vertical spacing
+        
+        
+        if (x < width && y < height) {
+        t.goToPoint(x, y);
+        t.penDown();
+        float randomL = random(-8,8);
+
+        // Draw one hexagon
+        for (int side = 0; side < 6; side++) {
+            
+            t.forward(l-randomL);
+            t.right(60);
+        }
+        }
+    }
+    }
+} 
+            </code></pre>
+          </div><br><br>
+          <div class="design-images">
+            <h3>Images</h3><br><br>
+            <div class="image-gallery">
+              <div class="image">
+                <img src="imgs/Screenshot 2025-02-09 233404.png" alt="Design 1 Code Screenshot">
+                <p>Rendered output of Design 1 in Processing. The size of a given hexagon is randomized</p>
+              </div>
+              <div class="image">
                 
-            </section>
+              </div>
+              <!-- Add more images as needed -->
+            </div>
+          </div>
+        </article>
+        <br><br>
+<p>__________________________________________________________________________________________________________________</p>
+        <!-- Design 2 -->
+        <article class="design" id="design2">
+          <h3>Design 2: Othographic Stack</h3>
+          <div class="code">
+            <h4>Processing Code</h4>
+            <pre><code class="language-java">
+
+            </code></pre>
+          </div>
+          <div class="design-images">
+            <h4>Images</h4><br><br>
+            <div class="image-gallery">
+              
+              <div class="image">
+                <img src="images/design2_output.png" alt="Design 2 Rendered Output">
+                <p>Rendered output of Design 2 in Processing</p>
+              </div>
+              <!-- Add more images as needed -->
+            </div>
+          </div>
+        </article>
+        <br><br>
+<p>__________________________________________________________________________________________________________________</p>
+
+        <!-- Design 3 -->
+        <article class="design" id="design3">
+          <h3>Design 3: Reactive Rectangles</h3>
+          <div class="code">
+            <h4>Processing Code</h4>
+            <pre><code class="language-java">
+
+            </code></pre>
+          </div>
+          <div class="design-images">
+            <h4>Images</h4><br><br>
+            <div class="image-gallery">
+              
+              <div class="image">
+                <img src="images/design3_output.png" alt="Design 3 Rendered Output">
+                <p>Rendered output of Design 3 in Processing</p>
+              </div>
+              <!-- Add more images as needed -->
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Laser-Cut Objects Section -->
+      <section class="laser-cut">
+        <h2>Laser-Cut Objects</h2>
+        <p>The code brought to life:</p> <br>
+        <div class="laser-images">
+          <div class="image">
+            <img src="images/lasercut_design1.jpg" alt="Laser-Cut Object for Design 1">
+            <p>Laser-Cut Object 1</p>
+          </div>
+          <div class="image">
+            <img src="images/lasercut_design2.jpg" alt="Laser-Cut Object for Design 2">
+            <p>Laser-Cut Object 2</p>
+          </div>
+          <!-- Add additional images if available -->
         </div>
-    </main>
+      </section>
 
-    <footer>
-        <p>&copy; SPRING 2025 ATLS 5529</p>
-    </footer>
+    </div>
+  </main>
 
-    <!-- JavaScript for Mobile Navigation Toggle -->
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+  <footer>
+    <p>&copy; SPRING 2025 ATLS 5529</p>
+  </footer>
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
+  <!-- JavaScript for Mobile Navigation Toggle -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
