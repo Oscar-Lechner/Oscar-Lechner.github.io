@@ -49,11 +49,11 @@
         <h2>Process</h2>
         <div class="step">
           <h3>Step 1: Coding</h3>
-          <p>Using the exercises from the lectures, specifially the spider-web, honeycomb, and orthographic stack, I implemented my own parameters and ideas. <br><br></p>
+          <p>Using the exercises from the lectures, specifially the honeycomb and orthographic stack, I implemented my own parameters and ideas. <br><br></p>
         </div>
         <div class="step">
-          <h3>Step 2: File Type</h3>
-          <p>Using screenshots, I brought my designs into Adobe Illustrator to be refined and converted to the ideal file type.<br><br></p>
+          <h3>Step 2: Parameterization</h3>
+          <p>Trying out a wide variety and intensity of parameter values. I arrived at designs that I liked/ would look the best once laser engraved/cut.<br><br></p>
         </div>
         <div class="step">
           <h3>Step 3: Physical Cutting</h3>
@@ -122,6 +122,15 @@ void setup() {
               <div class="image">
                 <img src="imgs/Screenshot 2025-02-09 233404.png" alt="Design 1 Code Screenshot">
                 <p>Rendered output of Design 1 in Processing. The size of a given hexagon is randomized</p>
+                <p><br>
+                  This code mathematically constructs a honeycomb grid by calculating the necessary number of columns and rows based on the canvas 
+                  dimensions and hexagon side length. The spacing follows a structured logic: each hexagon’s center is positioned using a formula
+                   that ensures proper staggered alignment. Horizontally, hexagons are placed every 3l units, ensuring they interlock correctly.
+                    Vertically, they are spaced by frac{\sqrt{3}}{2} \times l , preserving the honeycomb pattern. Additionally, every alternate 
+                    row shifts hexagons right by \(1.5l\) to maintain the staggered structure. In addition, a slight random variation is introduced to side lengths, 
+                    adding organic imperfections to each hexagon for the visual effect.
+                  </p>
+                  
               </div>
               <div class="image">
                 
@@ -275,13 +284,25 @@ void drawTriangle(float size) {
         <p>The code brought to life:</p> <br>
         <div class="laser-images">
           <div class="image">
-            <img src="images/lasercut_design1.jpg" alt="Laser-Cut Object for Design 1">
+            <img src="imgs/IMG_2059.JPG" alt="Laser-Cut Object for Design 1">
             <p>Laser-Cut Object 1</p>
           </div>
           <div class="image">
-            <img src="images/lasercut_design2.jpg" alt="Laser-Cut Object for Design 2">
+            <img src="imgs/IMG_2060.JPG" alt="Laser-Cut Object for Design 2">
             <p>Laser-Cut Object 2</p>
           </div>
+          <!-- Add additional images if available -->
+        </div>
+      </section>
+
+      <section class="laser-cut">
+        <h2>Conclusion</h2>
+        <p>This project allowed me to explore the intersection of computational design and physical fabrication through laser cutting. 
+           The process reinforced key skills in generative design, vector preparation, 
+          and fabrication techniques. If I were to do this again, I would play around with the laser's intensity to create a more consistent and purposeful
+          design with the hexagons that remain stuck in the wood. Additionally, I would focus more attention is exporting very nice and clean SVGs, for a finished design with straighter lines. </p> <br>
+        <div class="laser-images">
+          
           <!-- Add additional images if available -->
         </div>
       </section>

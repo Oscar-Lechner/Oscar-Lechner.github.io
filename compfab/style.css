@@ -299,3 +299,15 @@ footer {
     width: 100%;
     background-color: #34495e; /* A fallback color in case the script takes time to load */
 }
+.laser-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between images */
+    flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.laser-images .image img {
+    max-width: 300px; /* Adjust the max width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Optional: Add rounded corners */
+}
