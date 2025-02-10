@@ -138,6 +138,49 @@ void setup() {
           <div class="code">
             <h4>Processing Code</h4>
             <pre><code class="language-java">
+              
+import Turtle.*;
+
+Turtle t;
+
+void setup() {
+  size(700, 700);
+  background(255);
+
+  t = new Turtle(this);
+  
+  float startX = 300;
+  float startY = 300;
+  int numRectangles = int(random(5, 15));  // Random number of rectangles
+
+  for (int i = 0; i < numRectangles; i++) {
+    float width = random(55, 95);  // Random customizable parameters
+    float height = random(40, 70); 
+    float spacing = random(10, 45); 
+    float xWobble = random(-10,10); 
+    
+    drawRectangle(startX, startY, width, height);
+    startY += spacing;  // individual spacing
+    startX += xWobble;
+  }
+}
+
+void drawRectangle(float x, float y, float w, float h) {
+  t.penUp();
+  t.goToPoint(x, y);
+  t.penDown();
+  
+  t.right(60);
+  t.forward(h);
+  t.right(60);
+  t.forward(w);
+  t.right(120);
+  t.forward(h);
+  t.right(60);
+  t.forward(w);
+  t.right(60); // very important 60 degree turn at the end to ensure proper orthographic perspective
+}
+
 
             </code></pre>
           </div>
@@ -146,7 +189,11 @@ void setup() {
             <div class="image-gallery">
               
               <div class="image">
-                <img src="images/design2_output.png" alt="Design 2 Rendered Output">
+                <img src="imgs/ortho moment.png" alt="Design 2 Rendered Output">
+                
+              </div>
+              <div class="image">
+                <img src="imgs/orthoCrazy.png" alt="Design 2 Rendered Output">
                 <p>Rendered output of Design 2 in Processing</p>
               </div>
               <!-- Add more images as needed -->
@@ -162,6 +209,49 @@ void setup() {
           <div class="code">
             <h4>Processing Code</h4>
             <pre><code class="language-java">
+import Turtle.*;
+
+Turtle t;
+
+void setup() {
+  size(700, 700);
+  background(255);
+
+  t = new Turtle(this);
+  
+  float l = random(5,15); // Triangle side length
+  int cols = (int) ceil(width / (1.5 * l)); 
+  int rows = (int) ceil(height / (sqrt(3) * l)); 
+  
+  for (int row = 0; row < rows; row++) {
+    for (int col = 0; col < cols; col++) {
+      t.penUp();
+      
+      // Positioning logic: staggered grid
+      float x = col * (1.5 * l) + (row % 2) * (0.75 * l);
+      float y = row * (sqrt(3) * l);
+      
+      if (x < width && y < height) {
+        t.goToPoint(x, y);
+        t.penDown();
+        
+        float randomRotation = random(-0, 0); // Random tilt for variation (turned off)
+        t.right(randomRotation);
+        
+        drawTriangle(l + random(-20, 20)); // Slight size variation
+        t.right(-randomRotation);
+      }
+    }
+  }
+}
+
+void drawTriangle(float size) {
+  for (int i = 0; i < 3; i++) {
+    t.forward(size);
+    t.right(120);
+  }
+}
+
 
             </code></pre>
           </div>
@@ -170,7 +260,7 @@ void setup() {
             <div class="image-gallery">
               
               <div class="image">
-                <img src="images/design3_output.png" alt="Design 3 Rendered Output">
+                <img src="imgs/brazy triangles.png" alt="Design 3 Rendered Output">
                 <p>Rendered output of Design 3 in Processing</p>
               </div>
               <!-- Add more images as needed -->
