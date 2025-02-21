@@ -1,114 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Project Title</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Prism.js CSS for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
-
-    <!-- Prism.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
-    <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <title>Your Documentation Title</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Prism.js CSS for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+  <!-- Prism.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+  <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div class="logo">'Project Title' Documentation</div>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+  <nav>
+    <div class="logo">Documentation</div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="blog.html">Home</a></li>
+      <!-- Additional nav links as needed -->
+    </ul>
+  </nav>
+
+  <main class="project-page">
+    <div class="container">
+      <!-- Title -->
+      <header>
+        <h1>Documentation Title</h1>
+      </header>
+
+      <!-- Centered Smallish Image -->
+      <section class="cover-image" style="text-align: center;">
+        <img src="path/to/your/cover-image.jpg" alt="Cover Image" style="max-width: 300px;">
+      </section>
+
+      <!-- Summary Section -->
+      <section class="summary">
+        <h2>Summary</h2>
+        <p>Enter a brief summary of your documentation here...</p>
+      </section>
+
+      <!-- Task 1 -->
+      <section id="task1">
+        <h2>Task 1</h2>
+        <!-- Task 1 Summary -->
+        <div class="task-summary">
+          <p>Enter a summary for Task 1 here...</p>
         </div>
-        <ul class="nav-links">
-            <li><a href="blog.html">Home</a></li>
-            <li><a href="mini-1.html">Mini-1</a></li>
-            <li><a href="mini-2.html">Mini-2</a></li>
-            <li><a href="mini-3.html">Mini-3</a></li>
-            <li><a href="large-1.html">Large-1</a></li>
-            <li><a href="large-2.html">Large-2</a></li>
-            <li><a href="large-3.html">Large-3</a></li>
-            <li><a href="final-project.html">Final</a></li>
-        </ul>
-    </nav>
-
-    <main class="project-page">
-        <div class="container">
-            <h1 >Project Title</h1>
-            <section class="summary">
-                <h2>Summary</h2>
-                <p > </p>
-            </section>
-            <section class="steps">
-                <h2>Process</h2>
-                <div class="step" >
-                    <p></p>
-                </div>
-                <div class="step" >
-                    <p></p>
-                </div>
-                <div class="step" >
-                    <p>  </p>
-                </div>
-                <div class="step" >
-                    <p></p></div>
-                    <div class="step" >
-                        <p>  </p>
-                </div>
-                <!-- Add more steps as needed -->
-            </section>
-            <section class="images">
-                <h2>Images</h2>
-                <div class="image-gallery">
-                    <div class="image">
-                        <img src="proj4IMGS/idc2 drawing.png" alt="Description of image 1">
-                        <p >Initial sketch in Paint</p>
-                    </div>
-                    
-                    
-                    <!-- Add more images as needed -->
-                </div>
-            </section>
-            <section class="images">
-                <h2>Videos</h2>
-                <div class="image-gallery">
-                    <div class="image">
-                        <video controls>
-                            <source src="proj4IMGS/IMG_1742.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p>First successful test</p>
-                    </div>
-                    
-                    <!-- Add more images as needed -->
-                </div>
-            </section>
-            <section class="images">
-                <h2>Code</h2>
-                <section class="code">
-                    
-                    <pre><code class="language-c">
-Hello World                               
-
-                    </code></pre>
-                </section>
-                
-            </section>
+        <!-- Process with Steps -->
+        <div class="process">
+          <h3>Process Steps</h3>
+          <div class="step">
+            <h4>Step 1</h4>
+            <p>Step 1 details...</p>
+          </div>
+          <div class="step">
+            <h4>Step 2</h4>
+            <p>Step 2 details...</p>
+          </div>
         </div>
-    </main>
+        <!-- Two Code Boxes -->
+        <div class="code-boxes">
+          <div class="code">
+            <h4>Code Box 1</h4>
+            <pre><code class="language-java">
+// Your code goes here...
+            </code></pre>
+          </div>
+          <div class="code">
+            <h4>Code Box 2</h4>
+            <pre><code class="language-java">
+// Your code goes here...
+            </code></pre>
+          </div>
+        </div>
+        <!-- Two Images -->
+        <div class="images">
+          <div class="image">
+            <img src="path/to/task1-image1.jpg" alt="Task 1 Image 1">
+          </div>
+          <div class="image">
+            <img src="path/to/task1-image2.jpg" alt="Task 1 Image 2">
+          </div>
+        </div>
+      </section>
 
-    <footer>
-        <p>&copy; SPRING 2025 ATLS 5529</p>
-    </footer>
+      <!-- Task 2 -->
+      <section id="task2">
+        <h2>Task 2</h2>
+        <!-- Task 2 Summary -->
+        <div class="task-summary">
+          <p>Enter a summary for Task 2 here...</p>
+        </div>
+        <!-- Process with Steps -->
+        <div class="process">
+          <h3>Process Steps</h3>
+          <div class="step">
+            <h4>Step 1</h4>
+            <p>Step 1 details...</p>
+          </div>
+          <div class="step">
+            <h4>Step 2</h4>
+            <p>Step 2 details...</p>
+          </div>
+        </div>
+        <!-- One Code Box -->
+        <div class="code">
+          <h4>Code Box</h4>
+          <pre><code class="language-java">
+// Your code goes here...
+          </code></pre>
+        </div>
+        <!-- One Image -->
+        <div class="image">
+          <img src="path/to/task2-image.jpg" alt="Task 2 Image">
+        </div>
+      </section>
 
-    <!-- JavaScript for Mobile Navigation Toggle -->
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+      <!-- Task 3 -->
+      <section id="task3">
+        <h2>Task 3</h2>
+        <!-- Task 3 Summary -->
+        <div class="task-summary">
+          <p>Enter a summary for Task 3 here...</p>
+        </div>
+        <!-- Three Subtasks Each with Process, Code Box, and Image -->
+        <div class="subtask">
+          <h3>Subtask 3.1</h3>
+          <div class="process">
+            <h4>Process Steps</h4>
+            <div class="step">
+              <h5>Step 1</h5>
+              <p>Step details...</p>
+            </div>
+          </div>
+          <div class="code">
+            <h4>Code Box</h4>
+            <pre><code class="language-java">
+// Your code goes here...
+            </code></pre>
+          </div>
+          <div class="image">
+            <img src="path/to/task3-sub1.jpg" alt="Task 3 Subtask Image 1">
+          </div>
+        </div>
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
+        <div class="subtask">
+          <h3>Subtask 3.2</h3>
+          <div class="process">
+            <h4>Process Steps</h4>
+            <div class="step">
+              <h5>Step 1</h5>
+              <p>Step details...</p>
+            </div>
+          </div>
+          <div class="code">
+            <h4>Code Box</h4>
+            <pre><code class="language-java">
+// Your code goes here...
+            </code></pre>
+          </div>
+          <div class="image">
+            <img src="path/to/task3-sub2.jpg" alt="Task 3 Subtask Image 2">
+          </div>
+        </div>
+
+        <div class="subtask">
+          <h3>Subtask 3.3</h3>
+          <div class="process">
+            <h4>Process Steps</h4>
+            <div class="step">
+              <h5>Step 1</h5>
+              <p>Step details...</p>
+            </div>
+          </div>
+          <div class="code">
+            <h4>Code Box</h4>
+            <pre><code class="language-java">
+// Your code goes here...
+            </code></pre>
+          </div>
+          <div class="image">
+            <img src="path/to/task3-sub3.jpg" alt="Task 3 Subtask Image 3">
+          </div>
+        </div>
+      </section>
+
+      <!-- Task 4 -->
+      <section id="task4">
+        <h2>Task 4</h2>
+        <!-- Task 4 Summary -->
+        <div class="task-summary">
+          <p>Enter a summary for Task 4 here...</p>
+        </div>
+        <!-- Process with Steps -->
+        <div class="process">
+          <h3>Process Steps</h3>
+          <div class="step">
+            <h4>Step 1</h4>
+            <p>Step details...</p>
+          </div>
+          <div class="step">
+            <h4>Step 2</h4>
+            <p>Step details...</p>
+          </div>
+        </div>
+        <!-- Six Images -->
+        <div class="images">
+          <div class="image">
+            <img src="path/to/task4-image1.jpg" alt="Task 4 Image 1">
+          </div>
+          <div class="image">
+            <img src="path/to/task4-image2.jpg" alt="Task 4 Image 2">
+          </div>
+          <div class="image">
+            <img src="path/to/task4-image3.jpg" alt="Task 4 Image 3">
+          </div>
+          <div class="image">
+            <img src="path/to/task4-image4.jpg" alt="Task 4 Image 4">
+          </div>
+          <div class="image">
+            <img src="path/to/task4-image5.jpg" alt="Task 4 Image 5">
+          </div>
+          <div class="image">
+            <img src="path/to/task4-image6.jpg" alt="Task 4 Image 6">
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>Enter your concluding remarks here...</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Your Name or Organization</p>
+  </footer>
+
+  <!-- JavaScript for Mobile Navigation Toggle -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
