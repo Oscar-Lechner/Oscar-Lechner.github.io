@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Documentation Title</title>
+  <title>L-1 "L Systems"</title>
   <link rel="stylesheet" href="style.css">
   <!-- Prism.js CSS for syntax highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
   <nav>
-    <div class="logo">L-1 Documentation</div>
+    <div class="logo">L-1 "L Systems"</div>
     <div class="hamburger">
       <div class="line"></div>
       <div class="line"></div>
@@ -21,7 +21,13 @@
     </div>
     <ul class="nav-links">
       <li><a href="blog.html">Home</a></li>
-      <!-- Additional nav links as needed -->
+      <li><a href="mini-1.html">Mini-1</a></li>
+      <li><a href="mini-2.html">Mini-2</a></li>
+      <!-- <li><a href="mini-3.html">Mini-3</a></li> -->
+      <li><a href="large-1.html">L-1</a></li>
+     <!-- <li><a href="large-2.html">Large-2</a></li>
+      <li><a href="large-3.html">Large-3</a></li>
+      <li><a href="final-project.html">Final</a></li> -->
     </ul>
   </nav>
 
@@ -40,15 +46,18 @@
       <!-- Summary Section -->
       <section class="summary">
         <h2>Summary</h2>
-        <p>Enter a brief summary of your documentation here...</p>
+        <p>This assignment dealt with a generative code method called L-Systems. Using push() and pop(), and the Java Turtle
+            library, we were able to display generative artwork and interesting designs.  
+        </Li></p>
       </section>
 
       <!-- Task 1 -->
       <section id="task1">
-        <h2>Task 1</h2>
+        <h2>Task 1 - Humble Beginnings</h2>
         <!-- Task 1 Summary -->
         <div class="task-summary">
-          <p>Enter a summary for Task 1 here...</p>
+          <p>To familiarize ourselves with the most basic of concepts related to L-Systems, task one required 
+            implementing penUP(), goToPoint(), and penDown() as methods of creating simple shapes.</p>
         </div>
         <!-- Process with Steps -->
         <div class="process">
@@ -212,10 +221,10 @@ void drawCircle(float r) {
 
       <!-- Task 2 -->
       <section id="task2">
-        <h2>Task 2</h2>
+        <h2>Task 2 - Square L-System</h2>
         <!-- Task 2 Summary -->
         <div class="task-summary">
-          <p>Enter a summary for Task 2 here...</p>
+          <p>With the help of a provided code skeleton, a simple square based L-System can be iterated through.</p>
         </div>
         <!-- Process with Steps -->
         <div class="process">
@@ -451,6 +460,9 @@ class SquareLSystem extends BaseLSystem {
             
           </code></pre>
         </div>
+        <p>
+            Output:
+         </p>
         <!-- One Image -->
         <div class="image">
           <img src="l1imgs/squares.svg" alt="Task 2 Image">
@@ -462,31 +474,29 @@ class SquareLSystem extends BaseLSystem {
         <h2>Task 3</h2>
         <!-- Task 3 Summary -->
         <div class="task-summary">
-          <p>Enter a summary for Task 3 here...</p>
+          <p>Once we've established usage of L-Systems, task 3 involved coming up with our own custom generative designs</p>
         </div>
         <!-- Three Subtasks Each with Process, Code Box, and Image -->
         <div class="subtask">
-          <h3>Subtask 3.1</h3>
+          <h3>Design 1: Serpinski Triangle</h3>
           <div class="process">
             <h4>Process Steps</h4>
             <div class="step">
               <h5>Step 1</h5>
-              <p>Step details...</p>
+              <p></p>
             </div>
           </div>
           <div class="code">
             <h4>Code Box</h4>
             <pre><code class="language-java">
-// Main Processing Sketch for Sierpinski Triangle L-System
-
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
 
-boolean shouldExportAsPDF = false;  // Change to true for PDF export
-int numIterations = 0;              // Global iteration counter
-BaseLSystem lSys;                   // L-System instance
-Turtle t;                           // Turtle instance
+boolean shouldExportAsPDF = false;  
+int numIterations = 0;              
+BaseLSystem lSys;                   
+Turtle t;                           
 
 void setup() {
     size(1000, 1000);
@@ -494,7 +504,7 @@ void setup() {
     stroke(0);
     
     t = new Turtle(this);
-    lSys = initSierpinski();  // Create an instance of our Sierpinski L-System
+    lSys = initSierpinski(); 
     
     noLoop();
     printInstructions();
@@ -503,7 +513,7 @@ void setup() {
 void draw() {
     background(255);
     
-    // Reset turtle to center of the window with heading 0
+    // reset turtle to center of the window with heading 0
     resetTurtle();
     
     // Reset L-System to its initial state (axiom, iteration 0)
@@ -514,7 +524,7 @@ void draw() {
     lSys.iterate();
     }
     
-    // Draw the L-System using Turtle commands
+    // Draw the L-System 
     lSys.drawLSystem(t);
     
     // Print iteration info to the console
@@ -554,7 +564,7 @@ void resetTurtle() {
     t.penDown();
 }
 
-// Print key instructions to the console
+// Print instructions to the console
 void printInstructions() {
     println("======== Sierpinski L-System Instructions ========");
     println("Press 'm' to increment the L-system iterations.");
@@ -639,15 +649,6 @@ abstract class BaseLSystem {
 
 
 
-
-// -----------------------
-// SierpinskiLSystem Class
-// -----------------------
-// A concrete implementation of BaseLSystem for drawing a Sierpinski Triangle.
-// Production Rules:
-//   A → B-A-B
-//   B → A+B+A
-// The symbols '+' and '-' represent turning right and left respectively.
 class SierpinskiLSystem extends BaseLSystem {
 
     public SierpinskiLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
@@ -674,8 +675,7 @@ class SierpinskiLSystem extends BaseLSystem {
     iterationNum++;
     }
     
-    // Interpret the L-System string to issue Turtle commands.
-    // Here, both A and B are drawn as forward commands.
+    
     public void drawLSystem(Turtle t) {
     String instructions = getIterationString();
     for (int i = 0; i < instructions.length(); i++) {
@@ -710,8 +710,6 @@ class SierpinskiLSystem extends BaseLSystem {
           <div class="code">
             <h4>Code Box</h4>
             <pre><code class="language-java">
-// Complete Processing Sketch: Wavy Line and Tree L-System with Branches
-
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
@@ -738,10 +736,6 @@ void setup() {
 void draw() {
     background(255);
     
-    
-    
-    // --- Draw the tree L-system ---
-    // Reset turtle to start near the bottom center, pointing upward.
     resetTurtle();
     
     // Reset the L-system state (axiom, iteration count = 0).
@@ -781,7 +775,7 @@ void keyPressed() {
     }
 }
 
-// Resets the turtle state for the tree drawing.
+// resets the turtle state for the tree drawing
 void resetTurtle() {
     t.penUp();
     t.clearTurtleHistory();
@@ -806,13 +800,6 @@ String getDateString() {
     String date = year() + "_" + month() + "_" + day();
     return date + "-" + time;
 }
-
-// Draws a small wavy line using the Turtle.
-// Parameters:
-//   t         - the Turtle object.
-//   length    - total length of the wavy line.
-//   segments  - number of segments (each segment alternates direction).
-//   waveAngle - angle (in degrees) to turn at each segment.
 void drawWavyLine(Turtle t, float length, int segments, float waveAngle) {
     float step = length / segments;
     boolean turnLeft = true;
@@ -893,15 +880,6 @@ abstract class BaseLSystem {
     println("n = " + iterationNum);
     }
 }
-
-
-
-// ---------------------------------------------------------------------
-// TreeLSystem Class
-// ---------------------------------------------------------------------
-// Implements an L-system for a tree using branching.
-// Production Rule:
-//   F -> F[+F]F[-F]F
 class TreeLSystem extends BaseLSystem {
     public TreeLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
     super(axiom, moveDistance, rotateAngle, scaleFactor);
@@ -957,8 +935,6 @@ class TreeLSystem extends BaseLSystem {
     }
     }
 }
-
-// Helper class to store the turtle's state (position and heading).
 class TurtleState {
     float x, y, heading;
     TurtleState(float x, float y, float heading) {
@@ -987,9 +963,6 @@ class TurtleState {
           <div class="code">
             <h4>Code Box</h4>
             <pre><code class="language-java">
-// Complete Processing Sketch: Hexagon L-System
-// Canvas size: 1000 x 1000, starting at canvas center.
-
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
@@ -1145,14 +1118,6 @@ abstract class BaseLSystem {
     }
 }
 
-
-
-
-// -----------------------
-// HexagonLSystem Class
-// -----------------------
-// Implements an L-system with hexagon geometry.
-// Production rule: F -> F+F-F-F+F
 class HexagonLSystem extends BaseLSystem {
     public HexagonLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
     super(axiom, moveDistance, rotateAngle, scaleFactor);
@@ -1196,7 +1161,7 @@ class HexagonLSystem extends BaseLSystem {
             </code></pre>
           </div>
           <div class="image">
-            <img src="l1imgs/hex.svg" alt="Task 3 Subtask Image 3">
+            <img src="l1imgs/hex screenshot.png" alt="Task 3 Subtask Image 3">
           </div>
         </div>
       </section>
@@ -1206,9 +1171,10 @@ class HexagonLSystem extends BaseLSystem {
         <h2>Task 4</h2>
         <!-- Task 4 Summary -->
         <div class="task-summary">
-          <p>Enter a summary for Task 4 here...</p>
+          <p>Last Step was to bring some of the deisngs to life. Using the ITLL Laser Cutters and the included code for 
+            exporting svgs, I was able to accomplihs this easily. </p>
         </div>
-        <!-- Process with Steps -->
+        <!-- Process with Steps 
         <div class="process">
           <h3>Process Steps</h3>
           <div class="step">
@@ -1219,7 +1185,7 @@ class HexagonLSystem extends BaseLSystem {
             <h4>Step 2</h4>
             <p>Step details...</p>
           </div>
-        </div>
+        </div> -->
         <!-- Six Images -->
         <div class="images">
           <div class="image">
