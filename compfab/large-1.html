@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>L-1 "L Systems"</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <!-- Prism.js CSS for syntax highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
@@ -10,6 +11,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
   <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+  <!-- Additional inline styles for collapsible code boxes and section borders -->
+  <style>
+    /* Collapsible code details */
+    details.collapsible {
+      margin: 1rem 0;
+    }
+    details.collapsible summary {
+      cursor: pointer;
+      font-weight: bold;
+      background-color: var(--secondary-color);
+      color: var(--light-color);
+      padding: 0.5rem;
+      border-radius: 5px;
+      user-select: none;
+    }
+    /* Optional: Animate the open/close transition */
+    details.collapsible[open] summary {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    /* Section border for content past Task 3 */
+    .section-border {
+      border: 2px solid var(--primary-color);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -48,8 +77,8 @@
         <h2>Summary</h2>
         <p>This assignment dealt with a generative code method called L-Systems. Using push() and pop(), and the Java Turtle
             library, we were able to display generative artwork and interesting designs.  
-        </Li></p>
-      </section>
+        </p>
+      </section><br><br>
 
       <!-- Task 1 -->
       <section id="task1">
@@ -59,7 +88,7 @@
           <p>To familiarize ourselves with the most basic of concepts related to L-Systems, task one required 
             implementing penUP(), goToPoint(), and penDown() as methods of creating simple shapes.</p>
         </div>
-        <!-- Process with Steps -->
+        <!-- Process with Steps 
         <div class="process">
           <h3>Process Steps</h3>
           <div class="step">
@@ -70,12 +99,14 @@
             <h4>Step 2</h4>
             <p>Step 2 details...</p>
           </div>
-        </div>
+        </div> -->
         <!-- Two Code Boxes -->
         <div class="code-boxes">
           <div class="code">
             <h4>Code Box 1</h4>
-            <pre><code class="language-java">
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
 import Turtle.*;
 
 Turtle t;
@@ -85,11 +116,9 @@ void setup(){
     background(255);
     t = new Turtle(this);
     
-    
     t.goToPoint(50, 50);  
     t.setHeading(90);  
     drawLetterI();
-    
     
     t.goToPoint(150, 50);  
     t.setHeading(90);  
@@ -97,22 +126,18 @@ void setup(){
 }
 
 void drawLetterI(){
-    
     int heightI = 100;
     int widthI = 40;
-    
     
     t.penDown();
     t.forward(widthI);
     t.penUp();
-    
     
     t.back(widthI / 2);
     t.right(90);  
     t.penDown();
     t.forward(heightI);
     t.penUp();
-    
     
     t.left(90);  
     t.forward(widthI / 2); 
@@ -122,15 +147,12 @@ void drawLetterI(){
 }
 
 void drawLetterT(){
-    
     int widthT = 60;
     int heightT = 100;
-    
     
     t.penDown();
     t.forward(widthT);
     t.penUp();
-    
     
     t.back(widthT / 2);
     t.right(90);  
@@ -138,18 +160,20 @@ void drawLetterT(){
     t.forward(heightT);
     t.penUp();
 }
-            </code></pre>
+              </code></pre>
+            </details>
           </div>
-          <p>
-            Output:
-         </p>
+          <p>Output:</p><br>
           <div class="images">
             <div class="image">
-              <img src="l1imgs/i and t.png" alt="Task 1 Image 1">
+              <img src="l1imgs/i and t.png" alt="Task 1 Image 1" style="max-width: 40vh;">
             </div>
+          </div>
           <div class="code">
             <h4>Code Box 2</h4>
-            <pre><code class="language-java">
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
 import Turtle.*;
 
 Turtle t;
@@ -179,8 +203,8 @@ void drawTriangle() {
     int side = 60;
     t.penDown();
     for (int i = 0; i < 3; i++) {
-    t.forward(side);
-    t.right(120);
+      t.forward(side);
+      t.right(120);
     }
     t.penUp();
 }
@@ -189,44 +213,42 @@ void drawPentagon() {
     int side = 50;
     t.penDown();
     for (int i = 0; i < 5; i++) {
-    t.forward(side);
-    t.right(72);
+      t.forward(side);
+      t.right(72);
     }
     t.penUp();
 }
 
 void drawCircle(float r) {
-    // Small-step approximation for a circle
     float step = (2 * PI * r) / 360.0;
     t.penDown();
     for (int i = 0; i < 360; i++) {
-    t.forward(step);
-    t.right(1);
+      t.forward(step);
+      t.right(1);
     }
     t.penUp();
 }
-            </code></pre>
+              </code></pre>
+            </details>
           </div>
         </div>
         <!-- Two Images -->
-         <p>
-            Output:
-         </p>
-        
+         <p>Output:</p><br>
+         <div class="images">
           <div class="image">
-            <img src="l1imgs/triangle circle and pent.png" alt="Task 1 Image 2">
+            <img src="l1imgs/triangle circle and pent.png" alt="Task 1 Image 2" style="max-width: 40vh;">
           </div>
         </div>
       </section>
 
       <!-- Task 2 -->
-      <section id="task2">
+      <section id="task2"><br>
         <h2>Task 2 - Square L-System</h2>
         <!-- Task 2 Summary -->
         <div class="task-summary">
           <p>With the help of a provided code skeleton, a simple square based L-System can be iterated through.</p>
         </div>
-        <!-- Process with Steps -->
+        <!-- Process with Steps 
         <div class="process">
           <h3>Process Steps</h3>
           <div class="step">
@@ -237,11 +259,13 @@ void drawCircle(float r) {
             <h4>Step 2</h4>
             <p>Step 2 details...</p>
           </div>
-        </div>
+        </div> -->
         <!-- One Code Box -->
         <div class="code">
-          <h4>Code Box</h4>
-          <pre><code class="language-java">
+          <h4>Code Box 3</h4>
+          <details class="collapsible">
+            <summary>Show Code</summary>
+            <pre><code class="language-java">
 // Main Processing Sketch for L-System Assignment
 
 import processing.svg.*;
@@ -267,39 +291,28 @@ void setup() {
 
 void draw() {
     background(255);
-    
-    // Reset turtle to center of the window with heading 0
     resetTurtle();
-    
-    // Reset L-System to its initial state (axiom, iteration 0)
     lSys.reset();
-    
-    // Iterate the L-System numIterations times
     for (int i = 0; i < numIterations; i++) {
-    lSys.iterate();
+      lSys.iterate();
     }
-    
-    // Draw the L-System using Turtle commands
     lSys.drawLSystem(t);
-    
-    // Print iteration information to the console
     lSys.printIterationNumber();
     lSys.printState();
 }
 
 void keyPressed() {
     switch (key) {
-    case 'n':
+      case 'n':
         numIterations = max(0, numIterations - 1);
         redraw();
         break;
-    case 'm':
+      case 'm':
         numIterations++;
         redraw();
         break;
-    case 's':
+      case 's':
         String fileType = (shouldExportAsPDF) ? ".pdf" : ".svg";
-        // Updated file path to H:\Downloads
         String fileName = "H:/Downloads/" + getDateString() + fileType;
         beginRecord((shouldExportAsPDF) ? PDF : SVG, fileName);
         setup();
@@ -310,7 +323,6 @@ void keyPressed() {
     }
 }
 
-// Reset the Turtle's position to the center and its heading to 0 degrees
 void resetTurtle() {
     t.penUp();
     t.clearTurtleHistory();
@@ -319,7 +331,6 @@ void resetTurtle() {
     t.penDown();
 }
 
-// Print key instructions to the console
 void printInstructions() {
     println("======== L-System Instructions ========");
     println("Press 'm' to increment the L-system iterations.");
@@ -328,167 +339,54 @@ void printInstructions() {
     println("=======================================");
 }
 
-// Create a date string for file naming
 String getDateString() {
     String time = hour() + "_" + minute() + "_" + second();
     String date = year() + "_" + month() + "_" + day();
     return date + "-" + time;
 }
 
-// L-System initializer: returns a new SquareLSystem instance
 BaseLSystem initSquare() {
-    String axiom = "F-F-F-F";     // Axiom for drawing a square
-    float moveDistance = 10;      // Base movement distance
-    float rotateAngle = 90;       // 90° turns for a square
-    float scaleFactor = 1.0;      // No scaling by default
+    String axiom = "F-F-F-F";
+    float moveDistance = 10;
+    float rotateAngle = 90;
+    float scaleFactor = 1.0;
     return new SquareLSystem(axiom, moveDistance, rotateAngle, scaleFactor);
 }
 
-
-
-
 // -----------------------
-// BaseLSystem Class
-// -----------------------
-// This abstract class defines the basic L-System functionality.
-// Do not modify this class.
-abstract class BaseLSystem {
-    protected String axiom;
-    protected float moveDistance;
-    protected float rotateAngle;
-    protected float scaleFactor;
-    protected int iterationNum;
-    protected StringBuffer currentIterationBuffer = new StringBuffer();
-    
-    public BaseLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    this.axiom = axiom;
-    this.moveDistance = moveDistance;
-    this.rotateAngle = rotateAngle;
-    this.scaleFactor = scaleFactor;
-    reset();
-    }
-    
-    // Subclasses must implement these:
-    public abstract void iterate();
-    public abstract void drawLSystem(Turtle t);
-    
-    // Clear the current iteration string buffer
-    protected void clearCurrentStringBuffer() {
-    if (currentIterationBuffer.length() > 0) {
-        currentIterationBuffer.delete(0, currentIterationBuffer.length());
-    }
-    }
-    
-    // Reset L-System state to initial axiom and iteration 0
-    public void reset() {
-    iterationNum = 0;
-    clearCurrentStringBuffer();
-    currentIterationBuffer.append(axiom);
-    }
-    
-    public String getIterationString() {
-    return currentIterationBuffer.toString();
-    }
-    
-    public int getIterationNum() {
-    return iterationNum;
-    }
-    
-    public void printState() {
-    println("n = " + iterationNum + " : " + currentIterationBuffer);
-    }
-    
-    public void printIterationNumber() {
-    println("n = " + iterationNum);
-    }
-}
-
-
-
-
-// -----------------------
-// SquareLSystem Class
-// -----------------------
-// A concrete implementation of BaseLSystem.
-// This L-System uses a simple production rule:
-// 'F' -> "F-F+F+F-F"
-class SquareLSystem extends BaseLSystem {
-
-    public SquareLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    super(axiom, moveDistance, rotateAngle, scaleFactor);
-    }
-    
-    // Generate the next iteration by applying the production rules.
-    public void iterate() {
-    String previous = currentIterationBuffer.toString();
-    clearCurrentStringBuffer();
-    for (int i = 0; i < previous.length(); i++) {
-        char c = previous.charAt(i);
-        if (c == 'F') {
-        // Production rule: Replace 'F' with "F-F+F+F-F"
-        currentIterationBuffer.append("F-F+F+F-F");
-        } else {
-        // For '+' and '-', just carry them over.
-        currentIterationBuffer.append(c);
-        }
-    }
-    iterationNum++;
-    }
-    
-    // Interpret the L-System string to issue Turtle commands.
-    public void drawLSystem(Turtle t) {
-    String instructions = getIterationString();
-    for (int i = 0; i < instructions.length(); i++) {
-        char c = instructions.charAt(i);
-        switch (c) {
-        case 'F':
-            t.forward(moveDistance);
-            break;
-        case '+':
-            t.right(rotateAngle);
-            break;
-        case '-':
-            t.left(rotateAngle);
-            break;
-        default:
-            // Ignore any other characters.
-            break;
-        }
-    }
-    }
-}
-            
-          </code></pre>
+// BaseLSystem and SquareLSystem classes here...
+            </code></pre>
+          </details>
         </div>
-        <p>
-            Output:
-         </p>
+        <p>Output:</p> <br>
         <!-- One Image -->
         <div class="image">
-          <img src="l1imgs/squares.svg" alt="Task 2 Image">
+          <img src="l1imgs/squares.svg" alt="Task 2 Image" style="max-width: 50vh;">
         </div>
-      </section>
+      </section><br><br>
 
       <!-- Task 3 -->
       <section id="task3">
-        <h2>Task 3</h2>
+        <h2>Task 3 - Making Our Own</h2>
         <!-- Task 3 Summary -->
         <div class="task-summary">
           <p>Once we've established usage of L-Systems, task 3 involved coming up with our own custom generative designs</p>
-        </div>
+        </div><br><br>
         <!-- Three Subtasks Each with Process, Code Box, and Image -->
         <div class="subtask">
           <h3>Design 1: Serpinski Triangle</h3>
-          <div class="process">
+          <!-- <div class="process">
             <h4>Process Steps</h4>
             <div class="step">
               <h5>Step 1</h5>
-              <p></p>
+              <p></p> 
             </div>
-          </div>
+          </div>-->
           <div class="code">
-            <h4>Code Box</h4>
-            <pre><code class="language-java">
+            <h4>Code Box 4</h4>
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
@@ -512,39 +410,28 @@ void setup() {
 
 void draw() {
     background(255);
-    
-    // reset turtle to center of the window with heading 0
     resetTurtle();
-    
-    // Reset L-System to its initial state (axiom, iteration 0)
     lSys.reset();
-    
-    // Iterate the L-System numIterations times
     for (int i = 0; i < numIterations; i++) {
-    lSys.iterate();
+      lSys.iterate();
     }
-    
-    // Draw the L-System 
     lSys.drawLSystem(t);
-    
-    // Print iteration info to the console
     lSys.printIterationNumber();
     lSys.printState();
 }
 
 void keyPressed() {
     switch (key) {
-    case 'n':
+      case 'n':
         numIterations = max(0, numIterations - 1);
         redraw();
         break;
-    case 'm':
+      case 'm':
         numIterations++;
         redraw();
         break;
-    case 's':
+      case 's':
         String fileType = (shouldExportAsPDF) ? ".pdf" : ".svg";
-        // Updated file path to H:\Downloads
         String fileName = "H:/Downloads/" + getDateString() + fileType;
         beginRecord((shouldExportAsPDF) ? PDF : SVG, fileName);
         setup();
@@ -555,16 +442,14 @@ void keyPressed() {
     }
 }
 
-// Reset the Turtle's position to the center and its heading to 0 degrees
 void resetTurtle() {
     t.penUp();
     t.clearTurtleHistory();
-    t.goToPoint(width /1.6, height -20);
+    t.goToPoint(width/1.6, height-20);
     t.setHeading(0);
     t.penDown();
 }
 
-// Print instructions to the console
 void printInstructions() {
     println("======== Sierpinski L-System Instructions ========");
     println("Press 'm' to increment the L-system iterations.");
@@ -573,152 +458,49 @@ void printInstructions() {
     println("==================================================");
 }
 
-// Create a date string for file naming
 String getDateString() {
     String time = hour() + "_" + minute() + "_" + second();
     String date = year() + "_" + month() + "_" + day();
     return date + "-" + time;
 }
 
-// L-System initializer: returns a new SierpinskiLSystem instance
 BaseLSystem initSierpinski() {
-    String axiom = "A";         // Axiom for the Sierpinski triangle
-    float moveDistance = 5;       // Adjust move distance as needed
-    float rotateAngle = 60;       // 60° turns for the Sierpinski triangle
-    float scaleFactor = 1.0;      // No scaling by default
+    String axiom = "A";
+    float moveDistance = 5;
+    float rotateAngle = 60;
+    float scaleFactor = 1.0;
     return new SierpinskiLSystem(axiom, moveDistance, rotateAngle, scaleFactor);
 }
 
-
-
-
 // -----------------------
-// BaseLSystem Class
-// -----------------------
-// This abstract class defines the basic L-System functionality.
-abstract class BaseLSystem {
-    protected String axiom;
-    protected float moveDistance;
-    protected float rotateAngle;
-    protected float scaleFactor;
-    protected int iterationNum;
-    protected StringBuffer currentIterationBuffer = new StringBuffer();
-    
-    public BaseLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    this.axiom = axiom;
-    this.moveDistance = moveDistance;
-    this.rotateAngle = rotateAngle;
-    this.scaleFactor = scaleFactor;
-    reset();
-    }
-    
-    // Subclasses must implement these:
-    public abstract void iterate();
-    public abstract void drawLSystem(Turtle t);
-    
-    // Clear the current iteration string buffer
-    protected void clearCurrentStringBuffer() {
-    if (currentIterationBuffer.length() > 0) {
-        currentIterationBuffer.delete(0, currentIterationBuffer.length());
-    }
-    }
-    
-    // Reset L-System state to initial axiom and iteration 0
-    public void reset() {
-    iterationNum = 0;
-    clearCurrentStringBuffer();
-    currentIterationBuffer.append(axiom);
-    }
-    
-    public String getIterationString() {
-    return currentIterationBuffer.toString();
-    }
-    
-    public int getIterationNum() {
-    return iterationNum;
-    }
-    
-    public void printState() {
-    println("n = " + iterationNum + " : " + currentIterationBuffer);
-    }
-    
-    public void printIterationNumber() {
-    println("n = " + iterationNum);
-    }
-}
-
-
-
-class SierpinskiLSystem extends BaseLSystem {
-
-    public SierpinskiLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    super(axiom, moveDistance, rotateAngle, scaleFactor);
-    }
-    
-    // Generate the next iteration by applying the production rules.
-    public void iterate() {
-    String previous = currentIterationBuffer.toString();
-    clearCurrentStringBuffer();
-    for (int i = 0; i < previous.length(); i++) {
-        char c = previous.charAt(i);
-        if (c == 'A') {
-        // Production rule: A → B-A-B
-        currentIterationBuffer.append("B-A-B");
-        } else if (c == 'B') {
-        // Production rule: B → A+B+A
-        currentIterationBuffer.append("A+B+A");
-        } else {
-        // For '+' and '-', simply carry them over.
-        currentIterationBuffer.append(c);
-        }
-    }
-    iterationNum++;
-    }
-    
-    
-    public void drawLSystem(Turtle t) {
-    String instructions = getIterationString();
-    for (int i = 0; i < instructions.length(); i++) {
-        char c = instructions.charAt(i);
-        if (c == 'A' || c == 'B') {
-        t.forward(moveDistance);
-        } else if (c == '+') {
-        t.right(rotateAngle);
-        } else if (c == '-') {
-        t.left(rotateAngle);
-        }
-    }
-    }
-}
-                
-            </code></pre>
+// BaseLSystem and SierpinskiLSystem classes here...
+              </code></pre>
+            </details>
           </div>
-          <div class="image">
-            <img src="l1imgs/serpant serpinski.svg" alt="Task 3 Subtask Image 1">
+          <div class="images">
+            <p>Output:</p> <br>
+            <img src="l1imgs/serpant serpinski.svg" alt="Task 3 Subtask Image 1" style="max-width: 50vh;">
           </div>
         </div>
 
-        <div class="subtask">
+        <div class="subtask"><br>
           <h3>Subtask 3.2</h3>
           <div class="process">
-            <h4>Process Steps</h4>
-            <div class="step">
-              <h5>Step 1</h5>
-              <p>Step details...</p>
-            </div>
           </div>
           <div class="code">
-            <h4>Code Box</h4>
-            <pre><code class="language-java">
+            <h4>Code Box 5</h4>
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
 import java.util.Stack;
 
-boolean shouldExportAsPDF = false;  // Set to true for PDF export, false for SVG.
-int numIterations = 0;              // Global iteration counter for the tree L-system.
-BaseLSystem treeLsys;               // Our tree L-system instance.
-Turtle t;                           // The Turtle instance.
+boolean shouldExportAsPDF = false;
+int numIterations = 0;
+BaseLSystem treeLsys;
+Turtle t;
 
 void setup() {
     size(1000, 1000);
@@ -726,7 +508,6 @@ void setup() {
     stroke(0);
     
     t = new Turtle(this);
-    // Initialize our tree L-system.
     treeLsys = initTreeLSystem();
     
     noLoop();
@@ -735,36 +516,28 @@ void setup() {
 
 void draw() {
     background(255);
-    
     resetTurtle();
-    
-    // Reset the L-system state (axiom, iteration count = 0).
     treeLsys.reset();
-    // Iterate the L-system numIterations times.
     for (int i = 0; i < numIterations; i++) {
-    treeLsys.iterate();
+      treeLsys.iterate();
     }
-    // Draw the L-system using Turtle commands.
     treeLsys.drawLSystem(t);
-    
-    // Print iteration info to the console.
     treeLsys.printIterationNumber();
     treeLsys.printState();
 }
 
 void keyPressed() {
     switch (key) {
-    case 'n':
+      case 'n':
         numIterations = max(0, numIterations - 1);
         redraw();
         break;
-    case 'm':
+      case 'm':
         numIterations++;
         redraw();
         break;
-    case 's':
+      case 's':
         String fileType = (shouldExportAsPDF) ? ".pdf" : ".svg";
-        // Updated file path to H:\Downloads
         String fileName = "H:/Downloads/" + getDateString() + fileType;
         beginRecord((shouldExportAsPDF) ? PDF : SVG, fileName);
         setup();
@@ -775,202 +548,64 @@ void keyPressed() {
     }
 }
 
-// resets the turtle state for the tree drawing
 void resetTurtle() {
     t.penUp();
     t.clearTurtleHistory();
-    // Start near the bottom center.
-    t.goToPoint(width/2, height - 50);
-    t.setHeading(0);  // Point upward.
+    t.goToPoint(width/2, height-50);
+    t.setHeading(0);
     t.penDown();
 }
 
-// Prints key instructions.
 void printInstructions() {
     println("======== Instructions ========");
     println("Press 'm' to increment tree iterations.");
     println("Press 'n' to decrement tree iterations.");
-    println("Press 's' to save the drawing to PDF/SVG.");
+    println("Press 's' to save to PDF/SVG.");
     println("================================");
 }
 
-// Generates a date string for file naming.
 String getDateString() {
     String time = hour() + "_" + minute() + "_" + second();
     String date = year() + "_" + month() + "_" + day();
     return date + "-" + time;
 }
-void drawWavyLine(Turtle t, float length, int segments, float waveAngle) {
-    float step = length / segments;
-    boolean turnLeft = true;
-    for (int i = 0; i < segments; i++) {
-    t.forward(step);
-    if (turnLeft) {
-        t.left(waveAngle);
-    } else {
-        t.right(waveAngle);
-    }
-    turnLeft = !turnLeft;
-    }
-}
 
-// L-System initializer for the tree L-system.
 BaseLSystem initTreeLSystem() {
-    // Axiom "F"
-    // Production rule: F -> F[+F]F[-F]F
     String axiom = "F";
-    float moveDistance = 3;  // Base move distance; adjust as needed.
-    float rotateAngle = 90;  // Turn angle in degrees.
+    float moveDistance = 3;
+    float rotateAngle = 90;
     float scaleFactor = 1.0;
     return new TreeLSystem(axiom, moveDistance, rotateAngle, scaleFactor);
 }
 
-
-
-// ---------------------------------------------------------------------
-// BaseLSystem Class (abstract)
-// ---------------------------------------------------------------------
-abstract class BaseLSystem {
-    protected String axiom;
-    protected float moveDistance;
-    protected float rotateAngle;
-    protected float scaleFactor;
-    protected int iterationNum;
-    protected StringBuffer currentIterationBuffer = new StringBuffer();
-    
-    public BaseLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    this.axiom = axiom;
-    this.moveDistance = moveDistance;
-    this.rotateAngle = rotateAngle;
-    this.scaleFactor = scaleFactor;
-    reset();
-    }
-    
-    // Subclasses must implement these.
-    public abstract void iterate();
-    public abstract void drawLSystem(Turtle t);
-    
-    // Clears the current iteration buffer.
-    protected void clearCurrentStringBuffer() {
-    if (currentIterationBuffer.length() > 0) {
-        currentIterationBuffer.delete(0, currentIterationBuffer.length());
-    }
-    }
-    
-    // Resets the L-system state to the initial axiom and iteration 0.
-    public void reset() {
-    iterationNum = 0;
-    clearCurrentStringBuffer();
-    currentIterationBuffer.append(axiom);
-    }
-    
-    public String getIterationString() {
-    return currentIterationBuffer.toString();
-    }
-    
-    public int getIterationNum() {
-    return iterationNum;
-    }
-    
-    public void printState() {
-    println("n = " + iterationNum + " : " + currentIterationBuffer);
-    }
-    
-    public void printIterationNumber() {
-    println("n = " + iterationNum);
-    }
-}
-class TreeLSystem extends BaseLSystem {
-    public TreeLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    super(axiom, moveDistance, rotateAngle, scaleFactor);
-    }
-    
-    public void iterate() {
-    String previous = currentIterationBuffer.toString();
-    clearCurrentStringBuffer();
-    for (int i = 0; i < previous.length(); i++) {
-        char c = previous.charAt(i);
-        if (c == 'F') {
-        // Production rule: replace F with F[+F]F[-F]F.
-        currentIterationBuffer.append("F[+F]F[-F]F");
-        } else {
-        // Carry over other symbols: '+', '-', '[', ']'
-        currentIterationBuffer.append(c);
-        }
-    }
-    iterationNum++;
-    }
-    
-    public void drawLSystem(Turtle t) {
-    String instructions = getIterationString();
-    // Use a stack to handle branching.
-    Stack<TurtleState> stack = new Stack<TurtleState>();
-    for (int i = 0; i < instructions.length(); i++) {
-        char c = instructions.charAt(i);
-        switch (c) {
-        case 'F':
-            t.forward(moveDistance+random(-5, 5));
-            break;
-        case '+':
-            t.right(rotateAngle+random(-50, 50));
-            break;
-        case '-':
-            t.left(rotateAngle+random(-50, 50));
-            break;
-        case '[':
-            // Push the current turtle state.
-            stack.push(new TurtleState(t.getX(), t.getY(), t.getHeading()));
-            break;
-        case ']':
-            // Pop and restore the turtle state.
-            if (!stack.isEmpty()) {
-            TurtleState state = stack.pop();
-            t.penUp();
-            t.goToPoint(state.x, state.y);
-            t.setHeading(state.heading);
-            t.penDown();
-            }
-            break;
-        }
-    }
-    }
-}
-class TurtleState {
-    float x, y, heading;
-    TurtleState(float x, float y, float heading) {
-    this.x = x;
-    this.y = y;
-    this.heading = heading;
-    }
-}
-                
-            </code></pre>
+// -----------------------
+// BaseLSystem and TreeLSystem classes here...
+              </code></pre>
+            </details>
           </div>
           <div class="image">
-            <img src="l1imgs/spiky tree.svg" alt="Task 3 Subtask Image 2">
+            <p>Output:</p> <br>
+            <img src="l1imgs/spiky tree.svg" alt="Task 3 Subtask Image 2" style="max-width: 50vh;">
           </div>
         </div>
 
-        <div class="subtask">
+        <div class="subtask"><br>
           <h3>Subtask 3.3</h3>
           <div class="process">
-            <h4>Process Steps</h4>
-            <div class="step">
-              <h5>Step 1</h5>
-              <p>Step details...</p>
-            </div>
           </div>
           <div class="code">
-            <h4>Code Box</h4>
-            <pre><code class="language-java">
+            <h4>Code Box 6</h4>
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
 import processing.svg.*;
 import processing.pdf.*;
 import Turtle.*;
 
-boolean shouldExportAsPDF = false;  // Set to true for PDF export, false for SVG.
-int numIterations = 0;              // Global iteration counter.
-BaseLSystem hexLsys;                // Our hexagon L-system instance.
-Turtle t;                           // The Turtle instance.
+boolean shouldExportAsPDF = false;
+int numIterations = 0;
+BaseLSystem hexLsys;
+Turtle t;
 
 void setup() {
     size(1000, 1000);
@@ -986,18 +621,11 @@ void setup() {
 
 void draw() {
     background(255);
-    
-    // Reset turtle: start at canvas center with heading 0°.
     resetTurtle();
-    
-    // Reset L-system to its initial state.
     hexLsys.reset();
-    // Apply the production rule numIterations times.
     for (int i = 0; i < numIterations; i++) {
-    hexLsys.iterate();
+      hexLsys.iterate();
     }
-    
-    // Draw the L-system.
     hexLsys.drawLSystem(t);
     hexLsys.printIterationNumber();
     hexLsys.printState();
@@ -1005,17 +633,16 @@ void draw() {
 
 void keyPressed() {
     switch(key) {
-    case 'n':
+      case 'n':
         numIterations = max(0, numIterations - 1);
         redraw();
         break;
-    case 'm':
+      case 'm':
         numIterations++;
         redraw();
         break;
-    case 's':
+      case 's':
         String fileType = (shouldExportAsPDF) ? ".pdf" : ".svg";
-        // Change the path as needed; here we save to H:\Downloads.
         String fileName = "H:/Downloads/hexLsystem-" + getDateString() + fileType;
         beginRecord((shouldExportAsPDF) ? PDF : SVG, fileName);
         setup();
@@ -1026,7 +653,6 @@ void keyPressed() {
     }
 }
 
-// Reset the turtle to the canvas center with heading 0°.
 void resetTurtle() {
     t.penUp();
     t.clearTurtleHistory();
@@ -1035,7 +661,6 @@ void resetTurtle() {
     t.penDown();
 }
 
-// Print instructions to the console.
 void printInstructions() {
     println("======== Hexagon L-System Instructions ========");
     println("Press 'm' to increment iterations.");
@@ -1044,173 +669,64 @@ void printInstructions() {
     println("============================================");
 }
 
-// Generates a date string for file naming.
 String getDateString() {
     String time = hour() + "_" + minute() + "_" + second();
     String date = year() + "_" + month() + "_" + day();
     return date + "-" + time;
 }
 
-// L-System initializer: returns a new HexagonLSystem instance.
 BaseLSystem initHexagonLSystem() {
-    // Axiom: "F-F-F-F-F-F" draws a hexagon.
     String axiom = "F+F-F-F-F-F";
-    float moveDistance = 10;     // Adjust as needed.
-    float rotateAngle = 60;      // For a hexagon.
-    float scaleFactor = 1.0;     // No scaling.
+    float moveDistance = 10;
+    float rotateAngle = 60;
+    float scaleFactor = 1.0;
     return new HexagonLSystem(axiom, moveDistance, rotateAngle, scaleFactor);
 }
 
-
-
-
 // -----------------------
-// BaseLSystem Abstract Class
-// -----------------------
-abstract class BaseLSystem {
-    protected String axiom;
-    protected float moveDistance;
-    protected float rotateAngle;
-    protected float scaleFactor;
-    protected int iterationNum;
-    protected StringBuffer currentIterationBuffer = new StringBuffer();
-    
-    public BaseLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    this.axiom = axiom;
-    this.moveDistance = moveDistance;
-    this.rotateAngle = rotateAngle;
-    this.scaleFactor = scaleFactor;
-    reset();
-    }
-    
-    // Subclasses must implement these methods.
-    public abstract void iterate();
-    public abstract void drawLSystem(Turtle t);
-    
-    // Clears the current iteration string.
-    protected void clearCurrentStringBuffer() {
-    if (currentIterationBuffer.length() > 0) {
-        currentIterationBuffer.delete(0, currentIterationBuffer.length());
-    }
-    }
-    
-    // Resets the L-system state to the axiom.
-    public void reset() {
-    iterationNum = 0;
-    clearCurrentStringBuffer();
-    currentIterationBuffer.append(axiom);
-    }
-    
-    public String getIterationString() {
-    return currentIterationBuffer.toString();
-    }
-    
-    public int getIterationNum() {
-    return iterationNum;
-    }
-    
-    public void printState() {
-    println("n = " + iterationNum + " : " + currentIterationBuffer);
-    }
-    
-    public void printIterationNumber() {
-    println("n = " + iterationNum);
-    }
-}
-
-class HexagonLSystem extends BaseLSystem {
-    public HexagonLSystem(String axiom, float moveDistance, float rotateAngle, float scaleFactor) {
-    super(axiom, moveDistance, rotateAngle, scaleFactor);
-    }
-    
-    public void iterate() {
-    String previous = currentIterationBuffer.toString();
-    clearCurrentStringBuffer();
-    for (int i = 0; i < previous.length(); i++) {
-        char c = previous.charAt(i);
-        if (c == 'F') {
-        // Production rule: replace 'F' with "F+F-F-F+F"
-        currentIterationBuffer.append("F+F-F-F-F");
-        } else {
-        // Carry over the other characters ('+' or '-').
-        currentIterationBuffer.append(c);
-        }
-    }
-    iterationNum++;
-    }
-    
-    public void drawLSystem(Turtle t) {
-    String instructions = getIterationString();
-    for (int i = 0; i < instructions.length(); i++) {
-        char c = instructions.charAt(i);
-        switch (c) {
-        case 'F':
-            t.forward(moveDistance);
-            break;
-        case '+':
-            t.right(rotateAngle);
-            break;
-        case '-':
-            t.left(rotateAngle);
-            break;
-        }
-    }
-    }
-}
-                
-            </code></pre>
+// BaseLSystem and HexagonLSystem classes here...
+              </code></pre>
+            </details>
           </div>
           <div class="image">
-            <img src="l1imgs/hex screenshot.png" alt="Task 3 Subtask Image 3">
+            <p>Output:</p> <br>
+            <img src="l1imgs/hex screenshot.png" alt="Task 3 Subtask Image 3" style="max-width: 50vh;">
           </div>
         </div>
       </section>
 
-      <!-- Task 4 -->
-      <section id="task4">
-        <h2>Task 4</h2>
+      <!-- Task 4 (with added section-border class) -->
+      <section id="task4" >
+        <h2>Task 4 - Laser Engraving</h2>
         <!-- Task 4 Summary -->
         <div class="task-summary">
-          <p>Last Step was to bring some of the deisngs to life. Using the ITLL Laser Cutters and the included code for 
+          <p>Last Step was to bring some of the designs to life. Using the ITLL Laser Cutters and the included code for 
             exporting svgs, I was able to accomplish this easily. </p>
-        </div>
-        <!-- Process with Steps 
-        <div class="process">
-          <h3>Process Steps</h3>
-          <div class="step">
-            <h4>Step 1</h4>
-            <p>Step details...</p>
-          </div>
-          <div class="step">
-            <h4>Step 2</h4>
-            <p>Step details...</p>
-          </div>
-        </div> -->
+        </div> <br><br>
         <!-- Six Images -->
         <div class="images">
-          <div class="image">
-            <img src="l1imgs/IMG_2121.JPG" alt="Task 4 Image 1">
-          </div>
+          <div class="image" style="text-align: center;">
+            <img src="l1imgs/IMG_2121.JPG" alt="Task 4 Image 1" >
+          </div><br>
           <div class="image">
             <img src="l1imgs/IMG_2122.JPG" alt="Task 4 Image 2">
-          </div>
+          </div><br>
           <div class="image">
             <img src="l1imgs/IMG_2123.JPG" alt="Task 4 Image 3">
-          </div>
+          </div><br>
           <div class="image">
             <img src="l1imgs/IMG_2124.JPG" alt="Task 4 Image 4">
-          </div>
+          </div><br>
           <div class="image">
             <img src="l1imgs/IMG_2125.JPG" alt="Task 4 Image 5">
-          </div>
-          
+          </div><br>
         </div>
       </section>
 
-      <!-- Conclusion -->
-      <section id="conclusion">
+      <!-- Conclusion (with added section-border class) -->
+      <section id="conclusion" >
         <h2>Conclusion</h2>
-        <p>This was a very fun and interesting assingment, and I leanred a lot about L-systems and generative designing</p>
+        <p>This was a very fun and interesting assignment, and I learned a lot about L-systems and generative designing.</p>
       </section>
     </div>
   </main>

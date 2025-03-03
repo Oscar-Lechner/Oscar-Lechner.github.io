@@ -8,7 +8,7 @@ new p5((sketch) => {
     };
 
     sketch.draw = () => {
-        sketch.background(52, 73, 94); // Matches the dark secondary color from your CSS
+        sketch.background(197, 218, 210); // Matches the dark secondary color from your CSS
         sketch.beginShape();
         let xoff = 0;
 

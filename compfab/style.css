@@ -11,12 +11,12 @@
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     :root {
-        --light-color: #1d2a36;
-        --dark-color: #c5dad2f3;
-        --secondary-color: #ffffff;
+        --light-color: #1d2a36; /* color of site body background */
+        --dark-color: rgba(197, 218, 210, 0.953); /* color of text in body */
+        --secondary-color: #ffffff; /* code boxes and footer */
         --primary-color: #ffffff;
         --accent-color: #e28c83;
-        --special-color: #c5dad2;
+        --special-color: #e2e1ecb6; /* banner color */
     }
 }
 
@@ -200,7 +200,7 @@ footer {
 }
 
 .project-page .images .image {
-    position: relative;
+    position: center;
 }
 
 .project-page .images .image img,
@@ -213,7 +213,7 @@ footer {
 
 .project-page .images .image img:hover,
 .project-page .images .image video:hover { /* Ensure hover effect applies to both */
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 
 .project-page .images .image p {
@@ -294,10 +294,11 @@ footer {
 }
 
 #p5-sketch {
+    border-bottom: none;
     position: relative;
     height: 200px; /* Adjust the height as needed */
     width: 100%;
-    background-color: #34495e; /* A fallback color in case the script takes time to load */
+    background-color: rgb(197, 218, 210); /* A fallback color in case the script takes time to load */
 }
 .laser-images {
     display: flex;
@@ -311,3 +312,5 @@ footer {
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* Optional: Add rounded corners */
 }
+
+
