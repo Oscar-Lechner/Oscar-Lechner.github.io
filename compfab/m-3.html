@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Title</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Prism.js CSS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+
+    <!-- Prism.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <div class="logo">Mini-3 Documentation</div>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="blog.html">Home</a></li>
+          <li><a href="m-1.html">M-1</a></li>
+          <li><a href="m-2.html">M-2</a></li>
+          <li><a href="m-3.html">M-3</a></li>
+          <li><a href="l-1.html">L-1</a></li>
+         <!-- <li><a href="large-2.html">Large-2</a></li>
+          <li><a href="large-3.html">Large-3</a></li>
+          <li><a href="final-project.html">Final</a></li> -->
+        </ul>
+      </nav>
+
+    <main class="project-page">
+        <div class="container">
+            <h1 >Parametric Furniture</h1>
+            <section class="summary">
+                <h2>Summary</h2>
+                <p >For this assignment, I parametrically generated examples of furniture in Grasshopper, then 3D printed two at a miniature scale. </p>
+            </section>
+            <section class="steps">
+                <h2>Task 1 - Parametric Designs</h2>
+                <div class="step" >
+                    <p>I loaded up grasshopper and began playing around with different ideas. Eventually I settles on doing a table (as opposed to a chair), as I was
+                        inspired by an example image present on the assignment description document. I also planned to laser cut small peices of acrylic to place on top
+                        of the eventual prints, to simulate a glass coffee table surface at the miniature scale denoted by the asisngment.
+                    </p>
+                </div>
+                <div class="step" >
+                    <p>Using the PFrames and Loft components in Grasshopper, I created a generative and angular shape that I think would look great as a coffee table with a glass top.</p>
+                </div>
+                <div class="step" >
+                    <p>I played around with the many parameters, including polygon radius and number of segements. When I liekd what I saw, I exported three versions.</p>
+                </div>
+                <h3>ParFur1:</h3>
+                
+                <div class="images">
+                    <div class="image" style="text-align: center;">
+                      <img src="m3imgs/parfur1img.png" alt="Task 4 Image 1" >
+                    </div><br>
+                    <div class="images">
+                        <div class="image" style="text-align: center;">
+                          <img src="m3imgs/parfur1code.png" alt="Task 4 Image 1" >
+                        </div><br>
+                  <p>This first design consists of a three segmented polygon, the path of which is lofted by an 8 segmented polygon.</p><br><br>
+
+                  <h3>ParFur2:</h3>
+                
+                <div class="images">
+                    <div class="image" style="text-align: center;">
+                      <img src="m3imgs/parfur2img.png" alt="Task 4 Image 1" >
+                    </div><br>
+                    <div class="images">
+                        <div class="image" style="text-align: center;">
+                          <img src="m3imgs/parfur2code.png" alt="Task 4 Image 1" >
+                        </div><br>
+                  <p>The second design's base polygon has four segments instead of three, but the secondary lofted polygon has 6 instead of 8 segments. </p><br><br>
+
+                  <h3>ParFur3:</h3>
+                
+                <div class="images">
+                    <div class="image" style="text-align: center;">
+                      <img src="m3imgs/parfur3img.png" alt="Task 4 Image 1" >
+                    </div><br>
+                    <div class="images">
+                        <div class="image" style="text-align: center;">
+                          <img src="m3imgs/parfur3code.png" alt="Task 4 Image 1" >
+                        </div><br>
+                  <p>Lastly, this complicated design increases the base again, and the secondary polygon has enough segments to appear almost smooth.</p><br>
+            </section>
+
+
+            <section class="steps">
+                <h2>Task 2 - 3D Printing</h2>
+                <div class="step" >
+                    <p>I chose designs 1 and 2 to 3d print for this final task.
+                    </p>
+                </div>
+                <div class="step" >
+                    <p>Additionally, I laser cut some acrylic peices as the final touch to more closely resemble miniature furniture.</p>
+                </div>
+                
+                <h3>ParFur1:</h3>
+                
+                <div class="images">
+                    <div class="image" style="text-align: center;">
+                      <img src="m3imgs/parfur13d1.png" alt="Task 4 Image 1" >
+                    </div><br>
+                    <div class="images">
+                        <div class="image" style="text-align: center;">
+                          <img src="m3imgs/parfur13d2.png" alt="Task 4 Image 1" >
+                        </div><br>
+                  <p>Printed on my roommate's BambuLabs printer.</p><br><br>
+
+                  <h3>ParFur2:</h3>
+                
+                <div class="images">
+                    <div class="image" style="text-align: center;">
+                      <img src="m3imgs/parfur23d1.png" alt="Task 4 Image 1" >
+                    </div><br>
+                    <div class="images">
+                        <div class="image" style="text-align: center;">
+                          <img src="m3imgs/parfur23d2.png" alt="Task 4 Image 1" >
+                        </div><br>
+                 
+
+                  
+                
+              
+            </section>
+            <section id="conclusion" >
+                <h2>Conclusion</h2>
+                <p>The main challenges with this assignment arised as a result of the steep learning curve associated with Grasshopper. As someone who has never used Rhino or Grasshopper before 
+                    this class, or any sort of parametrized system/ node-based programming environment, I found it difficult to get started. To even just set-up and display something as simple as these parametric examples, took many hours
+                    and lots of internet searching. Apart from that, I enjoy using this technology, and the intersection of creativity and programming will always excite me.
+                </p>
+              </section>
+            
+            
+    </main>
+
+    <footer>
+        <p>&copy; SPRING 2025 ATLS 5529</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation Toggle -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
