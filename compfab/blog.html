@@ -11,21 +11,21 @@
 </head>
 <body>
     <nav>
-        <div class="logo">Comp Fab Documentation Blog - Oscar Lechner</div>
+        <div class="logo">Computational Fabrication Documentation Blog - Oscar Lechner</div>
         <div class="hamburger">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
         <ul class="nav-links">
-            <li><a href="documentationblog.html">Home</a></li>
+            <li><a href="blog.html">★</a></li>
             <li><a href="m-1.html">M-1</a></li>
             <li><a href="m-2.html">M-2</a></li>
             <li><a href="m-3.html">M-3</a></li> 
             <li><a href="l-1.html">L-1</a></li>
-            <!-- <li><a href="large-2.html">Large-2</a></li>
-            <li><a href="large-3.html">Large-3</a></li>
-            <li><a href="final-project.html">Final</a></li> -->
+            <li><a href="l-2.html">L-2</a></li>
+            <li><a href="l-3.html">L-3</a></li>
+            <!-- <li><a href="final-project.html">Final</a></li> -->
         </ul>
     </nav>
 
@@ -50,40 +50,42 @@
             <div class="card">
                 <h3>Mini-1</h3>
                 <p>"Seeing is Believing"</p>
-                <a href="mini-1.html" class="btn">Go</a>
+                <a href="mini-1.html" class="btn">View</a>
             </div>
             <div class="card">
                 <h3>Mini-2</h3>
                 <p>Laser Cutting</p>
-                <a href="mini-2.html" class="btn">Go</a>
+                <a href="mini-2.html" class="btn">View</a>
             </div>
             <div class="card">
                 <h3>Mini-3</h3>
                 <p>Parametric Furniture</p>
-                <a href="m-3.html" class="btn">Go</a>
+                <a href="m-3.html" class="btn">View</a>
             </div> 
             <div class="card">
                 <h3>Large-1</h3>
                 <p>L-Systems</p>
-                <a href="large-1.html" class="btn">Go</a>
+                <a href="large-1.html" class="btn">View</a>
             </div>
-            <!-- <div class="card">
+            <div class="card">
                 <h3>Large-2</h3>
-                <p>Title</p>
-                <a href="large-2.html" class="btn">Go</a>
+                <p>Slicer for Laser Cutting</p>
+                <a href="large-2.html" class="btn">View</a>
             </div>
             <div class="card">
                 <h3>Large-3</h3>
-                <p>Title</p>
-                <a href="large-3.html" class="btn">Go</a>
+                <p>Slicer for 3D Printing</p>
+                <a href="large-3.html" class="btn">View</a>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <h3>Final</h3>
                 <p>Final Project Title</p>
                 <a href="final-project.html" class="btn">Go</a>
             </div> -->
         </div>
     </section>
+
+    
 
     <footer>
         <p>&copy; SPRING 2024 ATLS 5529</p>
@@ -98,51 +100,10 @@
             navLinks.classList.toggle('active');
         });
     </script>
-    <script> 
-        new p5((sketch) => {
-    let yoff5 = -0.04;
-    let yoff1 = 0.0;  // Offset for the first wave
-    let yoff2 = 0.04; // Offset for the second wave
-    let yoff3 = 0.08;
-    let yoff4 = 0.12; // Offset for the third wave
 
-    sketch.setup = () => {
-        let canvas = sketch.createCanvas(sketch.windowWidth-10, 200);
-        canvas.parent('p5-sketch');
-        sketch.noFill();
-    };
 
-    sketch.draw = () => {
-        sketch.background(197, 218, 210); // Sets the background color each frame
-        yoff1 = drawWave(yoff1, 50, 100, 0.005);
-        yoff2 = drawWave(yoff2, 80, 130, 0.004);
-        yoff3 = drawWave(yoff3, 110, 160, 0.003);
-        yoff4 = drawWave(yoff4, 140, 190, 0.002);
-        yoff5 = drawWave(yoff5, 20, 70, 0.006);
-    };
 
-    function drawWave(yoff, minY, maxY, yIncrement) {
-        sketch.beginShape();
-        let xoff = 0; // Reset x-offset for each wave
-
-        for (let x = 0; x <= sketch.width; x += 10) {
-            let y = sketch.map(sketch.noise(xoff, yoff), 0, 1, minY, maxY);
-            sketch.vertex(x, y);
-            xoff += 0.05;
-        }
-        yoff += yIncrement; // Increment y-offset based on the parameter for slower movement
-
-        sketch.vertex(sketch.width, sketch.height);
-        sketch.vertex(0, sketch.height);
-        sketch.endShape(sketch.CLOSE);
-        return yoff; // Return the updated yoff value
-    }
-
-    sketch.windowResized = () => {
-        sketch.resizeCanvas(sketch.windowWidth , 200);
-    };
-}, 'p5-sketch');
-
-    </script>
+    
+    
 </body>
 </html>

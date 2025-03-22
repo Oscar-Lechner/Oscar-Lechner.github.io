@@ -49,7 +49,7 @@ nav {
 }
 nav .logo {
     color: var(--light-color);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
 }
 nav .nav-links {
@@ -62,7 +62,7 @@ nav .nav-links li {
 nav .nav-links a {
     color: var(--light-color);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.125rem;
     transition: color 0.3s;
 }
 nav .nav-links a:hover {
@@ -86,10 +86,11 @@ nav .nav-links a:hover {
 
 /* Projects Section */
 #projects {
-    padding: 4rem 12rem;
+    padding: 4rem 2rem; /* reduce horizontal padding */
     background-color: var(--dark-color);
     color: var(--light-color);
-}
+  }
+  
 
 #projects h2 {
     text-align: center;
@@ -97,23 +98,27 @@ nav .nav-links a:hover {
 }
 
 .project-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    max-width: 960px; /* <-- constrain total grid width */
+    margin: 0 auto;   /* <-- center the grid */
+  }
+  
+  .card {
     background: var(--special-color);
-    padding: 2rem;
-    margin: 1rem;
+    padding: 1.5rem;
+    margin: 2rem;
     border-radius: 10px;
-    width: 300px;
+    min-width: 200px;
+    max-width: 300px; /* Keeps card width consistent */
     text-align: center;
-    transition: transform 0.3s, border 0.3s; /* Add border transition */
+    transition: transform 0.3s, border 0.3s;
     position: relative;
     overflow: hidden;
-    border: 2px solid transparent; /* Initial border */
-}
+    border: 2px solid transparent;
+  }
 
 .card:hover {
     transform: translateY(-5px);
@@ -250,7 +255,7 @@ footer {
 
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
     nav .nav-links {
         flex-direction: column;
         background: var(--secondary-color);
@@ -269,13 +274,13 @@ footer {
     .hamburger {
         display: flex;
     }
-    .project-cards {
-        flex-direction: column;
-        align-items: center;
-    }
+   
     .project-page .images .image-gallery {
         grid-template-columns: 1fr;
     }
+    .project-cards {
+        grid-template-columns: 1fr;
+      }
 }
 
 /* Custom Scrollbar */
@@ -293,13 +298,7 @@ footer {
     background: var(--accent-color);
 }
 
-#p5-sketch {
-    border-bottom: none;
-    position: relative;
-    height: 200px; /* Adjust the height as needed */
-    width: 100%;
-    background-color: rgb(197, 218, 210); /* A fallback color in case the script takes time to load */
-}
+
 .laser-images {
     display: flex;
     justify-content: center;
@@ -312,5 +311,10 @@ footer {
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* Optional: Add rounded corners */
 }
-
+ /* Inline CSS to center the canvas container */
+ #p5-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
 
