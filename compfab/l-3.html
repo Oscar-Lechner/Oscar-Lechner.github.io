@@ -36,84 +36,301 @@
 
       <!-- Part 1 -->
       <section id="part1">
-        <h2>Part 1: "Building A Slicer and G-code Generator for 3D Printing"</h2>
+        <h2>Part 1</h2>
 
         <!-- Task 1 -->
         <section id="task1">
-          <h3>Task 1 - [Task 1 Title]</h3>
+          <h3>- Task 1 - Create A Basic Slicer for 3D Printing</h3>
           <div class="task-summary">
-            <p>[Brief description of the task, goal, or context]</p>
+            <p>The goal of this task was to use Grasshopper to generate the curves a given 3D printer would have to follow in order to print an object. For simplicity's sake,
+                the infill is calculated at 100%. Starting at one layer deep, the proper curves and lines for a cylinder are created. 
+            </p><br>
           </div>
           <div class="steps">
             <div class="step">
-              <h4>Step 1</h4>
-              <p>[Details of step 1]</p>
+              <h4></h4>
+              <p>I coded up the proper cylinder in it's right place, then began the process of generating the data tree lists for layer division and bounding boxes.</p>
             </div>
             <div class="step">
-              <h4>Step 2</h4>
-              <p>[Details of step 2]</p>
+              <h4></h4>
+              <p>Next came the the most difficult aspect of the entire project, the infill logic. in the Y direction, on either side of the bounding boxes, a carefully spaced out 
+                set of lines is drawn according to the provided machine specifications. Next, lines are drawn between these points, creating the familiar rectilinear pattern of standard infill. 
+                Eventually, a BREP Line component is able to trim the lines to 
+                within the curve that represents the perimiter of the cylinder/ object. Lastly, the lines are divides and simplified to be more suitable for workshopping in task 2.
+              </p>
             </div>
           </div>
-          <p>Output:</p><br>
+          <p>Code:</p>
           <div class="images">
-            <div class="image"><img src="l3imgs/task1_img1.png" alt="Task 1 Image 1"></div><br>
+            <div class="image"><img src="l3imgs/L3_task1.5.png" alt="Task 1 Image 1"></div><br>
+            <div class="image"><img src="l3imgs/L3_task1.6.png" alt="Task 1 Image 1"></div><br>
+          </div>
+          <p>Output:</p>
+          <div class="images">
+            <div class="image"><img src="l3imgs/L3_task1.png" alt="Task 1 Image 1"></div><br>
+            <div class="image"><img src="l3imgs/L3_task1.7.png" alt="Task 1 Image 1"></div><br>
           </div>
         </section>
 
         <!-- Task 2 -->
         <section id="task2">
-          <h3>Task 2 - [Task 2 Title]</h3>
+          <h3>- Task 2 - G-Code Generator in Python/GH</h3>
           <div class="task-summary">
-            <p>[Short summary of this second task]</p>
+            <p>Once the path was done, it was time to work in python to turn the grasshopper elements and machine invariants into real gcode. I followed along through the Python file an completed all of the the TODOs.</p><br>
           </div>
           <div class="steps">
             <div class="step">
-              <h4>Step 1</h4>
-              <p>[Details of step 1]</p>
+              <h4></h4>
+              <p>I followed along through the Python file an completed all of the the TODOs</p>
             </div>
-            <div class="step">
-              <h4>Step 2</h4>
-              <p>[Details of step 2]</p>
-            </div>
+           
           </div>
-          <p>Output:</p><br>
-          <div class="images">
-            <div class="image"><img src="l3imgs/task2_img1.png" alt="Task 2 Image 1"></div><br>
+          <div class="code">
+            <h4>Python Code</h4>
+            <details class="collapsible">
+              <summary>Show Code</summary>
+              <pre><code class="language-java">
+"""
+This file contains parameters, helpers, and setup to 
+create a basic gcode generation algorithm from line segments.
+
+The main 
+
+Inputs:
+    lines: the line segments to be converted into gcode commands for extrusion 
+    nozzle_diameter: the diameter of the 3D printer's nozzle
+    filament_diameter: the diameter of the 3d printing filament
+    layer_height: the height of each layer in the print
+    extrusion_width: the width of the extruded line from the printer
+    travel_feed_rate: the speed at which the extruder moves in X and Y
+    layer_change_feed_rate: the speed at which teh extruder moves when 
+        changing layers in the Z direction
+    extrusion_feed_rate: the speed at which the extruder move when extruding
+
+Output:
+    gcode_output: a string with gcode commands separate by new-lines"""
+
+__author__ = "mrivera-cu"
+
+import rhinoscriptsyntax as rs
+
+import math
+
+
+########## CONSTANTS BELOW ###############
+
+# GCODE COMMANDS
+COMMAND_MOVE = "G1"
+
+# GCODE PARAM NAMES
+PARAM_X = "X"
+PARAM_Y = "Y"
+PARAM_Z = "Z"
+PARAM_E = "E"
+PARAM_F = "F"
+
+# Separates commands
+COMMAND_DELIMITER = "\n"
+
+# Precision for converting floats to strings
+E_VALUE_PRECISION = 5
+XYZ_VALUE_PRECISION = 3
+
+# Float equality precision
+FLOAT_EQUALITY_PRECISION = 5
+
+# Converts a float (f) to a string with some precision of decimal places
+# For example: 
+# Input: f=0.1234, precision=3 
+# Output: "0.123"
+def float_to_string(f, precision=XYZ_VALUE_PRECISION): 
+f = float(f)
+str_format = "{value:." + str(precision) +"f}"
+return str_format.format(value=f)
+
+# Helper to convert the E value to the proper precision
+def e_value_to_string(e):
+return float_to_string(e, E_VALUE_PRECISION)
+
+# Helper to convert the XYZ value to the proper precision
+def xyz_value_to_string(e):
+return float_to_string(e, XYZ_VALUE_PRECISION)
+
+#########################################################################
+
+# Helper function to compare floats in grasshopper/python due to float precision errors
+def are_floats_equal(f1, f2, epsilon=10**(-FLOAT_EQUALITY_PRECISION)):
+f1 *= 10**FLOAT_EQUALITY_PRECISION
+f2 *= 10**FLOAT_EQUALITY_PRECISION
+return math.fabs(f2 - f1) <= epsilon
+
+# Helper function to compare if two points are equal (have the same coordinates)
+# by handling float precision comparisons
+def is_same_pt(ptA, ptB):
+return are_floats_equal(ptA[0], ptB[0]) and are_floats_equal(ptA[1], ptB[1]) and are_floats_equal(ptA[2], ptB[2])
+    
+    
+########################################################################
+# creates a string consisting of a G1 move command and 
+# any associated parameters
+def gcode_move(current_pos, next_pos, feed_rate=None, should_extrude=False):
+# Start with "G1" as command
+move_command_str = COMMAND_MOVE
+
+# Compare X positions
+if (not are_floats_equal(current_pos[0],next_pos[0])):
+    # we have a different x position so add it as a parameter to the command
+    x_value = float_to_string(next_pos[0], precision=XYZ_VALUE_PRECISION)
+    # Add X<x_value> to move string, e.g., X100.00
+    move_command_str += " " + PARAM_X + x_value
+
+# Compare Y positions
+if (not are_floats_equal(current_pos[1], next_pos[1])):
+    # we have a different y position so add the new position as a parameter
+    y_value = float_to_string(next_pos[1], precision=XYZ_VALUE_PRECISION)
+    # Add Y<y_value> to move string, e.g., Y100.00
+    move_command_str += " " + PARAM_Y + y_value
+
+# Compare Z position
+if (not are_floats_equal(current_pos[2], next_pos[2])):
+    # we have a different z position so add the new position as a parameter
+    z_value = float_to_string(next_pos[2], precision=XYZ_VALUE_PRECISION)
+    # Add Z<z_value> to move string, e.g., Z100.00
+    move_command_str += " " + PARAM_Z + z_value
+
+# [TODO]: handle "should_extrude" == true by determining the proper amount to
+# extrude using the capsule model, then append the E parameter and value
+# to the move command.
+# NOTE: YOUR FLOAT PRECISION MUST MATCH E_VALUE_PRECISION
+if should_extrude:
+    dx = next_pos[0] - current_pos[0]
+    dy = next_pos[1] - current_pos[1]
+    dz = next_pos[2] - current_pos[2]
+    distance = math.sqrt(dx**2 + dy**2 + dz**2)
+    
+    # Capsule model: rectangle + semicircles
+    rect_area = extrusion_width * layer_height
+    semi_circles_area = 0.25 * math.pi * layer_height**2
+    v_out = distance * (rect_area + semi_circles_area)
+
+    # Filament volume = π * (r^2)
+    filament_radius = filament_diameter / 2
+    filament_area = math.pi * filament_radius**2
+    e_value = v_out / filament_area
+
+    # Only emit E value if it's within a sane range (typically 0 < E < ~5 for normal segment lengths)
+    if e_value > 0.0 and e_value < 5:
+        e_str = e_value_to_string(e_value)
+        move_command_str += " " + PARAM_E + e_str
+
+
+# See if we have a feedrate to use, and handle it differently than other 
+# parameters as it is an integer value
+if (feed_rate is not None):
+    # feed rate is an int
+    feed_rate_value = round(feed_rate)
+    # Add F<feed_rate_value> to move string, e.g., F2000
+    move_command_str += " " + PARAM_F + str(feed_rate_value)   
+
+# Remove excess whitespace on ends
+move_command_str = move_command_str.strip(" ")
+return move_command_str
+
+
+############################################
+############################################
+############################################
+
+''' Here's the main method of the script that uses the helper methods above '''
+
+def generate_gcode():
+current_position = [0, 0, 0]        # start extruder at the origin
+all_move_commands = []             # list to hold for all the move commands
+
+for i in range(0, len(lines)):
+    line = lines[i]
+    start = line.From
+    end = line.To
+    start_pos = [start.X, start.Y, start.Z]
+    end_pos = [end.X, end.Y, end.Z]
+
+    # Step 1: Z change (layer change)
+    if not are_floats_equal(current_position[2], start_pos[2]):
+        z_only_pos = [current_position[0], current_position[1], start_pos[2]]
+        layer_move_cmd = gcode_move(current_position, z_only_pos, feed_rate=layer_change_feed_rate)
+        all_move_commands.append(layer_move_cmd)
+        current_position = z_only_pos
+
+    # Step 2: Travel move to start of segment if necessary
+    if not is_same_pt(current_position, start_pos):
+        travel_cmd = gcode_move(current_position, start_pos, feed_rate=travel_feed_rate)
+        all_move_commands.append(travel_cmd)
+        current_position = start_pos
+
+    # Step 3: Extrude along the segment
+    extrude_cmd = gcode_move(current_position, end_pos, feed_rate=extrusion_feed_rate, should_extrude=True)
+    all_move_commands.append(extrude_cmd)
+    current_position = end_pos
+
+# Step 4: Combine with start and end gcode
+gcode_lines = start_gcode_lines + all_move_commands + end_gcode_lines
+
+# Final output
+output = COMMAND_DELIMITER.join(gcode_lines)
+return output
+
+
+''' RUN THE MAIN FUNCITON ABOVE - DO NOT EDIT '''
+# this sets the gcode commands to be the the `gcode_output` variable of this grasshopper component
+gcode_output = generate_gcode() 
+              </code></pre>
+            </details>
           </div>
         </section>
 
         <!-- Task 3 -->
         <section id="task3">
-          <h3>Task 3 - [Task 3 Title]</h3>
+          <h3>- Task 3 - Exporting and Validating Generated G-Code</h3>
           <div class="task-summary">
-            <p>[Explanation of task 3, what changed, or what it builds on]</p>
-          </div>
-          <div class="steps">
-            <div class="step">
-              <h4>Step 1</h4>
-              <p>[Details of step 1]</p>
-            </div>
-            <div class="step">
-              <h4>Step 2</h4>
-              <p>[Details of step 2]</p>
-            </div>
-          </div>
-          <p>Output:</p><br>
+            <p>Using the pankcake library, a simple setup can be assembled to export and test the generated gcode. Which is then tested first through a web-based 
+                gcode visualizer called Zupfe, and then finally through a dedicated gcode tester.
+            </p>
+          </div><br>
+          
+          <p>Pancake Export TXT:</p>
           <div class="images">
-            <div class="image"><img src="l3imgs/task3_img1.png" alt="Task 3 Image 1"></div><br>
+            <div class="image"><img src="l3imgs/L3_task1.8.png" alt="Task 3 Image 1"></div><br>
           </div>
+          <p>Zupfe:</p>
+          <div class="images">
+            <div class="image"><img src="l3imgs/L3_task1.9.png" alt="Task 3 Image 1"></div><br>
+          </div>
+          <p>Prusa MK3S+ GCODE Validator:</p>
+          <div class="images">
+            <div class="image"><img src="l3imgs/L3_task2.png" alt="validator 25/25 passed"></div><br>
+          </div>
+
+          <!-- Add download link for the Grasshopper file -->
+          <p>My Files:</p>
+        <p>
+            <a href="l3imgs/LECHNER_OSCAR_L3.gh" download="l3imgs/LECHNER_OSCAR_L3.gh" style="color: white; text-decoration: underline;">Download My Grasshopper File (LECHNER_OSCAR_L3.gh)</a>
+        </p>
+        <p>
+            <a href="l3imgs/LECHNER_OSCAR_output.gcode" download="l3imgs/LECHNER_OSCAR_output.gcode" style="color: white; text-decoration: underline;">Download LECHNER_OSCAR_output.gcode</a>
+        </p>
+  
         </section>
       </section>
 
       <!-- Part 2 -->
       <section id="part2">
         <h2>Part 2: "Printing Your Output and Comparing" </h2>
-        <p>[Content to be added later]</p>
+        <p>[]</p>
       </section>
 
       <section id="conclusion">
         <h2>Conclusion</h2>
-        <p>[Wrap-up thoughts: challenges, reflections, and key takeaways from L-2.]</p>
+        <p>[]</p>
       </section>
     </div>
 
