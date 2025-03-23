@@ -44,10 +44,15 @@
 
         <!-- Summary -->
         <div class="task-summary">
-          <p>[Brief overview of the task goes here. What was the goal? What tools were used?]</p>
-        </div>
+          <p>The first step was to generate some parametric objects. I started with a simple line between two point constructs
+            between which are several points based on a line dividing component. At each point along the line, a polygon is drawn
+            according to a randomized polygon builder node. The following polygonal extrusion (lofted and capped) is twisted using a cool knob
+            to control the angle. In total, there are 12 parameters that can be modified to change the resulting object, the most
+            influential of which is the seed input to the random function.
+          </p>
+        </div><br>
 
-        <!-- Steps -->
+        <!-- Steps 
         <div class="steps">
           <div class="step">
             <h4>Step 1</h4>
@@ -61,7 +66,7 @@
             <h4>Step 3</h4>
             <p>[Describe any other detail, trial, or result]</p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Images (5) -->
         <p>Object 1:</p><br>
@@ -85,10 +90,16 @@
 
         <!-- Summary -->
         <div class="task-summary">
-          <p>[Summary of Task 2, what was attempted, learned, or created]</p>
-        </div>
+          <p>The next step was to take the resulting geometry and slice it at regular intervals dependent on the material
+            thickness of the laser cutting material (I used 3 mm for standard acrylic sheeting). This is done by using the same axis 
+            as the original object, but running a new line division through it. Using planes and BREP intersections, the 
+            first glimmer of hope appears through the transulent red of the preview. The final step is to organize these 
+            cross-sectional polygons on the XY plane, and use Mass Addition Partial Output to move the polygons accorss the XY plane 
+            so they don't overlap, and thus can be exported. They are also numbered.
+          </p>
+        </div><br>
 
-        <!-- Steps -->
+        <!-- Steps 
         <div class="steps">
           <div class="step">
             <h4>Step 1</h4>
@@ -98,10 +109,10 @@
             <h4>Step 2</h4>
             <p>[What did that lead to?]</p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Images (3) -->
-        <p>Result:</p><br>
+        <p>Code and Output Images:</p><br>
         <div class="images">
             <div class="image"><img src="l2imgs/L2_allcode.png" alt="Task 2 Image 1"></div><br>
             <div class="image"><img src="l2imgs/L2_brepPlanes.png" alt="Task 2 Image 1"></div><br>
