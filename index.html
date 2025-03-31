@@ -4,34 +4,59 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Oscar Lechner</title>
-    <link rel="stylesheet" type="text/css" href="..\wa\wa1-6\style.css">
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .gif-wrapper {
+        width: 20vw; /* middle fifth */
+        aspect-ratio: 1 / 1;
+        margin-top: 10vh; /* good padding from top */
+        margin-bottom: 5vh; /* space between gif and links */
+      }
+
+      .gif-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .center-link {
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 1.1rem;
+        color: #333;
+        text-decoration: none;
+      }
+
+      .center-link:hover {
+        text-decoration: underline;
+        color: #180f78;
+      }
+    </style>
   </head>
   <body>
 
+    <div class="gif-wrapper">
+      <img src="M2U00174.gif" alt="Looping GIF" />
+    </div>
 
-  <section class="card card2">
-    <header>
-      <h2>Oscar Lechner</h2>
-    </header>
-    <article>
-      <img src="..\img\swag.JPG" alt="A picture of me with a rack of cash in my hand and a sick pair of sunglasses">
-      <p>- Single<br>
-         - Broke<br>
-         - Loves Skiing<br>
-         - Fav movie is Dune: Part Two<br>
-         - Laptop is a glorified tablet<br>
-         - Nourished by the C4C <br>
-         - Can touch the rim. Can't make a 3
-        </p>
-    </article>
-    <footer>
-      <p>Athletically Ambitious | Fashion-Forward</p>
-    </footer>
-  </section>
-  <br>
-<a href="https://oscarlechner.com/" class="center-link">Portfolio</a> <br><br> 
-<a href="https://oscarlechner.me/object/progdoc.html" class="center-link">Object Class Documentation</a><br> <br> 
-<a href="https://oscarlechner.me/compfab/blog.html" class="center-link">Computational Fabrication Class Documentation</a><br> <br> 
-<a href="https://boulderalleycat.com" class="center-link">Boulder Alleycat</a>
+    <p>Links to websites I've made:</p>
+    <a href="https://oscarlechner.com/" class="center-link">Portfolio (oscarlechner.com)</a> 
+    <a href="https://oscarlechner.me/object/progdoc.html" class="center-link">Class Documentation: Object</a> 
+    <a href="https://oscarlechner.me/compfab/blog.html" class="center-link">Class Documentation: Computational Fabrication </a> 
+    <a href="https://boulderalleycat.com" class="center-link">Boulder Alleycat</a>
+    <a href="https://oscarlechner.me/lifeofjoe/lifeofjoe.html" class="center-link">Life of Joe: Meaning of Information Technology Final</a>
+
   </body>
 </html>
