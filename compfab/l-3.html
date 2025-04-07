@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>L-3 "Project Title"</title>
+  <title>L-3 "Slicer for 3D Printing"</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
@@ -312,14 +312,77 @@
       </section>
 
       <!-- Part 2 -->
-      <section id="part2">
-        <h2>Part 2: "Printing Your Output and Comparing" </h2>
-        <p>[]</p>
-      </section>
+<section id="part2">
+  <h2>Part 2: Printing Output and Comparing</h2>
+
+  <!-- Summary with Text and Two Images -->
+  <div class="summary">
+    <p>Since my g-code successfully passed the printer-specific validator as seen above, there were very few tweaks that needed to be made before I was finally ready to
+      bring my efforts to the BTU and print it out. <br><br>Firstly, I rerouted some key values in the beginning portion of my grasshopper code to avoid creating and extruding along a contour at 
+      Z = 0. I accomplished this by moving the simulated object up one layer height while also subtracting the z-height by that same layer height. This is admittedly not the most robust
+      work-around, however it worked wonders and I never had to weasle my way through the delicate mess that is my data tree. <br><br> Secondly, the series component I was using directly
+      before my "construct point" components had a terrible set of value being injected into it so I pulled some more correct and adaptable value from the earlier stages of the code such that the 
+      infill line met up nicely and merged properly with the new contours. Finally, in my python, I removed a silly hard-coded infill volume upper-limit restricion that served no purpose other than 
+      to remove a point from my grade on part 1.<br><br> 
+    </p><br>
+  </div>
+
+  <div class="images">
+    <div class="image"><img src="l3imgs/fixing-z0.png" alt="Printed Object Photo 1"></div><br>
+    <div class="image"><img src="l3imgs/series_node.png" alt="Printed Object Photo 2"></div><br>
+    <div class="image"><img src="l3imgs/pythoncodel3.png" alt="Printed Object Photo 2"></div><br>
+  </div>
+
+  <!-- Six Labeled Images for Printed Output -->
+  <div class="printed-output">
+    <p>With these finishing touches I made my way to the famed MK3s+ that resided in the BTU and printed. </p><br>
+    <h3>Printed Output </h3><br>
+    <div class="images"><p>Prusa Slicer Constant - Top Down View</p>
+      <div class="image">
+        <img src="l3imgs/prusa_topdown.JPG" alt="Front View">
+        <p>Front View</p>
+      </div><br><p>Prusa Slicer Constant - Side View</p>
+      <div class="image">
+        <img src="l3imgs/prusa_sideview.JPG" alt="Side View">
+        <p>Side View</p>
+      </div><br><p>My GCODE - Top Down View</p>
+      <div class="image">
+        <img src="l3imgs/mine_topdown.JPG" alt="Top View">
+        <p>Top View</p>
+      </div><br><p>My GCODE - Side View</p>
+      <div class="image">
+        <img src="l3imgs/mine_sideview.JPG" alt="Bottom View">
+        <p>Bottom View</p>
+      </div><br><p>Prusa (left) and mine (right) - Top Down View</p>
+      <div class="image">
+        <img src="l3imgs/sidebyside_topdown.JPG" alt="Angle 1">
+        <p>Angle 1</p>
+      </div><br><p>Prusa (left) and mine (right) - Side View</p>
+      <div class="image">
+        <img src="l3imgs/sidebyside_sideview.JPG" alt="Angle 2">
+        <p>Angle 2</p>
+      </div><br>
+    </div>
+  </div>
+  <p>My FINAL Files:</p>
+        <p>
+            <a href="l3imgs/LECHNER_OSCAR_L3_FINAL.gh" download="l3imgs/LECHNER_OSCAR_L3.gh" style="color: white; text-decoration: underline;">Download My Grasshopper File (LECHNER_OSCAR_L3_FINAL.gh)</a>
+        </p>
+        <p>
+            <a href="l3imgs/LECHNER_OSCAR_output_FINAL.gcode" download="l3imgs/LECHNER_OSCAR_output.gcode" style="color: white; text-decoration: underline;">Download LECHNER_OSCAR_output_FINAL.gcode</a>
+        </p>
+</section>
+
 
       <section id="conclusion">
         <h2>Conclusion</h2>
-        <p>[]</p>
+        <p>In conclusion, this project was a lesson on grasshopper data tree mechanics, and a fundamentals crash-course on extrusion math and 3d printing logic/ processes. I learned
+          a ton about these subjects and more, and I'm excited to bring these skills forward with me in my final project and beyond. Grasshopper is significantly more powerful then I initially 
+          believed, and just by tying together a few nodes, very cool things are possible. My greatest challenge in this assignment was debugging my components such that the data tree was kept 
+          consistent throughout, but after overcoming this challenge, I feel more confident with the tool and mroe ready to tackjle bigger things. If I were to do this project again, I would
+          be faster and more clean with my grasshopper, and might have even tried to apply my system to a more complex object.
+
+        </p>
       </section>
     </div>
 
