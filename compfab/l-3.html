@@ -49,14 +49,14 @@
           <div class="steps">
             <div class="step">
               <h4></h4>
-              <p>I coded up the proper cylinder in it's right place, then began the process of generating the data tree lists for layer division and bounding boxes.</p>
+              <p>I coded up the proper cylinder in its right place, then began the process of generating the data tree lists for layer division and bounding boxes.</p>
             </div>
             <div class="step">
               <h4></h4>
-              <p>Next came the the most difficult aspect of the entire project, the infill logic. in the Y direction, on either side of the bounding boxes, a carefully spaced out 
+              <p>Next came the most difficult aspect of the entire project, the infill logic. in the Y direction, on either side of the bounding boxes, a carefully spaced out 
                 set of lines is drawn according to the provided machine specifications. Next, lines are drawn between these points, creating the familiar rectilinear pattern of standard infill. 
                 Eventually, a BREP Line component is able to trim the lines to 
-                within the curve that represents the perimiter of the cylinder/ object. Lastly, the lines are divides and simplified to be more suitable for workshopping in task 2.
+                within the curve that represents the perimeter of the cylinder/ object. Lastly, the lines are divided and simplified to be more suitable for workshopping in task 2.
               </p>
             </div>
           </div>
@@ -76,12 +76,12 @@
         <section id="task2">
           <h3>- Task 2 - G-Code Generator in Python/GH</h3>
           <div class="task-summary">
-            <p>Once the path was done, it was time to work in python to turn the grasshopper elements and machine invariants into real gcode. I followed along through the Python file an completed all of the the TODOs.</p><br>
+            <p>Once the path was done, it was time to work in python to turn the Grasshopper elements and machine invariants into real g-code. I followed along through the Python file an completed all of the the TODOs.</p><br>
           </div>
           <div class="steps">
             <div class="step">
               <h4></h4>
-              <p>I followed along through the Python file an completed all of the the TODOs</p>
+              <p>I followed along through the Python file and completed all of the the TODOs</p>
             </div>
            
           </div>
@@ -277,8 +277,8 @@
         <section id="task3">
           <h3>- Task 3 - Exporting and Validating Generated G-Code</h3>
           <div class="task-summary">
-            <p>Using the pankcake library, a simple setup can be assembled to export and test the generated gcode. Which is then tested first through a web-based 
-                gcode visualizer called Zupfe, and then finally through a dedicated gcode tester.
+            <p>Using the pancake library, a simple setup can be assembled to export and test the generated g-code. Which is then tested first through a web-based 
+                g-code visualizer called Zupfe, and then finally through a dedicated g-code tester.
             </p>
           </div><br>
           
@@ -290,11 +290,11 @@
           <div class="images">
             <div class="image"><img src="l3imgs/L3_task1.9.png" alt="Task 3 Image 1"></div><br>
           </div>
-          <p>Prusa MK3S+ GCODE Validator:</p>
+          <p>Prusa MK3S+ G-CODE Validator:</p>
           <div class="images">
             <div class="image"><img src="l3imgs/L3_task2.1.png" alt="validator 25/25 passed"></div><br>
           </div>
-          <p>Example Screenshot of gcode Output:</p>
+          <p>Example Screenshot of g-code Output:</p>
           <div class="images">
             <div class="image"><img src="l3imgs/L3_task2.2.png" alt="validator 25/25 passed"></div><br>
           </div>
@@ -318,7 +318,7 @@
   <!-- Summary with Text and Two Images -->
   <div class="summary">
     <p>Since my g-code successfully passed the printer-specific validator as seen above, there were very few tweaks that needed to be made before I was finally ready to
-      bring my efforts to the BTU and print it out. <br><br>Firstly, I rerouted some key values in the beginning portion of my grasshopper code to avoid creating and extruding along a contour at 
+      bring my efforts to the BTU and print it out. <br><br>Firstly, I rerouted some key values in the beginning portion of my Grasshopper code to avoid creating and extruding along a contour at 
       Z = 0. I accomplished this by moving the simulated object up one layer height while also subtracting the z-height by that same layer height. This is admittedly not the most robust
       work-around, however it worked wonders and I never had to weasle my way through the delicate mess that is my data tree. <br><br> Secondly, the series component I was using directly
       before my "construct point" components had a terrible set of value being injected into it so I pulled some more correct and adaptable value from the earlier stages of the code such that the 
@@ -345,11 +345,11 @@
       <div class="image">
         <img src="l3imgs/prusa_sideview.JPG" alt="Side View">
         <p>Side View</p>
-      </div><br><p>My GCODE - Top Down View</p>
+      </div><br><p>My G-CODE - Top Down View</p>
       <div class="image">
         <img src="l3imgs/mine_topdown.JPG" alt="Top View">
         <p>Top View</p>
-      </div><br><p>My GCODE - Side View</p>
+      </div><br><p>My G-CODE - Side View</p>
       <div class="image">
         <img src="l3imgs/mine_sideview.JPG" alt="Bottom View">
         <p>Bottom View</p>
@@ -361,7 +361,9 @@
       <div class="image">
         <img src="l3imgs/sidebyside_sideview.JPG" alt="Angle 2">
         <p>Angle 2</p>
-      </div><br>
+      </div><br> 
+      <p>My printed output, although surprisingly good, is noticeably of worse quality than the Prusa-sliced version. The lines are less clean, the finish is bumpier, and there is a weird 
+        void space on one side. However, I can say that it worked first try. </p><br>
     </div>
   </div>
   <p>My FINAL Files:</p>
@@ -376,11 +378,11 @@
 
       <section id="conclusion">
         <h2>Conclusion</h2>
-        <p>In conclusion, this project was a lesson on grasshopper data tree mechanics, and a fundamentals crash-course on extrusion math and 3d printing logic/ processes. I learned
-          a ton about these subjects and more, and I'm excited to bring these skills forward with me in my final project and beyond. Grasshopper is significantly more powerful then I initially 
+        <p>In conclusion, this project was a lesson on Grasshopper data tree mechanics, and a fundamentals crash-course on extrusion math and 3d printing logic/ processes. I learned
+          a ton about these subjects and more, and I'm excited to bring these skills forward with me in my final project and beyond. Grasshopper is significantly more powerful than I initially 
           believed, and just by tying together a few nodes, very cool things are possible. My greatest challenge in this assignment was debugging my components such that the data tree was kept 
-          consistent throughout, but after overcoming this challenge, I feel more confident with the tool and mroe ready to tackjle bigger things. If I were to do this project again, I would
-          be faster and more clean with my grasshopper, and might have even tried to apply my system to a more complex object.
+          consistent throughout, but after overcoming this challenge, I feel more confident with the tool and more ready to tackle bigger things. If I were to do this project again, I would
+          be faster and more clean with my Grasshopper, and might have even tried to apply my system to a more complex object.
 
         </p>
       </section>
