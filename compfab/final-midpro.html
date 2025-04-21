@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Final Prokect Mid-Progress Milestone </title>
+  <title>Final Project Mid-Progress Milestone </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
@@ -57,25 +57,42 @@
         <h3>Computational Generation</h3><br>
         <ul>
           <li>Place cylinders above the terrain at each checkpoint, by first placing points at x, y values, then finding the correct z height.</li>
-          <li>Create directional curves between them based on the actual route taken.</li>
+          <li>Create directional arrows between them based on the actual route taken.</li>
           <li>Generate pipes or arrowed lofts to visualize movement and flow.</li>
           <li>Merge all geometry into a printable .stl file for fabrication.</li>
         </ul><br>
 
-        <h3>Outputs</h3><br>
+        <h3>Outputs</h3>
         <ul>
           <li>Parametrically generated 3D trophies with terrain base + personalized path.</li>
-          <li>One-of-one prints representing each racer's actual performance and strategy.</li>
+          <li>Unique prints representing each racer's actual performance and strategy.</li>
           <li>Optionally engraved metadata (name, time, category).</li>
         </ul><br>
 
-        <h3>Current Progress</h3><br>
+        <h3>Current Progress</h3>
         <ul>
-          <li>All scripts for importing terrain, sampling surface elevation, and placing checkpoints are working.</li>
-          <li>Racer path data is being processed and visualized via polylines and pipes.</li>
-          <li>One test trophy has been exported to .stl and will be printed in the next 2–3 days.</li>
-        </ul>
+          <li>The final base 3d model I plan to use has been picked out, sized correctly, and imported into Rhino.</li>
+          <li>All checkpoints have been converted into coords.</li>
+          <li>Translation from coordinates into scale model x,y mm values has been accomplished.</li>
+          <li>I figured out how to use Mesh Closest Point to establish an offset and a physical marker at eacvh checkpoint.</li>
+        </ul><br><br>
+        <p>Below are images showing my process over time in Grasshopper.</p><br>
       </section>
+      <div class="images">
+        <div class="image"><img src="finalimgs/starting_calcs_compfab_final.png" alt="Task 1 Image 1"></div>
+        <p>My first attempt at converting real-worlds coordinate data from Google maps into scale model x,y values.</p><br>
+        <div class="image"><img src="finalimgs/firstsuccessfulcalccompfabfinal.png" alt="Task 1 Image 1"></div>
+        <p>What it looked like after I figured it out.</p><br>
+        <div class="image"><img src="finalimgs/setupforcalcscompfabfinal.png" alt="Task 1 Image 1"></div>
+        <p>Final set up.</p><br>
+        <div class="image"><img src="finalimgs/closestpointandoffset.png" alt="Task 1 Image 1"></div>
+        <p>Establishing precise offset.</p><br>
+        
+        <div class="image"><img src="finalimgs/withacylinder.png" alt="Task 1 Image 1"></div>
+        <p>offset with a cylinder.</p><br>
+        
+      </div>
+      
     </div>
   </main>
 
