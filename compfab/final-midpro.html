@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Prokect Mid-Progress Milestone </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+</head>
+<body>
+  <nav>
+    <div class="logo">Final Project Mid-Progress Milestone Documentation</div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="blog.html">Home</a></li>
+      <li><a href="m-1.html">M-1</a></li>
+      <li><a href="m-2.html">M-2</a></li>
+      <li><a href="m-3.html">M-3</a></li>
+      <li><a href="l-1.html">L-1</a></li>
+      <li><a href="l-2.html">L-2</a></li>
+      <li><a href="l-3.html">L-3</a></li>
+      <li><a href="final-midpro.html">★</a></li>
+     
+    </ul>
+  </nav>
+
+  <main class="project-page">
+    <div class="container">
+      <header>
+        <h1>Mid-Progress Milestone</h1>
+      </header>
+
+      <section>
+        <h2>Elevator Pitch</h2>
+        <p>For my final project, I’m designing custom parametric trophies for a bike race using Grasshopper. Each trophy is tailored to physically show the route taken by the racer by mapping race data onto a 3D topological model of campus. The goal is to generate meaningful, personalized trophies which celebrate individual race strategies.</p>
+      </section><br>
+
+      <div class="images">
+        <div class="image"><img src="finalimgs/Screenshot 2025-04-20 224553.png" alt="Task 1 Image 1"></div><br>
+        
+      </div>
+
+      <section>
+        <h2>Functionality</h2>
+        <h3>Data Collection</h3><br>
+        <p>I developed a custom web-based tool to track racers during the event. It logs each racer's start time, the order and timestamps of checkpoint visits, and final finish time. You can see the most recent race results on the race dashboard. The most useful data points I’m collecting are the timing, as well as the checkpoint order.</p>
+        <br>
+        <h3>3D Terrain + Geometry Processing</h3><br>
+        <p>I imported a model of Boulder's topography into Grasshopper from a website (https://touchterrain.geol.iastate.edu/main). Using the checkpoint data and my knowledge of where each checkpoint was located, I can map real-life locations onto the model. An adaptive vertical offset is added to extrude 3D elements—dots for checkpoints and arrowed lines to represent route order/direction.</p>
+        <br>
+        <h3>Computational Generation</h3><br>
+        <ul>
+          <li>Place cylinders above the terrain at each checkpoint, by first placing points at x, y values, then finding the correct z height.</li>
+          <li>Create directional curves between them based on the actual route taken.</li>
+          <li>Generate pipes or arrowed lofts to visualize movement and flow.</li>
+          <li>Merge all geometry into a printable .stl file for fabrication.</li>
+        </ul><br>
+
+        <h3>Outputs</h3><br>
+        <ul>
+          <li>Parametrically generated 3D trophies with terrain base + personalized path.</li>
+          <li>One-of-one prints representing each racer's actual performance and strategy.</li>
+          <li>Optionally engraved metadata (name, time, category).</li>
+        </ul><br>
+
+        <h3>Current Progress</h3><br>
+        <ul>
+          <li>All scripts for importing terrain, sampling surface elevation, and placing checkpoints are working.</li>
+          <li>Racer path data is being processed and visualized via polylines and pipes.</li>
+          <li>One test trophy has been exported to .stl and will be printed in the next 2–3 days.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; SPRING 2025 ATLS 5529</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+ 
