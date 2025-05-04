@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <link rel="icon" href="AdobeStock_897220546.png" type="image/x-icon">
+</head>
+<body>
+  <nav>
+    <div class="logo">Final Project Documentation</div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="blog.html">Home</a></li>
+      <li><a href="m-1.html">M-1</a></li>
+      <li><a href="m-2.html">M-2</a></li>
+      <li><a href="m-3.html">M-3</a></li>
+      <li><a href="l-1.html">L-1</a></li>
+      <li><a href="l-2.html">L-2</a></li>
+      <li><a href="l-3.html">L-3</a></li>
+      <li><a href="final-midpro.html">MID-PRO</a></li>
+      <li><a href="final.html">★</a></li>
+     
+    </ul>
+  </nav>
+
+  <main class="project-page">
+    <div class="container">
+      <header>
+        <h1>Parametric Race Trophies</h1>
+      </header>
+
+      <section>
+        <h2>Project Description</h2>
+        <p><strong>Elevator Pitch: </strong>For my final project, I’m designing custom parametric trophies for the Boulder Alleycat race series, using Grasshopper. 
+            Each trophy is tailored to physically show the route taken by the racer by mapping race data onto a 
+            3D topological model of campus. The goal is to generate meaningful, personalized trophies which 
+            celebrate individual race strategies.</p><br>
+            <p><strong>Background:</strong> Alleycat races are a unique phenomenon, born from the messenger/ courier culture in large
+                cities such as New York. Spending most of their waking moments biking around the cities delivering parcels,
+                these cyclists developed a unique race format to honor their work and highlight their skills. 
+            </p><br>
+            <p>Alleycat races are checkpoint based where checkpoints can be visited in any order, and thus have no set route. The challenge (and the fun) is derived from figuring
+                out the best route yourself. As a result, there can be as many routes taken as participating racers, which
+                adds a lot of value to the winning route.
+            </p> <br>
+            <p>In October of 2023, my roommate and I decided to start our own race series in Boulder. Utilizing the CU campus
+                as our stage and advertising towards students and fixie enthusiasts, we started Boulder Alleycat. After the second
+                race, I decided to engineer a web-based tool to handle checkpoint check-in online, which would significantly reduce
+                the effort needed to organize the races while also enabling live tracking and timing data collection (Data from the most recent Race 04 is visible on my <a href="https://alleycat-tool.vercel.app/">Dashboard</a>). 
+            </p><br>
+            <p>This is where my motivation to take on this project originated. I figured that using Grasshopper, I could build
+                a reusable tool that turns coordinates and checkpoint order into interesting memorabilia to support my race series. 
+            </p>
+
+      </section><br>
+
+      <div class="images">
+        <div class="image"><img src="finalimgs/model screenshot.png" alt="Task 1 Image 1"></div><br>
+        
+      </div>
+
+      <section>
+        <h2>Functionality</h2>
+        <p>To transform raw race data into a physical representation, I implemented several layers of logic and geometry processing within Grasshopper. After extracting checkpoint coordinates from Google Maps, the checkpoint order from the live tool, and the 3d model from <a href="https://touchterrain.geol.iastate.edu/main">Touch Terrain</a> I developed a parametric system that:</p>
+        <br><ul>
+          <li>Places points on the scale model precisely in the correct location (x,y).</li>
+          <li>Aligns those markers with terrain height using Mesh Closest Point.</li>
+          <li>Generates vertical markers (e.g., cylinders and spheres) to denote checkpoints. Spheres represent the start and finish, cylinders represent the remaining checkpoints.</li>
+          <li>Uses pipes to connect the markers in the correct order.</li>
+          <li>Iterates along the pipes and applies Mesh Closest Point again to ensure the pipes maintain a consistent prominence over the scale model without dipping into it or bridging over.</li>
+        </ul><br>
+        <p>Additionally, I embedded race metadata in the form of some text for a more trophy-like aesthetic, including racer number, "Race 03", and the racer's final time, dynamically positioned in the upper right hand corner of the trophy, and also utilizing MCP to maintain a consistent letter look.</p><br>
+        <p>Below is a sequence of screenshots of my Grasshopper code that show the logic for each of these functions, followed by renders.</p>
+        <br><div class="images">
+          <div class="image"><img src="finalimgs/compfabcoords.png" alt="Coordinate transformation"></div>
+          <p>Using coordinates that represent where the corners of the model are on Earth, I find where on the model to place a given checkpoint by dividing the checkpoints longitude or latitude by the difference of the min and max, and multiplying this result by 100 (the side length of the model). To create a new trophy using the same code, I need only paste in the coordinates, and change the scale factor to the side length of the model.</p><br>
+          <div class="image"><img src="finalimgs/pipe logic.png" alt="First working conversion"></div>
+          <p>Next, I draw pipes between the points by using a combination of the line, pipe, divide curve, MCP, and interpolate components. The first pipe, the one connecting the start marker to the first checkpoint visited, is given an arrow (cone) to denote direction of travel of the racer.</p><br>
+          <div class="image"><img src="finalimgs/arrowrender.png" alt="Calculation setup"></div>
+          <p></p><br>
+          <div class="image"><img src="finalimgs/text logic.png" alt="Offset logic"></div>
+          <p>The logic that controls the text, and ensures it follows the complex contours of the topological model.</p><br>
+          <div class="image"><img src="finalimgs/text on model.png" alt="Checkpoint cylinders"></div>
+          <p>"#002//1st Place//Race 03//(9m49s)"</p><br>
+        </div>
+
+        <h3>Downloads</h3>
+        <ul>
+          <li><a href="finalimgs/compfab_final_clean.gh">Download Grasshopper File (.gh)</a></li>
+          <li><a href="downloads/final_rhino_model.3dm">Download Rhino Model (.3dm)</a></li>
+          <li><a href="finalimgs/10m_-105.27_40.01_tile_1_1.STL">Download Topographical Model 100mm x 100mm (.stl)</a></li>
+          <li><a href="finalimgs/compfabfinalprint.obj">Download Final 3D Model (.obj)</a></li>
+        </ul>
+        </section>
+        <h2>Physical Fabrication</h2>
+        <p>I used my friend's bambu labs printer to print the final model. I chose his printer because it has a high print resolution, and the more precise a machine, the greater topographical detail can be captured in the final print.</p>
+        <div class="images">
+            <div class="image"><img src="finalimgs/IMG_2440.JPG" alt="Coordinate transformation"></div>
+            <div class="image"><img src="finalimgs/IMG_2441.JPG" alt="First working conversion"></div>
+           <div class="image"><img src="finalimgs/IMG_2442.JPG" alt="Calculation setup"></div>
+            
+            
+          </div>
+
+        <h2>Reflection</h2>
+        <p>My main qualm with the finished product is the readability of the text at the top. While still somewhat legible,
+            the text aspect of the trophy is necessary to the function of the object as a trophy. Not only does it make the
+            final product look ugly, it also hinders the function. If I were to do this project again, I would make sure to increase
+            the text size significantly to avoid this.
+
+        </p><br>
+        <p>Aside from that, however, I am very pleased with myself. I was able to achieve all of my goals, and my idea has
+            successfully been brought to life down to the last detail. The Grasshopper code is messy, but it works flawlessly and has
+            a vast array of parameters I can modify if I want. I can make the markers and pipes larger for better prints, or smaller to accentuate
+            the topographic model, just to name a couple. I am very excited to utilize it in the future for winners with efficient alleycat routes.
+        </p><br>
+        <p>Finally, I'd like to extend my thanks to you, Professor Rivera, for a great semester. Grasshopper is such a cool tool
+            that I plan to continue using in the future, so I'd like to say thank you for teaching such an interesting class and for 
+            your contribution towards the incredible course offerings at ATLS. HAGS!
+        </p>
+        </section>
+  </main>
+
+  <footer>
+    <p>&copy; SPRING 2025 ATLS 5529</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+ 
