@@ -21,6 +21,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
         }
 
         #fieldCanvas {
@@ -29,6 +30,9 @@
             margin: 0 auto;
             background-color: #2d5016;
             cursor: crosshair;
+            width: 800px;
+            max-width: 100%;
+            aspect-ratio: 4 / 3;
         }
 
         h1 {
@@ -481,13 +485,33 @@
         function getClickTarget(pixelX, pixelY) {
             const CLICK_RADIUS = 12;
 
-            // Check if clicking on handler
+            // Check if clicking on main handler
             if (handler) {
                 const handlerPixels = yardsToPixels(handler.x, handler.y);
                 const dx = pixelX - handlerPixels.x;
                 const dy = pixelY - handlerPixels.y;
                 if (Math.sqrt(dx * dx + dy * dy) < CLICK_RADIUS) {
-                    return { type: 'handler', index: null };
+                    return { type: 'mainHandler', index: null };
+                }
+            }
+
+            // Check if clicking on reset handler
+            if (offensiveFormation) {
+                const resetHandlerPixels = yardsToPixels(offensiveFormation.resetHandler.x, offensiveFormation.resetHandler.y);
+                const dx = pixelX - resetHandlerPixels.x;
+                const dy = pixelY - resetHandlerPixels.y;
+                if (Math.sqrt(dx * dx + dy * dy) < CLICK_RADIUS) {
+                    return { type: 'resetHandler', index: null };
+                }
+
+                // Check if clicking on any stack player (cutter)
+                for (let i = 0; i < offensiveFormation.stackPlayers.length; i++) {
+                    const playerPixels = yardsToPixels(offensiveFormation.stackPlayers[i].x, offensiveFormation.stackPlayers[i].y);
+                    const dx = pixelX - playerPixels.x;
+                    const dy = pixelY - playerPixels.y;
+                    if (Math.sqrt(dx * dx + dy * dy) < CLICK_RADIUS) {
+                        return { type: 'cutter', index: i };
+                    }
                 }
             }
 
@@ -535,6 +559,13 @@
 
             if (dragging.type === 'defender') {
                 defenders[dragging.index] = position;
+            } else if (dragging.type === 'mainHandler') {
+                handler = position;
+                offensiveFormation.handler = position;
+            } else if (dragging.type === 'resetHandler') {
+                offensiveFormation.resetHandler = position;
+            } else if (dragging.type === 'cutter') {
+                offensiveFormation.stackPlayers[dragging.index] = position;
             }
 
             drawField();
