@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Frisbee Field Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #fieldCanvas {
+            border: 2px solid #333;
+            display: block;
+            margin: 0 auto;
+            background-color: #2d5016;
+            cursor: crosshair;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color: #333;
+        }
+
+        .info {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #4488FF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2266DD;
+        }
+
+        button:active {
+            background-color: #1144BB;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Ultimate Frisbee Field Visualizer</h1>
+        <canvas id="fieldCanvas" width="800" height="600"></canvas>
+        <div class="info">
+            <div>Left-click to place defenders (max 7)</div>
+            <div style="margin-top: 8px;">
+                <button id="verticalStackBtn">Place Vertical Stack Formation</button>
+                <button id="heatmapToggleBtn">Toggle Heatmap</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('fieldCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Field dimensions (in yards)
+        const FIELD_LENGTH = 70; // yards between endzones
+        const ENDZONE_DEPTH = 20; // yards
+        const FIELD_WIDTH = 40; // yards
+
+        // Canvas scaling (pixels per yard)
+        const PIXELS_PER_YARD = 5;
+
+        // Calculate total field dimensions in pixels
+        const TOTAL_LENGTH = (FIELD_LENGTH + ENDZONE_DEPTH * 2) * PIXELS_PER_YARD;
+        const TOTAL_WIDTH = FIELD_WIDTH * PIXELS_PER_YARD;
+
+        // Game state
+        let handler = null;
+        let defenders = [];
+        let offensiveFormation = null;
+        let showHeatmap = true;
+
+        function initializeVerticalStack() {
+            // Endzone 1 (defending endzone at top) = y: ENDZONE_DEPTH + FIELD_LENGTH
+            // Endzone 2 (attacking endzone at bottom) = y: 0
+            // Brick mark 2 (handler position) = 15 yards from Endzone 1 (the defending endzone at top)
+            const handlerPos = {
+                x: FIELD_WIDTH / 2, // center width
+                y: ENDZONE_DEPTH + FIELD_LENGTH - 15 // 15 yards from defender endzone (Endzone 1 at top)
+            };
+
+            // Reset handler: 5-10 yards back (towards Endzone 1), 45 degrees to the side
+            const resetHandlerDistance = 7.5; // midpoint between 5-10
+            const resetAngle = 45 * Math.PI / 180; // 45 degrees up and to the right
+            const resetHandlerPos = {
+                x: handlerPos.x + resetHandlerDistance * Math.cos(resetAngle),
+                y: handlerPos.y + resetHandlerDistance * Math.sin(resetAngle)
+            };
+
+            // Stack: 5 cutters lined up in center of field above handler (upfield towards Endzone 2)
+            const stackPlayers = [];
+            const stackStartY = handlerPos.y - 10; // Start 10 yards upfield
+            const stackSpacing = 5; // 5 yards between players
+
+            for (let i = 0; i < 5; i++) {
+                stackPlayers.push({
+                    x: handlerPos.x, // center of field
+                    y: stackStartY - (i * stackSpacing) // going further upfield
+                });
+            }
+
+            return {
+                handler: handlerPos,
+                resetHandler: resetHandlerPos,
+                stackPlayers: stackPlayers
+            };
+        }
+
+        // Initialize with vertical stack
+        offensiveFormation = initializeVerticalStack();
+        handler = offensiveFormation.handler;
+
+        function interpolateColor(value) {
+            // value is 0-1, where 0 is green (easy) and 1 is red (hard)
+            // Smooth gradient: Green -> Yellow -> Orange -> Red
+            let r, g, b;
+
+            if (value < 0.33) {
+                // Green to Yellow (0 to 0.33)
+                const t = value / 0.33;
+                r = Math.round(0 + (255 * t));
+                g = 255;
+                b = 0;
+            } else if (value < 0.66) {
+                // Yellow to Orange/Red (0.33 to 0.66)
+                const t = (value - 0.33) / 0.33;
+                r = 255;
+                g = Math.round(255 * (1 - t * 0.7));
+                b = 0;
+            } else {
+                // Orange to Red (0.66 to 1.0)
+                const t = (value - 0.66) / 0.34;
+                r = 255;
+                g = Math.round(75 * (1 - t));
+                b = 0;
+            }
+
+            return { r, g, b };
+        }
+
+        function drawHeatmap(offsetX, offsetY) {
+            if (!handler || !showHeatmap) return;
+
+            // Field boundaries in pixels
+            const fieldLeft = offsetX;
+            const fieldTop = offsetY;
+            const fieldRight = offsetX + TOTAL_WIDTH;
+            const fieldBottom = offsetY + TOTAL_LENGTH;
+
+            // Create image data for the heatmap
+            const imageData = ctx.createImageData(canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let pixelY = 0; pixelY < canvas.height; pixelY++) {
+                for (let pixelX = 0; pixelX < canvas.width; pixelX++) {
+                    const index = (pixelY * canvas.width + pixelX) * 4;
+
+                    // Check if pixel is within field boundaries
+                    if (pixelX < fieldLeft || pixelX > fieldRight || pixelY < fieldTop || pixelY > fieldBottom) {
+                        data[index + 3] = 0; // Transparent outside field
+                        continue;
+                    }
+
+                    // Convert pixel to yards
+                    const yardX = (pixelX - offsetX) / PIXELS_PER_YARD;
+                    const yardY = (pixelY - offsetY) / PIXELS_PER_YARD;
+
+                    // Calculate distance from handler in yards
+                    const dx = yardX - handler.x;
+                    const dy = yardY - handler.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    // Calculate throw difficulty (0 = easy at 10 yards, 1 = hard at 70 yards)
+                    // Clamp between 10 and 70 yards
+                    let difficulty;
+                    if (distance < 10) {
+                        difficulty = 0;
+                    } else if (distance > 70) {
+                        difficulty = 1;
+                    } else {
+                        difficulty = (distance - 10) / 60;
+                    }
+
+                    // Check defender coverage
+                    let defenderImpact = 0;
+                    const DEFENDER_RADIUS = 3; // yards
+
+                    defenders.forEach((defender) => {
+                        // Distance from pixel to defender
+                        const defenderToPixelDx = yardX - defender.x;
+                        const defenderToPixelDy = yardY - defender.y;
+                        const distToDefender = Math.sqrt(defenderToPixelDx * defenderToPixelDx + defenderToPixelDy * defenderToPixelDy);
+
+                        // Check if within defender's immediate coverage radius
+                        if (distToDefender < DEFENDER_RADIUS) {
+                            // Full red within 3 yard radius
+                            defenderImpact = Math.max(defenderImpact, 1.0);
+                            return;
+                        }
+
+                        // Vector from handler to this pixel
+                        const toPixelDx = yardX - handler.x;
+                        const toPixelDy = yardY - handler.y;
+                        const toPixelDist = Math.sqrt(toPixelDx * toPixelDx + toPixelDy * toPixelDy);
+
+                        if (toPixelDist === 0) return;
+
+                        // Vector from handler to defender
+                        const toDefenderDx = defender.x - handler.x;
+                        const toDefenderDy = defender.y - handler.y;
+                        const toDefenderDist = Math.sqrt(toDefenderDx * toDefenderDx + toDefenderDy * toDefenderDy);
+
+                        if (toDefenderDist === 0) return;
+
+                        // Normalize vectors
+                        const pixelNormX = toPixelDx / toPixelDist;
+                        const pixelNormY = toPixelDy / toPixelDist;
+                        const defenderNormX = toDefenderDx / toDefenderDist;
+                        const defenderNormY = toDefenderDy / toDefenderDist;
+
+                        // Dot product (how aligned is pixel with defender from handler perspective)
+                        const dotProduct = pixelNormX * defenderNormX + pixelNormY * defenderNormY;
+
+                        // Only consider pixels roughly behind the defender (aligned cone)
+                        if (dotProduct > 0.5) {
+                            // Calculate perpendicular distance from pixel to defender line
+                            const defenderToPixelDx = yardX - defender.x;
+                            const defenderToPixelDy = yardY - defender.y;
+
+                            // Project pixel onto defender line
+                            const projLength = defenderToPixelDx * defenderNormX + defenderToPixelDy * defenderNormY;
+                            const perpX = defenderToPixelDx - projLength * defenderNormX;
+                            const perpY = defenderToPixelDy - projLength * defenderNormY;
+                            const perpDist = Math.sqrt(perpX * perpX + perpY * perpY);
+
+                            // Cone expands with distance: wider the further from defender
+                            const coneRadius = 3 + (toPixelDist - toDefenderDist) * 0.3;
+
+                            if (perpDist < coneRadius) {
+                                // This pixel is in the shadow cone
+                                const shadowStrength = 1 - (perpDist / coneRadius);
+                                defenderImpact = Math.max(defenderImpact, shadowStrength * 0.6);
+                            }
+                        }
+                    });
+
+                    // Blend difficulty with defender impact
+                    difficulty = Math.min(1, difficulty + defenderImpact);
+
+                    // Get color based on adjusted difficulty
+                    const color = interpolateColor(difficulty);
+
+                    // Set pixel with full opacity
+                    data[index] = color.r;
+                    data[index + 1] = color.g;
+                    data[index + 2] = color.b;
+                    data[index + 3] = 255; // Full opacity
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function drawField() {
+            // Clear canvas
+            ctx.fillStyle = '#2d5016';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Calculate positioning to center the field
+            const offsetX = (canvas.width - TOTAL_WIDTH) / 2;
+            const offsetY = (canvas.height - TOTAL_LENGTH) / 2;
+
+            // Draw heatmap if handler exists
+            drawHeatmap(offsetX, offsetY);
+
+            // Draw endzones
+            ctx.fillStyle = 'rgba(100, 150, 100, 0.3)';
+            // Defensive endzone (top)
+            ctx.fillRect(offsetX, offsetY, TOTAL_WIDTH, ENDZONE_DEPTH * PIXELS_PER_YARD);
+            // Offensive endzone (bottom)
+            ctx.fillRect(offsetX, offsetY + TOTAL_LENGTH - ENDZONE_DEPTH * PIXELS_PER_YARD, TOTAL_WIDTH, ENDZONE_DEPTH * PIXELS_PER_YARD);
+
+            // Draw field boundaries
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(offsetX, offsetY, TOTAL_WIDTH, TOTAL_LENGTH);
+
+            // Draw sidelines and endlines (lighter)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+
+            // Line separating endzones from main field (top)
+            ctx.beginPath();
+            ctx.moveTo(offsetX, offsetY + ENDZONE_DEPTH * PIXELS_PER_YARD);
+            ctx.lineTo(offsetX + TOTAL_WIDTH, offsetY + ENDZONE_DEPTH * PIXELS_PER_YARD);
+            ctx.stroke();
+
+            // Line separating endzones from main field (bottom)
+            ctx.beginPath();
+            ctx.moveTo(offsetX, offsetY + FIELD_LENGTH * PIXELS_PER_YARD + ENDZONE_DEPTH * PIXELS_PER_YARD);
+            ctx.lineTo(offsetX + TOTAL_WIDTH, offsetY + FIELD_LENGTH * PIXELS_PER_YARD + ENDZONE_DEPTH * PIXELS_PER_YARD);
+            ctx.stroke();
+
+            // Center line
+            ctx.beginPath();
+            ctx.moveTo(offsetX, offsetY + (FIELD_LENGTH / 2 + ENDZONE_DEPTH) * PIXELS_PER_YARD);
+            ctx.lineTo(offsetX + TOTAL_WIDTH, offsetY + (FIELD_LENGTH / 2 + ENDZONE_DEPTH) * PIXELS_PER_YARD);
+            ctx.stroke();
+
+            // Draw brick marks (15 yards from each endzone)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            const brickMark1Y = offsetY + (ENDZONE_DEPTH + FIELD_LENGTH - 15) * PIXELS_PER_YARD; // 15 yards from Endzone 1 (top defending endzone) - handler position
+            const brickMark2Y = offsetY + (ENDZONE_DEPTH + 15) * PIXELS_PER_YARD; // 15 yards from Endzone 2 (bottom attacking endzone)
+            const brickMarkRadius = 4;
+
+            // Brick mark 1 (handler start position at top)
+            ctx.beginPath();
+            ctx.arc(offsetX + (FIELD_WIDTH / 2) * PIXELS_PER_YARD, brickMark1Y, brickMarkRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Brick mark 2 (other end at bottom)
+            ctx.beginPath();
+            ctx.arc(offsetX + (FIELD_WIDTH / 2) * PIXELS_PER_YARD, brickMark2Y, brickMarkRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw handler
+            if (handler) {
+                const pixelX = offsetX + handler.x * PIXELS_PER_YARD;
+                const pixelY = offsetY + handler.y * PIXELS_PER_YARD;
+
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(pixelX, pixelY, 8, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 10px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('H', pixelX, pixelY);
+            }
+
+            // Draw defenders
+            defenders.forEach((defender, index) => {
+                const pixelX = offsetX + defender.x * PIXELS_PER_YARD;
+                const pixelY = offsetY + defender.y * PIXELS_PER_YARD;
+
+                ctx.fillStyle = '#FF4444';
+                ctx.beginPath();
+                ctx.arc(pixelX, pixelY, 7, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 10px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('D', pixelX, pixelY);
+            });
+
+            // Draw offensive formation
+            if (offensiveFormation) {
+                // Draw main handler
+                const mainHandlerPixels = yardsToPixels(offensiveFormation.handler.x, offensiveFormation.handler.y);
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(mainHandlerPixels.x, mainHandlerPixels.y, 8, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw white disc on handler (attached to the side)
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(mainHandlerPixels.x + 8, mainHandlerPixels.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 10px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('H', mainHandlerPixels.x, mainHandlerPixels.y);
+
+                // Draw reset handler
+                const resetHandlerPixels = yardsToPixels(offensiveFormation.resetHandler.x, offensiveFormation.resetHandler.y);
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(resetHandlerPixels.x, resetHandlerPixels.y, 8, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 10px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('R', resetHandlerPixels.x, resetHandlerPixels.y);
+
+                // Draw stack players (cutters)
+                offensiveFormation.stackPlayers.forEach((player, index) => {
+                    const playerPixels = yardsToPixels(player.x, player.y);
+                    ctx.fillStyle = '#FFD700';
+                    ctx.beginPath();
+                    ctx.arc(playerPixels.x, playerPixels.y, 8, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.strokeStyle = '#000';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#000';
+                    ctx.font = 'bold 10px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('C', playerPixels.x, playerPixels.y);
+                });
+            }
+        }
+
+        function pixelsToYards(pixelX, pixelY) {
+            const offsetX = (canvas.width - TOTAL_WIDTH) / 2;
+            const offsetY = (canvas.height - TOTAL_LENGTH) / 2;
+
+            const yardX = (pixelX - offsetX) / PIXELS_PER_YARD;
+            const yardY = (pixelY - offsetY) / PIXELS_PER_YARD;
+
+            return { x: yardX, y: yardY };
+        }
+
+        function yardsToPixels(yardX, yardY) {
+            const offsetX = (canvas.width - TOTAL_WIDTH) / 2;
+            const offsetY = (canvas.height - TOTAL_LENGTH) / 2;
+
+            const pixelX = offsetX + yardX * PIXELS_PER_YARD;
+            const pixelY = offsetY + yardY * PIXELS_PER_YARD;
+
+            return { x: pixelX, y: pixelY };
+        }
+
+        function getClickTarget(pixelX, pixelY) {
+            const CLICK_RADIUS = 12;
+
+            // Check if clicking on handler
+            if (handler) {
+                const handlerPixels = yardsToPixels(handler.x, handler.y);
+                const dx = pixelX - handlerPixels.x;
+                const dy = pixelY - handlerPixels.y;
+                if (Math.sqrt(dx * dx + dy * dy) < CLICK_RADIUS) {
+                    return { type: 'handler', index: null };
+                }
+            }
+
+            // Check if clicking on any defender
+            for (let i = 0; i < defenders.length; i++) {
+                const defenderPixels = yardsToPixels(defenders[i].x, defenders[i].y);
+                const dx = pixelX - defenderPixels.x;
+                const dy = pixelY - defenderPixels.y;
+                if (Math.sqrt(dx * dx + dy * dy) < CLICK_RADIUS) {
+                    return { type: 'defender', index: i };
+                }
+            }
+
+            return null;
+        }
+
+        let dragging = null;
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const pixelX = e.clientX - rect.left;
+            const pixelY = e.clientY - rect.top;
+
+            dragging = getClickTarget(pixelX, pixelY);
+
+            // Left click to drag existing defender or add new one (max 7)
+            if (e.button === 0) {
+                if (!dragging && defenders.length < 7) {
+                    const position = pixelsToYards(pixelX, pixelY);
+                    defenders.push(position);
+                    dragging = { type: 'defender', index: defenders.length - 1 };
+                }
+            }
+
+            drawField();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!dragging) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const pixelX = e.clientX - rect.left;
+            const pixelY = e.clientY - rect.top;
+            const position = pixelsToYards(pixelX, pixelY);
+
+            if (dragging.type === 'defender') {
+                defenders[dragging.index] = position;
+            }
+
+            drawField();
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            dragging = null;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            dragging = null;
+        });
+
+        canvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Button click handler for vertical stack formation
+        document.getElementById('verticalStackBtn').addEventListener('click', () => {
+            offensiveFormation = initializeVerticalStack();
+            handler = offensiveFormation.handler;
+            defenders = []; // Clear defenders when placing formation
+            drawField();
+        });
+
+        // Button click handler for heatmap toggle
+        document.getElementById('heatmapToggleBtn').addEventListener('click', () => {
+            showHeatmap = !showHeatmap;
+            drawField();
+        });
+
+        // Draw initial field
+        drawField();
+    </script>
+</body>
+</html>
