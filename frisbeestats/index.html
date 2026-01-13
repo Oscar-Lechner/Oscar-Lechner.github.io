@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ultimate Stats Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="score-display">
+                <span class="score" id="ourScore">0</span>
+                <span class="score-separator">-</span>
+                <span class="score" id="theirScore">0</span>
+            </div>
+            <button id="statsBtn" class="stats-btn">📊</button>
+        </header>
+
+        <!-- Field Canvas -->
+        <div class="field-container">
+            <div class="endzone-label top">ATTACKING ENDZONE</div>
+            <canvas id="field"></canvas>
+            <div class="endzone-label bottom">DEFENDING ENDZONE</div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="bottom-controls">
+            <div class="on-field-mini">
+                <div id="onFieldPlayers" class="player-chips"></div>
+            </div>
+            <div class="controls">
+                <button id="selectPlayersBtn" class="control-btn">Players</button>
+                <button id="startPointBtn" class="control-btn primary">New Point</button>
+            </div>
+        </div>
+
+        <!-- Action Buttons (slide up from bottom) -->
+        <div id="actionPanel" class="action-panel hidden">
+            <div class="action-options">
+                <button class="action-btn secondary" data-action="block">Block</button>
+                <button class="action-btn secondary" data-action="throwaway">Throwaway</button>
+                <button class="action-btn secondary" data-action="opponent-goal">Opp Goal</button>
+            </div>
+            <button id="catchBtn" class="catch-btn">
+                <span>CATCH</span>
+            </button>
+            <!-- Player selector arc -->
+            <div id="playerArc" class="player-arc hidden"></div>
+        </div>
+    </div>
+
+    <!-- Game Setup Modal -->
+    <div id="gameSetupModal" class="modal">
+        <div class="modal-content">
+            <h2>Game Setup</h2>
+            <div class="setup-form">
+                <label>Opponent Team Name:</label>
+                <input type="text" id="opponentName" placeholder="Enter opponent name" />
+
+                <label>Game To:</label>
+                <select id="gameLength">
+                    <option value="15">15 (Half at 8)</option>
+                    <option value="13">13 (Half at 7)</option>
+                    <option value="11">11 (Half at 6)</option>
+                </select>
+
+                <label>Who starts on offense?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="startOffense" value="us" checked />
+                        CKFT (We receive)
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="startOffense" value="them" />
+                        Opponent (We pull)
+                    </label>
+                </div>
+            </div>
+            <button id="startGame" class="control-btn primary">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Player Selection Modal -->
+    <div id="playerModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Select 7 Players</h2>
+            <div id="rosterList" class="roster-list"></div>
+            <button id="confirmPlayers" class="control-btn primary">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Stats Dashboard Modal -->
+    <div id="statsModal" class="modal hidden">
+        <div class="modal-content stats-content">
+            <div class="modal-header">
+                <h2>Game Statistics</h2>
+                <button id="closeStats" class="close-btn">✕</button>
+            </div>
+            <div id="statsContent" class="stats-display"></div>
+            <div class="stats-actions">
+                <button id="exportStats" class="control-btn">Export CSV</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
