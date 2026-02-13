@@ -10,17 +10,17 @@
         margin: 0;
         padding: 0;
         background-color: #f0f0f0;
-        font-family: sans-serif;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
 
       .gif-wrapper {
-        width: 20vw; /* middle fifth */
+        width: 20vw;
         aspect-ratio: 1 / 1;
-        margin-top: 10vh; /* good padding from top */
-        margin-bottom: 5vh; /* space between gif and links */
+        margin-top: 10vh;
+        margin-bottom: 5vh;
       }
 
       .gif-wrapper img {
@@ -30,18 +30,37 @@
         display: block;
       }
 
+      .links {
+        width: 20vw;
+        min-width: 260px;
+      }
+
+      .links p {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888;
+        margin: 0 0 1.2rem 0;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #ccc;
+      }
+
       .center-link {
         display: block;
-        text-align: center;
-        margin: 10px 0;
-        font-size: 1.1rem;
-        color: #333;
+        text-align: left;
+        margin: 0;
+        padding: 0.45rem 0;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        letter-spacing: 0.01em;
+        color: #222;
         text-decoration: none;
       }
 
       .center-link:hover {
+        color: #000;
         text-decoration: underline;
-        color: #180f78;
+        text-underline-offset: 3px;
       }
     </style>
   </head>
@@ -51,18 +70,20 @@
       <img src="FLOP.gif" alt="Looping GIF" />
     </div>
 
-    <p>Links to websites I've made:</p>
-    <a href="https://oscarlechner.com/" class="center-link">Portfolio (oscarlechner.com)</a> 
-    <a href="https://oscarlechner.me/object/progdoc.html" class="center-link">Class Documentation: Object</a> 
-    <a href="https://oscarlechner.me/dataforest" class="center-link">Class Documentation: Capstone (Data Forest)</a> 
-    <a href="https://oscarlechner.me/compfab/blog.html" class="center-link">Class Documentation: Computational Fabrication </a> 
-    <a href="https://boulderalleycat.com" class="center-link">Boulder Alleycat</a>
-    <a href="https://alleycat-tool.vercel.app" class="center-link">Alleycat Race Dashbaord</a>
-    <a href="https://oscarlechner.me/lifeofjoe/lifeofjoe.html" class="center-link">Life of Joe: Meaning of Information Technology Final</a>
-    <a href="https://mamabird.com" class="center-link">Mamabird Ultimate</a>
-    <a href="https://mamabird.com/ckft" class="center-link">CKFT Ultimate</a>
-    <a href="https://quandaryultimate.me" class="center-link">Quandary Ultimate</a>
-    <a href="https://gronchpad.vercel.app" class="center-link">gronchpad</a>
+    <div class="links">
+      <p>Links to websites I've made</p>
+      <a href="https://oscarlechner.com/" class="center-link">Portfolio (oscarlechner.com)</a>
+      <a href="https://oscar-lechner.github.io/object/progdoc.html" class="center-link">Class Documentation: Object</a>
+      <a href="https://oscar-lechner.github.io/dataforest" class="center-link">Class Documentation: Capstone (Data Forest)</a>
+      <a href="https://oscar-lechner.github.io/compfab/blog.html" class="center-link">Class Documentation: Computational Fabrication</a>
+      <a href="https://boulderalleycat.com" class="center-link">Boulder Alleycat</a>
+      <a href="https://alleycat-tool.vercel.app" class="center-link">Alleycat Race Dashboard</a>
+      <a href="https://oscar-lechner.github.io/lifeofjoe/lifeofjoe.html" class="center-link">Life of Joe: Meaning of Information Technology Final</a>
+      <a href="https://mamabird.com" class="center-link">Mamabird Ultimate</a>
+      <a href="https://mamabird.com/ckft" class="center-link">CKFT Ultimate</a>
+      <a href="https://quandaryultimate.me" class="center-link">Quandary Ultimate</a>
+      <a href="https://gronchpad.vercel.app" class="center-link">gronchpad</a>
+    </div>
 
   </body>
 </html>
